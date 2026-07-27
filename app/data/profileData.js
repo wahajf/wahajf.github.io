@@ -21,7 +21,7 @@ export const profileData = {
       description: "Aviation media channel documenting commercial planespotting & flight operations at YVR.",
       youtubeUrl: "https://youtube.com/@thatyvrspotter",
       tiktokUrl: "https://www.tiktok.com/@thatyvrspotter",
-      youtubeId: "JSh_f35lJnQ",
+      previewImage: "/yvrspotter-preview.png",
       stats: [
         { label: "Views", value: "100K+" },
         { label: "Followers", value: "2K+" }

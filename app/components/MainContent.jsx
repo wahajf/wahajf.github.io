@@ -240,7 +240,7 @@ export default function MainContent() {
 
                   {proj.previewImage && !proj.youtubeId && (
                     <a
-                      href={proj.websiteUrl}
+                      href={proj.websiteUrl || proj.youtubeUrl}
                       target="_blank"
                       rel="noreferrer"
                       style={{ display: 'block', textDecoration: 'none' }}
