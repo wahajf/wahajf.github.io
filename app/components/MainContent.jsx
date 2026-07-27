@@ -257,7 +257,7 @@ export default function MainContent() {
                         <img
                           src={proj.previewImage}
                           alt={`${proj.title} preview`}
-                          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top left' }}
+                          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
                         />
                       </div>
                     </a>
