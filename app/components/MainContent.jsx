@@ -138,44 +138,66 @@ export default function MainContent() {
                       <div style={{ fontSize: '0.8rem', fontWeight: '500', color: 'var(--muted)', marginTop: '2px' }}>{proj.date}</div>
                     </div>
 
-                    {/* YouTube & TikTok Pill Links */}
+                    {/* Dynamic Pill Links */}
                     <div style={{ display: 'flex', gap: '6px' }}>
-                      <a
-                        href={proj.youtubeUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        style={{
-                          fontSize: '0.78rem',
-                          padding: '4px 12px',
-                          borderRadius: '9999px',
-                          background: 'var(--pill-bg)',
-                          color: 'var(--text)',
-                          textDecoration: 'none',
-                          fontWeight: '500'
-                        }}
-                      >
-                        YouTube ↗
-                      </a>
-                      <a
-                        href={proj.tiktokUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        style={{
-                          fontSize: '0.78rem',
-                          padding: '4px 12px',
-                          borderRadius: '9999px',
-                          background: 'var(--pill-bg)',
-                          color: 'var(--text)',
-                          textDecoration: 'none',
-                          fontWeight: '500'
-                        }}
-                      >
-                        TikTok ↗
-                      </a>
+                      {proj.websiteUrl && (
+                        <a
+                          href={proj.websiteUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            fontSize: '0.78rem',
+                            padding: '4px 12px',
+                            borderRadius: '9999px',
+                            background: 'var(--pill-bg)',
+                            color: 'var(--text)',
+                            textDecoration: 'none',
+                            fontWeight: '500'
+                          }}
+                        >
+                          Website ↗
+                        </a>
+                      )}
+                      {proj.youtubeUrl && (
+                        <a
+                          href={proj.youtubeUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            fontSize: '0.78rem',
+                            padding: '4px 12px',
+                            borderRadius: '9999px',
+                            background: 'var(--pill-bg)',
+                            color: 'var(--text)',
+                            textDecoration: 'none',
+                            fontWeight: '500'
+                          }}
+                        >
+                          YouTube ↗
+                        </a>
+                      )}
+                      {proj.tiktokUrl && (
+                        <a
+                          href={proj.tiktokUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            fontSize: '0.78rem',
+                            padding: '4px 12px',
+                            borderRadius: '9999px',
+                            background: 'var(--pill-bg)',
+                            color: 'var(--text)',
+                            textDecoration: 'none',
+                            fontWeight: '500'
+                          }}
+                        >
+                          TikTok ↗
+                        </a>
+                      )}
                     </div>
                   </div>
 
-                  <div style={{ fontSize: '0.88rem', fontWeight: '500', color: 'var(--muted)', lineHeight: '1.5', marginBottom: '16px' }}>
+                  <div style={{ fontSize: '0.88rem', fontWeight: '500', color: 'var(--muted)', lineHeight: '1.5', marginBottom: proj.youtubeId ? '16px' : '0px' }}>
                     {proj.description}
                   </div>
 

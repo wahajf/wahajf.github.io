@@ -22,6 +22,13 @@ export const profileData = {
       youtubeUrl: "https://youtube.com/@thatyvrspotter",
       tiktokUrl: "https://www.tiktok.com/@thatyvrspotter",
       youtubeId: "JSh_f35lJnQ"
+    },
+    {
+      id: "flightcitizen",
+      title: "Flight Citizen",
+      date: "2025 - Present",
+      description: "Aviation platform and flight tracking interface.",
+      websiteUrl: "https://flightcitizen.com"
     }
   ],
   experience: [
