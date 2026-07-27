@@ -90,9 +90,12 @@
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    .container {
+    .inner-content-container {
       width: 100%;
       max-width: 620px;
+      margin: 0 auto;
+      padding: 0 24px;
+      box-sizing: border-box;
     }
 
     /* DESKTOP NAV (> 768px) */
@@ -158,7 +161,7 @@
       .mobile-header-container {
         display: flex !important;
       }
-      .container {
+      .inner-content-container {
         padding: 0 16px !important;
       }
     }
@@ -517,98 +520,100 @@
     </div>
   </div>
 
-  <main class="container">
-    <!-- Hero / About Section -->
-    <section class="hero-section" id="about">
-      <div class="hero-text">
-        <p>
-          Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at the <a href="https://www.ubc.ca" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;">University of British Columbia</a>.
-        </p>
-        <p>On the side I run <a href="https://youtube.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;">@thatyvrspotter</a>, documenting planespotting at YVR.</p>
-      </div>
-    </section>
-  </main>
+  <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <main class="inner-content-container">
+      <!-- Hero / About Section -->
+      <section class="hero-section" id="about">
+        <div class="hero-text">
+          <p>
+            Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at the <a href="https://www.ubc.ca" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;">University of British Columbia</a>.
+          </p>
+          <p>On the side I run <a href="https://youtube.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;">@thatyvrspotter</a>, documenting planespotting at YVR.</p>
+        </div>
+      </section>
+    </main>
 
-  <!-- Full-Width Background Section Below Hero -->
-  <div class="full-width-below-hero">
-    <div class="container">
-      <!-- Work Section (No line below Work heading) -->
-      <section class="section-block" id="work">
-        <div class="section-label">Work</div>
+    <!-- Full-Width Background Section Below Hero -->
+    <div class="full-width-below-hero">
+      <div class="inner-content-container">
+        <!-- Work Section (No line below Work heading) -->
+        <section class="section-block" id="work">
+          <div class="section-label">Work</div>
 
-        <div class="card">
-          <div class="card-top">
+          <div class="card">
+            <div class="card-top">
+              <div>
+                <div class="card-title">@thatyvrspotter</div>
+                <div class="card-date">2024 - Present</div>
+              </div>
+              <div style="display: flex; gap: 6px;">
+                <a href="https://youtube.com/@thatyvrspotter" target="_blank" class="website-pill">
+                  YouTube ↗
+                </a>
+                <a href="https://www.tiktok.com/@thatyvrspotter" target="_blank" class="website-pill">
+                  TikTok ↗
+                </a>
+              </div>
+            </div>
+
+            <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 16px;">
+              Aviation media channel documenting commercial planespotting & flight operations at YVR.
+            </div>
+
+            <div class="video-container">
+              <iframe 
+                src="https://www.youtube.com/embed/JSh_f35lJnQ" 
+                title="thatyvrspotter Showcase" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section-block" id="experience">
+          <div class="section-label with-border">Experience</div>
+          
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="exp-row">
+              <span style="font-weight: 500;">Independent Developer</span>
+              <span style="font-size: 0.84rem; color: var(--muted);">2025 – Present</span>
+            </div>
+
+            <div class="exp-row">
+              <span style="font-weight: 500;">Planespotting Creator (@thatyvrspotter)</span>
+              <span style="font-size: 0.84rem; color: var(--muted);">2024 – Present</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section-block" id="education">
+          <div class="section-label with-border">Education</div>
+
+          <div class="exp-row">
             <div>
-              <div class="card-title">@thatyvrspotter</div>
-              <div class="card-date">2024 - Present</div>
+              <div style="font-weight: 500;">University of British Columbia</div>
+              <div style="font-size: 0.84rem; color: var(--muted); margin-top: 2px;">Computer Science</div>
             </div>
-            <div style="display: flex; gap: 6px;">
-              <a href="https://youtube.com/@thatyvrspotter" target="_blank" class="website-pill">
-                YouTube ↗
-              </a>
-              <a href="https://www.tiktok.com/@thatyvrspotter" target="_blank" class="website-pill">
-                TikTok ↗
-              </a>
-            </div>
+            <span style="font-size: 0.84rem; color: var(--muted);">2026 – 2030</span>
           </div>
+        </section>
 
-          <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 16px;">
-            Aviation media channel documenting commercial planespotting & flight operations at YVR.
-          </div>
+        <!-- Contact Section -->
+        <section class="section-block" id="contact">
+          <div class="section-label with-border">Contact</div>
+          <p style="color: var(--muted); font-size: 0.92rem;">
+            Reach out at <a href="mailto:wahajf05@gmail.com" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">wahajf05 [at] gmail.com</a>, find me on <a href="https://github.com/wahajf" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">GitHub</a>, or check out @thatyvrspotter on <a href="https://youtube.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">YouTube</a> & <a href="https://www.tiktok.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">TikTok</a>.
+          </p>
+        </section>
 
-          <div class="video-container">
-            <iframe 
-              src="https://www.youtube.com/embed/JSh_f35lJnQ" 
-              title="thatyvrspotter Showcase" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-      </section>
-
-      <!-- Experience Section -->
-      <section class="section-block" id="experience">
-        <div class="section-label with-border">Experience</div>
-        
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <div class="exp-row">
-            <span style="font-weight: 500;">Independent Developer</span>
-            <span style="font-size: 0.84rem; color: var(--muted);">2025 – Present</span>
-          </div>
-
-          <div class="exp-row">
-            <span style="font-weight: 500;">Planespotting Creator (@thatyvrspotter)</span>
-            <span style="font-size: 0.84rem; color: var(--muted);">2024 – Present</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Education Section -->
-      <section class="section-block" id="education">
-        <div class="section-label with-border">Education</div>
-
-        <div class="exp-row">
-          <div>
-            <div style="font-weight: 500;">University of British Columbia</div>
-            <div style="font-size: 0.84rem; color: var(--muted); margin-top: 2px;">Computer Science</div>
-          </div>
-          <span style="font-size: 0.84rem; color: var(--muted);">2026 – 2030</span>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section class="section-block" id="contact">
-        <div class="section-label with-border">Contact</div>
-        <p style="color: var(--muted); font-size: 0.92rem;">
-          Reach out at <a href="mailto:wahajf05@gmail.com" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">wahajf05 [at] gmail.com</a>, find me on <a href="https://github.com/wahajf" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">GitHub</a>, or check out @thatyvrspotter on <a href="https://youtube.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">YouTube</a> & <a href="https://www.tiktok.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">TikTok</a>.
-        </p>
-      </section>
-
-      <footer>
-        <span id="vancouverInfo" style="display: inline-flex; align-items: center; gap: 5px;">Vancouver, BC</span>
-        <span>2026</span>
-      </footer>
+        <footer>
+          <span id="vancouverInfo" style="display: inline-flex; align-items: center; gap: 5px;">Vancouver, BC</span>
+          <span>2026</span>
+        </footer>
+      </div>
     </div>
   </div>
 

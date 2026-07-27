@@ -53,45 +53,43 @@ export default function MainContent() {
   };
 
   return (
-    <main className="container-main" style={{ width: '100%', maxWidth: '620px' }}>
-      {/* About / Hero Section */}
-      <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '96px', paddingTop: '48px' }}>
-        <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
-          <p style={{ marginBottom: '7px' }}>
-            Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at the{' '}
-            <a
-              href={profileData.ubcUrl}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
-            >
-              University of British Columbia
-            </a>
-            .
-          </p>
-          <p>
-            On the side I run{' '}
-            <a
-              href={profileData.socialLinks.youtube}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
-            >
-              @thatyvrspotter
-            </a>
-            , documenting planespotting at YVR.
-          </p>
-        </div>
-      </section>
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {/* Top Hero Container */}
+      <main className="inner-content-container">
+        {/* About / Hero Section */}
+        <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '96px', paddingTop: '48px' }}>
+          <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
+            <p style={{ marginBottom: '7px' }}>
+              Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at the{' '}
+              <a
+                href={profileData.ubcUrl}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
+              >
+                University of British Columbia
+              </a>
+              .
+            </p>
+            <p>
+              On the side I run{' '}
+              <a
+                href={profileData.socialLinks.youtube}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
+              >
+                @thatyvrspotter
+              </a>
+              , documenting planespotting at YVR.
+            </p>
+          </div>
+        </section>
+      </main>
 
       {/* Full Width Background Section Below Hero (#FAFAFA in Light Mode) */}
       <div style={{
         width: '100vw',
-        position: 'relative',
-        left: '50%',
-        right: '50%',
-        marginLeft: '-50vw',
-        marginRight: '-50vw',
         backgroundColor: 'var(--sub-bg)',
         borderTop: 'none',
         paddingTop: '16px',
@@ -100,7 +98,7 @@ export default function MainContent() {
         justifyContent: 'center',
         transition: 'background-color 0.25s ease'
       }}>
-        <div style={{ width: '100%', maxWidth: '620px', boxSizing: 'border-box' }}>
+        <div className="inner-content-container">
           {/* Work / Projects Section (No line below Work heading) */}
           <section id="work" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
@@ -296,6 +294,6 @@ export default function MainContent() {
           </footer>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

@@ -83,25 +83,30 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 100px 24px 0;
+  padding: 100px 0 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   overflow-x: hidden;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.container-main {
+/* Inner Content Container matching Desktop (padding: 0 24px) & Mobile (padding: 0 16px) */
+.inner-content-container {
   width: 100%;
   max-width: 620px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   body {
-    padding: 80px 16px 0 !important;
+    padding-top: 80px !important;
   }
 
-  .container-main {
-    padding: 0 !important;
+  .inner-content-container {
+    padding: 0 16px !important;
   }
 
   .desktop-nav {
