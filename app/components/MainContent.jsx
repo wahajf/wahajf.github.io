@@ -81,14 +81,14 @@ export default function MainContent() {
         <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '96px', paddingTop: '48px' }}>
           <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
             <p style={{ marginBottom: '7px' }}>
-              Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at the{' '}
+              Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at{' '}
               <a
-                href={profileData.ubcUrl}
+                href={profileData.sfuUrl}
                 target="_blank"
                 rel="noreferrer"
                 style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
               >
-                University of British Columbia
+                Simon Fraser University
               </a>
               .
             </p>

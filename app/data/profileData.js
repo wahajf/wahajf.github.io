@@ -2,10 +2,10 @@ export const profileData = {
   name: "Wahaj Farooq",
   location: "Vancouver, BC",
   bio: [
-    "Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at the University of British Columbia.",
+    "Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at Simon Fraser University.",
     "On the side I run @thatyvrspotter, documenting planespotting at YVR."
   ],
-  ubcUrl: "https://www.ubc.ca",
+  sfuUrl: "https://www.sfu.ca",
   socialLinks: {
     github: "https://github.com/wahajf",
     linkedin: "https://linkedin.com",
@@ -65,7 +65,7 @@ export const profileData = {
   ],
   education: [
     {
-      institution: "University of British Columbia",
+      institution: "Simon Fraser University",
       degree: "Computer Science",
       period: "2026 – 2030"
     }
