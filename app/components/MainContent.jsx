@@ -197,9 +197,27 @@ export default function MainContent() {
                     </div>
                   </div>
 
-                  <div style={{ fontSize: '0.88rem', fontWeight: '500', color: 'var(--muted)', lineHeight: '1.5', marginBottom: proj.youtubeId ? '16px' : '0px' }}>
+                  <div style={{ fontSize: '0.88rem', fontWeight: '500', color: 'var(--muted)', lineHeight: '1.5', marginBottom: proj.stats || proj.youtubeId ? '12px' : '0px' }}>
                     {proj.description}
                   </div>
+
+                  {proj.stats && (
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: proj.youtubeId ? '16px' : '0px' }}>
+                      {proj.stats.map((stat) => (
+                        <div key={stat.label} style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          fontSize: '0.8rem',
+                          fontWeight: '500',
+                          color: 'var(--muted)'
+                        }}>
+                          <span style={{ color: 'var(--text)', fontWeight: '500' }}>{stat.value}</span>
+                          <span>{stat.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
                   {proj.youtubeId && (
                     <div style={{
