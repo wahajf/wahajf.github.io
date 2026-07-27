@@ -5,7 +5,7 @@ import { profileData } from '../data/profileData';
 export default function MainContent() {
   return (
     <main className="container-main" style={{ width: '100%', maxWidth: '620px' }}>
-      {/* About / Hero Section (Clean top area) */}
+      {/* About / Hero Section (Top area) */}
       <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '20px', paddingTop: '48px' }}>
         <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
           <p style={{ marginBottom: '7px' }}>
@@ -51,7 +51,7 @@ export default function MainContent() {
         justifyContent: 'center',
         transition: 'background-color 0.25s ease'
       }}>
-        <div style={{ width: '100%', maxWidth: '620px', padding: '0 24px' }}>
+        <div style={{ width: '100%', maxWidth: '620px', boxSizing: 'border-box' }}>
           {/* Work / Projects Section */}
           <section id="work" style={{ scrollMarginTop: '100px', marginBottom: '52px' }}>
             <div style={{

@@ -13,7 +13,7 @@ export default function CursorTrail() {
     let animationFrameId;
 
     let points = [];
-    const MAX_POINTS = 45; // Reduced point count for quicker fade out
+    const TRAIL_LIFETIME = 350; // milliseconds before point fades out completely even if static
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
@@ -24,16 +24,17 @@ export default function CursorTrail() {
     window.addEventListener('resize', handleResize);
 
     const handleMouseMove = (e) => {
-      points.unshift({ x: e.clientX, y: e.clientY });
-      if (points.length > MAX_POINTS) {
-        points.pop();
-      }
+      points.unshift({ x: e.clientX, y: e.clientY, time: Date.now() });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const now = Date.now();
+
+      // Automatically decay points over time even if mouse is static
+      points = points.filter(p => now - p.time < TRAIL_LIFETIME);
 
       if (points.length > 1) {
         ctx.lineCap = 'round';
@@ -43,10 +44,12 @@ export default function CursorTrail() {
           const p1 = points[i];
           const p2 = points[i + 1];
 
-          const ratio = 1 - i / (points.length - 1);
-          // Faster exponential decay so the trail dissipates quickly
-          const alpha = 0.65 * Math.pow(ratio, 2.2);
-          const strokeWidth = Math.max(0.5, 6.0 * ratio);
+          const age = now - p1.time;
+          const ratio = Math.max(0, 1 - age / TRAIL_LIFETIME);
+          if (ratio <= 0) continue;
+
+          const alpha = 0.65 * Math.pow(ratio, 1.8);
+          const strokeWidth = Math.max(0.5, 6.5 * ratio);
 
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
