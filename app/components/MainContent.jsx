@@ -5,8 +5,8 @@ import { profileData } from '../data/profileData';
 export default function MainContent() {
   return (
     <main className="container-main" style={{ width: '100%', maxWidth: '620px' }}>
-      {/* About / Hero Section (Top area: 100px space up to navbar, matched by 100px space below) */}
-      <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '60px', paddingTop: '48px' }}>
+      {/* About / Hero Section: 96px margin below hero text down to the top edge of the #FAFAFA fill */}
+      <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '96px', paddingTop: '48px' }}>
         <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
           <p style={{ marginBottom: '7px' }}>
             Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at the{' '}
@@ -35,7 +35,7 @@ export default function MainContent() {
         </div>
       </section>
 
-      {/* Full Width Background Section Below Hero (#FAFAFA in Light Mode: 40px top padding = 100px total space below hero text to WORK) */}
+      {/* Full Width Background Section Below Hero (#FAFAFA in Light Mode) */}
       <div style={{
         width: '100vw',
         position: 'relative',
@@ -45,7 +45,7 @@ export default function MainContent() {
         marginRight: '-50vw',
         backgroundColor: 'var(--sub-bg)',
         borderTop: 'none',
-        paddingTop: '40px',
+        paddingTop: '16px', // Matches 16px space below WORK heading
         paddingBottom: '80px',
         display: 'flex',
         justifyContent: 'center',
