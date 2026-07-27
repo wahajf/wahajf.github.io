@@ -202,7 +202,7 @@ export default function MainContent() {
                   </div>
 
                   {proj.stats && (
-                    <div style={{ display: 'flex', gap: '8px', marginBottom: proj.youtubeId ? '16px' : '0px' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: (proj.youtubeId || proj.previewImage) ? '16px' : '0px' }}>
                       {proj.stats.map((stat) => (
                         <div key={stat.label} style={{
                           display: 'flex',
