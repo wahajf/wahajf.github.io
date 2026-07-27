@@ -36,14 +36,15 @@
 [data-theme="dark"] {
   /* Deeper Very Dark Grey Background (#09090b) */
   --bg: #09090b;
-  --sub-bg: #09090b;
+  /* Slightly Lighter Grey Fill Below Hero (#121215) */
+  --sub-bg: #121215;
   --text: #f0f0f2;
   --muted: #8e8e96;
   --subtle: #55555e;
   --border: #1c1c22;
-  --card-bg: #121215;
-  --card-border: #1e1e24;
-  --pill-bg: #1e1e24;
+  --card-bg: #18181c;
+  --card-border: #24242a;
+  --pill-bg: #222228;
   
   /* Active Navbar Pill Tokens (Dark Mode): Soft Glowing Dark Orange Fill with Strong Blood Orange Text */
   --pill-active-bg: rgba(255, 120, 0, 0.18);
