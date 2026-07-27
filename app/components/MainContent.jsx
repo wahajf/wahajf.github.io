@@ -5,8 +5,8 @@ import { profileData } from '../data/profileData';
 export default function MainContent() {
   return (
     <main className="container-main" style={{ width: '100%', maxWidth: '620px' }}>
-      {/* About / Hero Section (Top area) */}
-      <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '64px', paddingTop: '48px' }}>
+      {/* About / Hero Section (Top area on white, margin below moves #FAFAFA fill lower) */}
+      <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '88px', paddingTop: '48px' }}>
         <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
           <p style={{ marginBottom: '7px' }}>
             Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at the{' '}
@@ -35,7 +35,7 @@ export default function MainContent() {
         </div>
       </section>
 
-      {/* Full Width Background Section Below Hero (No Border Stroke) */}
+      {/* Full Width Background Section Below Hero (#FAFAFA in Light Mode) */}
       <div style={{
         width: '100vw',
         position: 'relative',
