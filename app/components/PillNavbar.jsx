@@ -107,7 +107,7 @@ export default function PillNavbar() {
             })}
           </nav>
 
-          {/* Theme Toggle Pill */}
+          {/* Theme Toggle Pill (0% Opacity Background in Light Mode on Desktop) */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle Theme"
@@ -116,7 +116,7 @@ export default function PillNavbar() {
               width: '32px',
               height: '32px',
               borderRadius: '50%',
-              backgroundColor: 'var(--nav-bg)',
+              backgroundColor: theme === 'light' ? 'transparent' : 'var(--nav-bg)',
               border: 'var(--nav-border)',
               color: 'var(--nav-icon-color)',
               cursor: 'pointer',
@@ -285,7 +285,7 @@ export default function PillNavbar() {
           })}
         </div>
 
-        {/* Bottom Bar inside Menu: Icon-only Theme Toggle & Social Icons (No stroke line) */}
+        {/* Bottom Bar inside Menu: Icon-only Theme Toggle & Social Icons */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingTop: '12px' }}>
           <button
             onClick={toggleTheme}
