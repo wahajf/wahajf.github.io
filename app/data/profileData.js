@@ -38,6 +38,11 @@ export const profileData = {
   ],
   experience: [
     {
+      role: "Game Developer",
+      organization: "Independent",
+      period: "2026 – Present"
+    },
+    {
       role: "Independent Developer",
       organization: "Self-Employed",
       period: "2025 – Present"
@@ -47,6 +52,16 @@ export const profileData = {
       organization: "YouTube & TikTok",
       period: "2024 – Present"
     }
+  ],
+  skills: [
+    "Python",
+    "JavaScript",
+    "C++",
+    "React",
+    "Next.js",
+    "Microsoft Excel",
+    "Git",
+    "Game Development"
   ],
   education: [
     {

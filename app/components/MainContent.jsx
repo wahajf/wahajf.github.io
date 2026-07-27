@@ -292,6 +292,42 @@ export default function MainContent() {
             </div>
           </section>
 
+          {/* Skills Section */}
+          <section id="skills" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
+            <div style={{
+              fontSize: '0.82rem',
+              fontWeight: '500',
+              textTransform: 'uppercase',
+              letterSpacing: '0.06em',
+              color: 'var(--muted)',
+              marginBottom: '16px',
+              paddingBottom: '8px',
+              borderBottom: '1px solid var(--border)'
+            }}>
+              Skills
+            </div>
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {profileData.skills.map((skill, index) => (
+                <span
+                  key={index}
+                  style={{
+                    fontSize: '0.84rem',
+                    fontWeight: '500',
+                    color: 'var(--text)',
+                    backgroundColor: 'var(--card-bg)',
+                    border: '1px solid var(--border)',
+                    padding: '6px 14px',
+                    borderRadius: '9999px',
+                    lineHeight: '1.2'
+                  }}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </section>
+
           {/* Education Section */}
           <section id="education" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
