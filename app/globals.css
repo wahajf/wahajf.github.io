@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Top Area Background: Clean White */
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #666666;
+  --subtle: #999999;
+  --border: #e6e6e8;
+
+  /* Full-width Section Below Hero in Light Mode: #FAFAFA */
+  --sub-bg: #fafafa;
+  --card-bg: #ffffff;
+  --card-border: #eaeaea;
+  --pill-bg: #eeeeef;
+  
+  /* Active Navbar Pill Tokens (Light Mode): Darker Grey Fill than navbar grey with Dark Charcoal Grey Text */
+  --pill-active-bg: #e4e4e7;
+  --pill-active-text: #18181b;
+  
+  /* Restored Navbar Tokens (Light Mode) */
+  --nav-bg: #fafafa;
+  --nav-border: 0.5px solid #eeeeee;
+  --nav-text: #666666;
+  --nav-icon-color: #222222;
+
+  /* 100% Native Apple System Font everywhere */
+  --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+[data-theme="dark"] {
+  /* Deeper Very Dark Grey Background (#09090b) */
+  --bg: #09090b;
+  --sub-bg: #09090b;
+  --text: #f0f0f2;
+  --muted: #8e8e96;
+  --subtle: #55555e;
+  --border: #1c1c22;
+  --card-bg: #121215;
+  --card-border: #1e1e24;
+  --pill-bg: #1e1e24;
+  
+  /* Active Navbar Pill Tokens (Dark Mode) */
+  --pill-active-bg: #27272a;
+  --pill-active-text: #f4f4f5;
+  
+  /* Restored Navbar Tokens (Dark Mode) */
+  --nav-bg: #121215;
+  --nav-border: 0.5px solid rgba(255, 255, 255, 0.12);
+  --nav-text: #8e8e96;
+  --nav-icon-color: #fafafa;
+}
+
+*, html, body, a, button, input, select, textarea {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-apple) !important;
+  font-weight: 500 !important;
+  box-shadow: none !important;
+  cursor: crosshair !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-apple) !important;
+  font-weight: 500 !important;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 100px 24px 0;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.container-main {
+  width: 100%;
+  max-width: 620px;
+}

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wahaj Farooq</title>
+  
+  <style>
+    :root {
+      /* Top Area Background: Clean White */
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #666666;
+      --subtle: #999999;
+      --border: #e6e6e8;
+
+      /* Full-width Section Below Hero in Light Mode: #FAFAFA */
+      --sub-bg: #fafafa;
+      --card-bg: #ffffff;
+      --card-border: #eaeaea;
+      --pill-bg: #eeeeef;
+      
+      /* Active Navbar Pill Tokens (Light Mode): Darker Grey Fill than navbar grey with Dark Charcoal Grey Text */
+      --pill-active-bg: #e4e4e7;
+      --pill-active-text: #18181b;
+      
+      /* Restored Navbar Tokens (Light Mode) */
+      --nav-bg: #fafafa;
+      --nav-border: 0.5px solid #eeeeee;
+      --nav-text: #666666;
+      --nav-icon-color: #222222;
+
+      --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      /* Deeper Very Dark Grey Background (#09090b) */
+      --bg: #09090b;
+      --sub-bg: #09090b;
+      --text: #f0f0f2;
+      --muted: #8e8e96;
+      --subtle: #55555e;
+      --border: #1c1c22;
+      --card-bg: #121215;
+      --card-border: #1e1e24;
+      --pill-bg: #1e1e24;
+      
+      /* Active Navbar Pill Tokens (Dark Mode) */
+      --pill-active-bg: #27272a;
+      --pill-active-text: #f4f4f5;
+      
+      /* Restored Navbar Tokens (Dark Mode) */
+      --nav-bg: #121215;
+      --nav-border: 0.5px solid rgba(255, 255, 255, 0.12);
+      --nav-text: #8e8e96;
+      --nav-icon-color: #fafafa;
+    }
+
+    *, html, body, a, button, input, select, textarea {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-apple) !important;
+      font-weight: 500 !important;
+      box-shadow: none !important;
+      cursor: crosshair !important;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-apple) !important;
+      font-weight: 500 !important;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 100px 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 620px;
+      padding: 0 24px;
+    }
+
+    /* Floating Pill Navbar Header Aligned Flush with 620px Site Body */
+    .pill-navbar-container {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 620px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .nav-left-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    .nav-right-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: auto;
+    }
+
+    .pill-navbar {
+      background-color: var(--nav-bg);
+      border: var(--nav-border);
+      border-radius: 9999px;
+      padding: 3px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .circle-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: var(--nav-bg);
+      border: var(--nav-border);
+      color: var(--nav-icon-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      outline: none;
+    }
+
+    .social-icon-btn {
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      padding: 4px;
+      opacity: 0.75;
+      transition: opacity 0.15s ease, color 0.15s ease;
+    }
+
+    .social-icon-btn.rightmost {
+      padding: 4px 0 4px 4px;
+    }
+
+    .social-icon-btn:hover {
+      opacity: 1;
+      color: var(--text);
+    }
+
+    .nav-link {
+      color: var(--nav-text);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      transition: all 0.18s ease;
+      cursor: pointer;
+      line-height: 1.2;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link.active {
+      background-color: var(--pill-active-bg);
+      color: var(--pill-active-text);
+      font-weight: 500;
+    }
+
+    .section-block {
+      scroll-margin-top: 100px;
+      margin-bottom: 52px;
+    }
+
+    .hero-section {
+      scroll-margin-top: 100px;
+      margin-bottom: 64px;
+      padding-top: 48px;
+    }
+
+    .hero-text {
+      font-size: 1.05rem;
+      line-height: 1.4;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .hero-text p {
+      margin-bottom: 7px;
+      font-weight: 500;
+    }
+
+    .hero-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      transition: border-color 0.2s ease;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .card-date {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .website-pill {
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: var(--pill-bg);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .video-container {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      background: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%; border: 0;
+    }
+
+    .exp-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .full-width-below-hero {
+      width: 100vw;
+      background-color: var(--sub-bg);
+      border-top: none;
+      padding-top: 52px;
+      padding-bottom: 80px;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.25s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Canvas Overlay for Long Fluid Fading Orange Cursor Trail -->
+  <canvas id="cursorCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99999;"></canvas>
+
+  <!-- Floating Pill Navbar Header Aligned Flush with 620px Site Body -->
+  <div class="pill-navbar-container">
+    <!-- Left Aligned: Navbar + Theme Toggle -->
+    <div class="nav-left-group">
+      <nav class="pill-navbar">
+        <a href="#about" class="nav-link active" onclick="switchSection('about', this)">About</a>
+        <a href="#work" class="nav-link" onclick="switchSection('work', this)">Work</a>
+        <a href="#experience" class="nav-link" onclick="switchSection('experience', this)">Experience</a>
+        <a href="#contact" class="nav-link" onclick="switchSection('contact', this)">Contact</a>
+      </nav>
+
+      <button class="circle-btn" id="themeBtn" aria-label="Toggle Theme" title="Toggle Theme">
+        <svg id="sunIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg id="moonIcon" style="display: none;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Right Aligned Flush with Site Body: Filled Social Icons -->
+    <div class="nav-right-group">
+      <a href="mailto:wahaj@example.com" class="social-icon-btn" aria-label="Email" title="Email">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+      </a>
+
+      <a href="https://linkedin.com" target="_blank" class="social-icon-btn" aria-label="LinkedIn" title="LinkedIn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/wahajf" target="_blank" class="social-icon-btn rightmost" aria-label="GitHub" title="GitHub">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <main class="container" style="width: 100%; max-width: 620px;">
+    <!-- Hero / About Section -->
+    <section class="hero-section" id="about">
+      <div class="hero-text">
+        <p>
+          Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at the <a href="https://www.ubc.ca" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;">University of British Columbia</a>.
+        </p>
+        <p>On the side I run <a href="https://youtube.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;">@thatyvrspotter</a>, documenting planespotting at YVR.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Full-Width Background Section Below Hero (No Top Stroke) -->
+  <div class="full-width-below-hero">
+    <div class="container">
+      <!-- Work Section -->
+      <section class="section-block" id="work">
+        <div class="section-label">Work</div>
+
+        <div class="card">
+          <div class="card-top">
+            <div>
+              <div class="card-title">@thatyvrspotter</div>
+              <div class="card-date">2024 - Present</div>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <a href="https://youtube.com/@thatyvrspotter" target="_blank" class="website-pill">
+                YouTube ↗
+              </a>
+              <a href="https://www.tiktok.com/@thatyvrspotter" target="_blank" class="website-pill">
+                TikTok ↗
+              </a>
+            </div>
+          </div>
+
+          <div style="font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 16px;">
+            Aviation media channel documenting commercial planespotting & flight operations at YVR.
+          </div>
+
+          <div class="video-container">
+            <iframe 
+              src="https://www.youtube.com/embed/JSh_f35lJnQ" 
+              title="thatyvrspotter Showcase" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience & Education Section -->
+      <section class="section-block" id="experience">
+        <div class="section-label">Experience</div>
+        
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px;">
+          <div class="exp-row">
+            <span style="font-weight: 500;">Independent Developer</span>
+            <span style="font-size: 0.84rem; color: var(--muted);">2025 – Present</span>
+          </div>
+
+          <div class="exp-row">
+            <span style="font-weight: 500;">Planespotting Creator (@thatyvrspotter)</span>
+            <span style="font-size: 0.84rem; color: var(--muted);">2024 – Present</span>
+          </div>
+        </div>
+
+        <!-- Education Subsection -->
+        <div class="section-label">Education</div>
+
+        <div class="exp-row">
+          <div>
+            <div style="font-weight: 500;">University of British Columbia</div>
+            <div style="font-size: 0.84rem; color: var(--muted); margin-top: 2px;">Computer Science</div>
+          </div>
+          <span style="font-size: 0.84rem; color: var(--muted);">2026 – 2030</span>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="section-block" id="contact" style="padding-top: 20px; border-top: 1px solid var(--border);">
+        <div class="section-label">Contact</div>
+        <p style="color: var(--muted); font-size: 0.92rem;">
+          Reach out at <a href="mailto:wahaj@example.com" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">wahaj [at] example.com</a>, find me on <a href="https://github.com/wahajf" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">GitHub</a>, or check out @thatyvrspotter on <a href="https://youtube.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">YouTube</a> & <a href="https://www.tiktok.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">TikTok</a>.
+        </p>
+      </section>
+
+      <footer>
+        <span>Vancouver, BC</span>
+        <span>2026</span>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Long Fluid Fading Orange Cursor Trail Script
+    const canvas = document.getElementById('cursorCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let points = [];
+      const MAX_POINTS = 90;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      window.addEventListener('mousemove', (e) => {
+        points.unshift({ x: e.clientX, y: e.clientY });
+        if (points.length > MAX_POINTS) {
+          points.pop();
+        }
+      });
+
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (points.length > 1) {
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+
+          for (let i = 0; i < points.length - 1; i++) {
+            const p1 = points[i];
+            const p2 = points[i + 1];
+
+            const ratio = 1 - i / (points.length - 1);
+            const alpha = 0.75 * Math.pow(ratio, 0.85);
+            const strokeWidth = Math.max(0.5, 7.0 * ratio);
+
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 102, 0, ${alpha})`;
+            ctx.lineWidth = strokeWidth;
+            ctx.shadowColor = `rgba(255, 120, 0, ${alpha * 0.7})`;
+            ctx.shadowBlur = 8;
+            ctx.stroke();
+          }
+        }
+
+        requestAnimationFrame(render);
+      }
+      render();
+    }
+
+    // Theme Switcher
+    const themeBtn = document.getElementById('themeBtn');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const htmlEl = document.documentElement;
+
+    function setTheme(theme) {
+      htmlEl.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      if (theme === 'dark') {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      } else {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      }
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = htmlEl.getAttribute('data-theme');
+      setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
+
+    // Smooth Scroll Navigation
+    function switchSection(secId, el) {
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      el.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wahaj Farooq</title>
+  
+  <!-- Apple & SF Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #666666;
+      --subtle: #999999;
+      --border: #e6e6e6;
+      --card-bg: #f7f7f8;
+      --card-border: #eaeaea;
+      --pill-bg: #ecece9;
+      --pill-active-bg: #eab308;
+      --pill-active-text: #000000;
+      --nav-bg: #0f0f11;
+      --nav-text: #efefef;
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #000000;
+      --text: #f0f0f2;
+      --muted: #8e8e96;
+      --subtle: #55555e;
+      --border: #1f1f24;
+      --card-bg: #0d0d10;
+      --card-border: #1c1c22;
+      --pill-bg: #1c1c22;
+      --pill-active-bg: #facc15;
+      --pill-active-text: #000000;
+      --nav-bg: #121215;
+      --nav-text: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 100px 24px 100px;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 620px;
+    }
+
+    /* Floating Pill Navigation Bar (Exact Picture 1 match) */
+    .pill-navbar-container {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+    }
+
+    .pill-navbar {
+      background-color: var(--nav-bg);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      border-radius: 9999px;
+      padding: 4px 8px 4px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-theme-btn {
+      background: none;
+      border: none;
+      color: #aaaaaa;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      margin-right: 4px;
+      border-radius: 50%;
+      transition: color 0.15s ease;
+    }
+
+    .nav-theme-btn:hover {
+      color: #ffffff;
+    }
+
+    .nav-link {
+      color: #999999;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      transition: all 0.18s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+    }
+
+    .nav-link.active {
+      background-color: var(--pill-active-bg);
+      color: var(--pill-active-text);
+      font-weight: 600;
+    }
+
+    /* Avatar & Intro Header (Exact Picture 2 match) */
+    .avatar-wrapper {
+      margin-bottom: 28px;
+    }
+
+    .avatar-img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background: #1e1e24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    .intro-text {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 40px;
+    }
+
+    .intro-text p {
+      margin-bottom: 12px;
+    }
+
+    .intro-text a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: var(--subtle);
+      font-weight: 500;
+    }
+
+    .intro-text a:hover {
+      text-decoration-color: var(--text);
+    }
+
+    /* Tab Filter Bar (Experience / Feed / Work - Picture 2) */
+    .tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .tab-item {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .tab-item:hover {
+      color: var(--text);
+    }
+
+    .tab-item.active {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Cards Grid (Picture 2 layout) */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--subtle);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #1c1c24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      border: 1px solid var(--border);
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .card-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .website-pill {
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: var(--pill-bg);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: opacity 0.15s ease;
+    }
+
+    .website-pill:hover {
+      opacity: 0.85;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    /* Video Frame Preview */
+    .video-container {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      background: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%; border: 0;
+    }
+
+    /* Experience List Style */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .exp-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-role {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .exp-date {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Pill Navbar (Picture 1) -->
+  <div class="pill-navbar-container">
+    <nav class="pill-navbar">
+      <button class="nav-theme-btn" id="themeBtn" aria-label="Toggle Theme" title="Toggle Theme">
+        <svg id="sunIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg id="moonIcon" style="display: none;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <a href="#hey" class="nav-link active" onclick="switchSection('hey', this)">Hey</a>
+      <a href="#work" class="nav-link" onclick="switchSection('work', this)">Work</a>
+      <a href="#media" class="nav-link" onclick="switchSection('media', this)">Media</a>
+      <a href="#chat" class="nav-link" onclick="switchSection('chat', this)">Chat</a>
+    </nav>
+  </div>
+
+  <main class="container">
+    
+    <!-- Profile Avatar (Picture 2) -->
+    <div class="avatar-wrapper">
+      <div class="avatar-img">WF</div>
+    </div>
+
+    <!-- Intro Bio (Picture 2) -->
+    <div class="intro-text" id="hey">
+      <p>I'm Wahaj, a developer and creator based in Vancouver, BC.</p>
+      <p>Currently, I build side projects — focusing on interaction design, clean interfaces, and high performance.</p>
+      <p>On the side I run <a href="https://youtube.com/@thatyvrspotter" target="_blank">@thatyvrspotter</a>, documenting aviation traffic at YVR.</p>
+    </div>
+
+    <!-- Filter Tabs (Picture 2: Experience / Feed / Work) -->
+    <div class="tabs-bar">
+      <div class="tab-item active" onclick="filterTab('work', this)">Work</div>
+      <div class="tab-item" onclick="filterTab('feed', this)">Feed / Media</div>
+      <div class="tab-item" onclick="filterTab('exp', this)">Experience</div>
+    </div>
+
+    <!-- Work & Projects Cards Grid (Picture 2) -->
+    <div id="work-content">
+      <div class="cards-grid">
+        
+        <!-- Project 1: @thatyvrspotter -->
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-group">
+              <div class="card-icon">✈️</div>
+              <div>
+                <div class="card-title">@thatyvrspotter</div>
+                <div class="card-date">2024 - Now</div>
+              </div>
+            </div>
+            <a href="https://youtu.be/JSh_f35lJnQ" target="_blank" class="website-pill">
+              Website ↗
+            </a>
+          </div>
+
+          <div class="card-desc">
+            Aviation media channel documenting commercial aircraft traffic & flight operations at YVR.
+          </div>
+
+          <div class="video-container">
+            <iframe 
+              src="https://www.youtube.com/embed/JSh_f35lJnQ" 
+              title="thatyvrspotter Showcase" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Project 2: Minimal Site Template -->
+        <div class="card">
+          <div class="card-top">
+            <div class="card-title-group">
+              <div class="card-icon">⚡</div>
+              <div>
+                <div class="card-title">Minimal Site</div>
+                <div class="card-date">2026</div>
+              </div>
+            </div>
+            <a href="https://github.com/wahajf" target="_blank" class="website-pill">
+              GitHub ↗
+            </a>
+          </div>
+
+          <div class="card-desc">
+            A lightweight, typography-driven personal site template designed for developers.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Experience Content -->
+    <div id="exp-content" style="display: none;">
+      <div class="exp-list">
+        <div class="exp-row">
+          <span class="exp-role">Independent Developer</span>
+          <span class="exp-date">2025 – Present</span>
+        </div>
+        <div class="exp-row">
+          <span class="exp-role">Media Creator (@thatyvrspotter)</span>
+          <span class="exp-date">2024 – Present</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat / Contact Section -->
+    <div id="chat-section" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+      <p style="color: var(--muted); font-size: 0.9rem;">
+        Want to collaborate or chat? Reach out at <a href="mailto:wahaj@example.com" style="color: var(--text);">wahaj [at] example.com</a> or find me on <a href="https://github.com/wahajf" target="_blank" style="color: var(--text);">GitHub</a>.
+      </p>
+    </div>
+
+    <footer>
+      <span>Vancouver, BC</span>
+      <span>2026</span>
+    </footer>
+
+  </main>
+
+  <script>
+    // Theme Switcher
+    const themeBtn = document.getElementById('themeBtn');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const htmlEl = document.documentElement;
+
+    function setTheme(theme) {
+      htmlEl.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      if (theme === 'dark') {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      } else {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      }
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = htmlEl.getAttribute('data-theme');
+      setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
+
+    // Nav Switcher
+    function switchSection(secId, el) {
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    // Tab Filter (Work / Feed / Experience)
+    function filterTab(tab, el) {
+      document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+
+      const workContent = document.getElementById('work-content');
+      const expContent = document.getElementById('exp-content');
+
+      if (tab === 'exp') {
+        workContent.style.display = 'none';
+        expContent.style.display = 'block';
+      } else {
+        workContent.style.display = 'block';
+        expContent.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
