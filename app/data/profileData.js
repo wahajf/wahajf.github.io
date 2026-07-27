@@ -32,7 +32,8 @@ export const profileData = {
       title: "Flight Citizen",
       date: "2025 - Present",
       description: "Aviation platform and flight tracking interface.",
-      websiteUrl: "https://flightcitizen.com"
+      websiteUrl: "https://flightcitizen.com",
+      previewImage: "/flightcitizen-preview.png"
     }
   ],
   experience: [

@@ -237,6 +237,31 @@ export default function MainContent() {
                       ></iframe>
                     </div>
                   )}
+
+                  {proj.previewImage && !proj.youtubeId && (
+                    <a
+                      href={proj.websiteUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ display: 'block', textDecoration: 'none' }}
+                    >
+                      <div style={{
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        border: '1px solid var(--border)',
+                        position: 'relative',
+                        paddingBottom: '56.25%',
+                        height: 0,
+                        background: '#000000'
+                      }}>
+                        <img
+                          src={proj.previewImage}
+                          alt={`${proj.title} preview`}
+                          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }}
+                        />
+                      </div>
+                    </a>
+                  )}
                 </div>
               ))}
             </div>
