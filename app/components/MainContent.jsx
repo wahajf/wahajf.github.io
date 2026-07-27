@@ -197,7 +197,7 @@ export default function MainContent() {
                     </div>
                   </div>
 
-                  <div style={{ fontSize: '0.88rem', fontWeight: '500', color: 'var(--muted)', lineHeight: '1.5', marginBottom: proj.stats || proj.youtubeId ? '12px' : '0px' }}>
+                  <div style={{ fontSize: '0.88rem', fontWeight: '500', color: 'var(--muted)', lineHeight: '1.5', marginBottom: '12px' }}>
                     {proj.description}
                   </div>
 
@@ -257,7 +257,7 @@ export default function MainContent() {
                         <img
                           src={proj.previewImage}
                           alt={`${proj.title} preview`}
-                          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }}
+                          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top left' }}
                         />
                       </div>
                     </a>
