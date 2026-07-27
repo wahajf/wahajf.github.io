@@ -48,8 +48,16 @@
   --nav-text: #8e8e96;
   --nav-icon-color: #fafafa;
 
-  /* 50% Opacity Dark Blurred Overlay for Mobile Menu */
-  --menu-bg: rgba(9, 9, 11, 0.5);
+  /* 50% Opacity Black Blurred Overlay for Mobile Menu in Dark Mode */
+  --menu-bg: rgba(0, 0, 0, 0.5);
+}
+
+.projects-slider::-webkit-scrollbar {
+  display: none;
+}
+.projects-slider {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* LIGHT MODE ACCENT COLORS */

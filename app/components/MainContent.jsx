@@ -1,13 +1,26 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Cloud, CloudRain, CloudSun, Sun, CloudFog, CloudLightning, CloudSnow, Palette } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Cloud, CloudRain, CloudSun, Sun, CloudFog, CloudLightning, CloudSnow, Palette, ChevronLeft, ChevronRight } from 'lucide-react';
 import { profileData } from '../data/profileData';
 
 export default function MainContent() {
   const [timeString, setTimeString] = useState('');
   const [temp, setTemp] = useState('17°C');
   const [weatherCode, setWeatherCode] = useState(3);
+  const sliderRef = useRef(null);
+
+  const scrollLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: -sliderRef.current.clientWidth, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: sliderRef.current.clientWidth, behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const updateTime = () => {
@@ -194,6 +207,24 @@ export default function MainContent() {
                           TikTok ↗
                         </a>
                       )}
+                      {proj.githubUrl && (
+                        <a
+                          href={proj.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            fontSize: '0.78rem',
+                            padding: '4px 12px',
+                            borderRadius: '9999px',
+                            background: 'var(--pill-bg)',
+                            color: 'var(--text)',
+                            textDecoration: 'none',
+                            fontWeight: '500'
+                          }}
+                        >
+                          GitHub ↗
+                        </a>
+                      )}
                     </div>
                   </div>
 
@@ -223,11 +254,10 @@ export default function MainContent() {
                     <div style={{
                       borderRadius: '10px',
                       overflow: 'hidden',
-                      border: '1px solid var(--border)',
                       position: 'relative',
                       paddingBottom: '56.25%',
                       height: 0,
-                      background: '#000000'
+                      background: 'transparent'
                     }}>
                       <iframe
                         src={`https://www.youtube.com/embed/${proj.youtubeId}`}
@@ -248,16 +278,15 @@ export default function MainContent() {
                       <div style={{
                         borderRadius: '10px',
                         overflow: 'hidden',
-                        border: '1px solid var(--border)',
                         position: 'relative',
                         paddingBottom: '56.25%',
                         height: 0,
-                        background: '#000000'
+                        background: 'transparent'
                       }}>
                         <img
                           src={proj.previewImage}
                           alt={`${proj.title} preview`}
-                          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
+                          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', border: 'none' }}
                         />
                       </div>
                     </a>
