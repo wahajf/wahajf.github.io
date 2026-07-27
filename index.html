@@ -4,6 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wahaj Farooq</title>
+
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved ? saved : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+
+        var accents = ['orange', 'lime', 'skyblue'];
+        var randomAccent = accents[Math.floor(Math.random() * accents.length)];
+        document.documentElement.setAttribute('data-accent', randomAccent);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.setAttribute('data-accent', 'orange');
+      }
+    })();
+  </script>
   
   <style>
     :root {
@@ -20,10 +37,6 @@
       --card-border: #eaeaea;
       --pill-bg: #eeeeef;
       
-      /* Active Navbar Pill Tokens (Light Mode): Very Light Soft Orange Fill with Strong Blood Orange Text */
-      --pill-active-bg: #fff0e6;
-      --pill-active-text: #d93800;
-      
       /* Restored Navbar Tokens (Light Mode) */
       --nav-bg: #fafafa;
       --nav-border: 0.5px solid #eeeeee;
@@ -33,7 +46,32 @@
       /* 50% Opacity White Blurred Overlay for Mobile Menu */
       --menu-bg: rgba(255, 255, 255, 0.5);
 
+      /* Default Orange Accent Tokens */
+      --pill-active-bg: #fff0e6;
+      --pill-active-text: #d93800;
+      --trail-rgb: 255, 102, 0;
+
       --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    /* RANDOM ACCENT COLOR SCHEMES */
+    /* Orange Accent */
+    [data-accent="orange"] {
+      --pill-active-bg: #fff0e6;
+      --pill-active-text: #d93800;
+      --trail-rgb: 255, 102, 0;
+    }
+    /* Lime Green Accent */
+    [data-accent="lime"] {
+      --pill-active-bg: #f0fdf4;
+      --pill-active-text: #15803d;
+      --trail-rgb: 34, 197, 94;
+    }
+    /* Sky Blue Accent */
+    [data-accent="skyblue"] {
+      --pill-active-bg: #f0f9ff;
+      --pill-active-text: #0284c7;
+      --trail-rgb: 14, 165, 233;
     }
 
     [data-theme="dark"] {
@@ -49,10 +87,6 @@
       --card-border: #24242a;
       --pill-bg: #222228;
       
-      /* Active Navbar Pill Tokens (Dark Mode): Soft Glowing Dark Orange Fill with Strong Blood Orange Text */
-      --pill-active-bg: rgba(255, 120, 0, 0.18);
-      --pill-active-text: #ff6b35;
-      
       /* Restored Navbar Tokens (Dark Mode) */
       --nav-bg: #121215;
       --nav-border: 0.5px solid rgba(255, 255, 255, 0.12);
@@ -61,16 +95,44 @@
 
       /* 50% Opacity Dark Blurred Overlay for Mobile Menu */
       --menu-bg: rgba(9, 9, 11, 0.5);
+
+      /* Dark Mode Default Orange Tokens */
+      --pill-active-bg: rgba(255, 120, 0, 0.18);
+      --pill-active-text: #ff6b35;
+      --trail-rgb: 255, 102, 0;
     }
 
-    *, html, body, a, button, input, select, textarea {
+    [data-theme="dark"][data-accent="orange"] {
+      --pill-active-bg: rgba(255, 120, 0, 0.18);
+      --pill-active-text: #ff6b35;
+      --trail-rgb: 255, 102, 0;
+    }
+
+    [data-theme="dark"][data-accent="lime"] {
+      --pill-active-bg: rgba(34, 197, 94, 0.18);
+      --pill-active-text: #4ade80;
+      --trail-rgb: 34, 197, 94;
+    }
+
+    [data-theme="dark"][data-accent="skyblue"] {
+      --pill-active-bg: rgba(14, 165, 233, 0.18);
+      --pill-active-text: #38bdf8;
+      --trail-rgb: 14, 165, 233;
+    }
+
+    *, html, body {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: var(--font-apple) !important;
       font-weight: 500 !important;
       box-shadow: none !important;
-      cursor: crosshair !important;
+      cursor: crosshair;
+    }
+
+    /* Clickable elements get the pointer / clicking cursor */
+    a, button, input, select, textarea, [role="button"], .nav-link, .circle-btn, .social-icon-btn, .website-pill {
+      cursor: pointer !important;
     }
 
     html { scroll-behavior: smooth; overflow-x: hidden; }
@@ -416,7 +478,7 @@
 </head>
 <body>
 
-  <!-- Canvas Overlay for Long Fluid Fading Orange Cursor Trail -->
+  <!-- Canvas Overlay for Long Fluid Fading Cursor Trail -->
   <canvas id="cursorCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99999;"></canvas>
 
   <!-- Fixed Progressive Blur Overlay at Top of Viewport (Behind Navbar at z-index: 900) -->
@@ -682,7 +744,7 @@
       })
       .catch(() => {});
 
-    // Time-decaying Orange Cursor Trail Script
+    // Time-decaying Dynamic Cursor Trail Script
     const canvas = document.getElementById('cursorCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
@@ -703,6 +765,9 @@
       function render() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const now = Date.now();
+
+        // Read active dynamic accent trail RGB
+        const trailRgb = getComputedStyle(document.documentElement).getPropertyValue('--trail-rgb').trim() || '255, 102, 0';
 
         // Decay points even when mouse is static
         points = points.filter(p => now - p.time < TRAIL_LIFETIME);
@@ -725,9 +790,9 @@
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(255, 102, 0, ${alpha})`;
+            ctx.strokeStyle = `rgba(${trailRgb}, ${alpha})`;
             ctx.lineWidth = strokeWidth;
-            ctx.shadowColor = `rgba(255, 120, 0, ${alpha * 0.6})`;
+            ctx.shadowColor = `rgba(${trailRgb}, ${alpha * 0.6})`;
             ctx.shadowBlur = 6;
             ctx.stroke();
           }

@@ -15,11 +15,7 @@
   --card-bg: #ffffff;
   --card-border: #eaeaea;
   --pill-bg: #eeeeef;
-  
-  /* Active Navbar Pill Tokens (Light Mode): Very Light Soft Orange Fill with Strong Blood Orange Text */
-  --pill-active-bg: #fff0e6;
-  --pill-active-text: #d93800;
-  
+
   /* Restored Navbar Tokens (Light Mode) */
   --nav-bg: #fafafa;
   --nav-border: 0.5px solid #eeeeee;
@@ -29,8 +25,33 @@
   /* 50% Opacity White Blurred Overlay for Mobile Menu */
   --menu-bg: rgba(255, 255, 255, 0.5);
 
+  /* Default Orange Theme Accent Tokens */
+  --pill-active-bg: #fff0e6;
+  --pill-active-text: #d93800;
+  --trail-rgb: 255, 102, 0;
+
   /* 100% Native Apple System Font everywhere */
   --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* RANDOM ACCENT COLOR SCHEMES */
+/* Orange Accent */
+[data-accent="orange"] {
+  --pill-active-bg: #fff0e6;
+  --pill-active-text: #d93800;
+  --trail-rgb: 255, 102, 0;
+}
+/* Lime Green Accent */
+[data-accent="lime"] {
+  --pill-active-bg: #f0fdf4;
+  --pill-active-text: #15803d;
+  --trail-rgb: 34, 197, 94;
+}
+/* Sky Blue Accent */
+[data-accent="skyblue"] {
+  --pill-active-bg: #f0f9ff;
+  --pill-active-text: #0284c7;
+  --trail-rgb: 14, 165, 233;
 }
 
 [data-theme="dark"] {
@@ -46,10 +67,6 @@
   --card-border: #24242a;
   --pill-bg: #222228;
   
-  /* Active Navbar Pill Tokens (Dark Mode): Soft Glowing Dark Orange Fill with Strong Blood Orange Text */
-  --pill-active-bg: rgba(255, 120, 0, 0.18);
-  --pill-active-text: #ff6b35;
-  
   /* Restored Navbar Tokens (Dark Mode) */
   --nav-bg: #121215;
   --nav-border: 0.5px solid rgba(255, 255, 255, 0.12);
@@ -58,16 +75,44 @@
 
   /* 50% Opacity Dark Blurred Overlay for Mobile Menu */
   --menu-bg: rgba(9, 9, 11, 0.5);
+
+  /* Dark Mode Default Orange Tokens */
+  --pill-active-bg: rgba(255, 120, 0, 0.18);
+  --pill-active-text: #ff6b35;
+  --trail-rgb: 255, 102, 0;
 }
 
-*, html, body, a, button, input, select, textarea {
+[data-theme="dark"][data-accent="orange"] {
+  --pill-active-bg: rgba(255, 120, 0, 0.18);
+  --pill-active-text: #ff6b35;
+  --trail-rgb: 255, 102, 0;
+}
+
+[data-theme="dark"][data-accent="lime"] {
+  --pill-active-bg: rgba(34, 197, 94, 0.18);
+  --pill-active-text: #4ade80;
+  --trail-rgb: 34, 197, 94;
+}
+
+[data-theme="dark"][data-accent="skyblue"] {
+  --pill-active-bg: rgba(14, 165, 233, 0.18);
+  --pill-active-text: #38bdf8;
+  --trail-rgb: 14, 165, 233;
+}
+
+*, html, body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: var(--font-apple) !important;
   font-weight: 500 !important;
   box-shadow: none !important;
-  cursor: crosshair !important;
+  cursor: crosshair;
+}
+
+/* Clickable elements get the pointer / clicking cursor */
+a, button, input, select, textarea, [role="button"], .nav-link, .circle-btn, .social-icon-btn, .website-pill {
+  cursor: pointer !important;
 }
 
 html {

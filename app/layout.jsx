@@ -19,8 +19,13 @@ export default function RootLayout({ children }) {
                   var saved = localStorage.getItem('theme');
                   var theme = saved ? saved : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
                   document.documentElement.setAttribute('data-theme', theme);
+
+                  var accents = ['orange', 'lime', 'skyblue'];
+                  var randomAccent = accents[Math.floor(Math.random() * accents.length)];
+                  document.documentElement.setAttribute('data-accent', randomAccent);
                 } catch (e) {
                   document.documentElement.setAttribute('data-theme', 'dark');
+                  document.documentElement.setAttribute('data-accent', 'orange');
                 }
               })();
             `,

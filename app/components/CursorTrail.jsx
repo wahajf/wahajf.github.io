@@ -13,7 +13,7 @@ export default function CursorTrail() {
     let animationFrameId;
 
     let points = [];
-    const TRAIL_LIFETIME = 350; // milliseconds before point fades out completely even if static
+    const TRAIL_LIFETIME = 350; // ms
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
@@ -33,7 +33,9 @@ export default function CursorTrail() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const now = Date.now();
 
-      // Automatically decay points over time even if mouse is static
+      // Read dynamic accent RGB color for trail
+      const trailRgb = getComputedStyle(document.documentElement).getPropertyValue('--trail-rgb').trim() || '255, 102, 0';
+
       points = points.filter(p => now - p.time < TRAIL_LIFETIME);
 
       if (points.length > 1) {
@@ -54,9 +56,9 @@ export default function CursorTrail() {
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(255, 102, 0, ${alpha})`;
+          ctx.strokeStyle = `rgba(${trailRgb}, ${alpha})`;
           ctx.lineWidth = strokeWidth;
-          ctx.shadowColor = `rgba(255, 120, 0, ${alpha * 0.6})`;
+          ctx.shadowColor = `rgba(${trailRgb}, ${alpha * 0.6})`;
           ctx.shadowBlur = 6;
           ctx.stroke();
         }
