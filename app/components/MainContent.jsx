@@ -1,11 +1,44 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { profileData } from '../data/profileData';
 
 export default function MainContent() {
+  const [timeString, setTimeString] = useState('');
+  const [temp, setTemp] = useState('17°C');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const vancouverTime = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'America/Vancouver',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+      setTimeString(vancouverTime);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 10000);
+
+    // Fetch live Vancouver temperature
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=49.2827&longitude=-123.1207&current_weather=true')
+      ? fetch('https://api.open-meteo.com/v1/forecast?latitude=49.2827&longitude=-123.1207&current_weather=true')
+          .then((res) => res.json())
+          .then((data) => {
+            if (data?.current_weather?.temperature !== undefined) {
+              setTemp(`${Math.round(data.current_weather.temperature)}°C`);
+            }
+          })
+          .catch(() => {})
+      : null;
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main className="container-main" style={{ width: '100%', maxWidth: '620px' }}>
-      {/* About / Hero Section: 96px margin below hero text down to the top edge of the #FAFAFA fill */}
+      {/* About / Hero Section */}
       <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '96px', paddingTop: '48px' }}>
         <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
           <p style={{ marginBottom: '7px' }}>
@@ -45,7 +78,7 @@ export default function MainContent() {
         marginRight: '-50vw',
         backgroundColor: 'var(--sub-bg)',
         borderTop: 'none',
-        paddingTop: '16px', // Matches 16px space below WORK heading
+        paddingTop: '16px',
         paddingBottom: '80px',
         display: 'flex',
         justifyContent: 'center',
@@ -53,14 +86,16 @@ export default function MainContent() {
       }}>
         <div style={{ width: '100%', maxWidth: '620px', boxSizing: 'border-box' }}>
           {/* Work / Projects Section */}
-          <section id="work" style={{ scrollMarginTop: '100px', marginBottom: '52px' }}>
+          <section id="work" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
               fontSize: '0.82rem',
               fontWeight: '500',
               textTransform: 'uppercase',
               letterSpacing: '0.06em',
               color: 'var(--muted)',
-              marginBottom: '16px'
+              marginBottom: '16px',
+              paddingBottom: '8px',
+              borderBottom: '1px solid var(--border)'
             }}>
               Work
             </div>
@@ -147,20 +182,22 @@ export default function MainContent() {
             </div>
           </section>
 
-          {/* Experience & Education Section */}
-          <section id="experience" style={{ scrollMarginTop: '100px', marginBottom: '52px' }}>
+          {/* Experience Section */}
+          <section id="experience" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
               fontSize: '0.82rem',
               fontWeight: '500',
               textTransform: 'uppercase',
               letterSpacing: '0.06em',
               color: 'var(--muted)',
-              marginBottom: '16px'
+              marginBottom: '16px',
+              paddingBottom: '8px',
+              borderBottom: '1px solid var(--border)'
             }}>
               Experience
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '36px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {profileData.experience.map((exp, index) => (
                 <div key={index} style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
                   <span style={{ fontWeight: '500', color: 'var(--text)' }}>{exp.role}</span>
@@ -168,15 +205,19 @@ export default function MainContent() {
                 </div>
               ))}
             </div>
+          </section>
 
-            {/* Education Subsection */}
+          {/* Education Section */}
+          <section id="education" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
               fontSize: '0.82rem',
               fontWeight: '500',
               textTransform: 'uppercase',
               letterSpacing: '0.06em',
               color: 'var(--muted)',
-              marginBottom: '16px'
+              marginBottom: '16px',
+              paddingBottom: '8px',
+              borderBottom: '1px solid var(--border)'
             }}>
               Education
             </div>
@@ -194,15 +235,17 @@ export default function MainContent() {
             </div>
           </section>
 
-          {/* Contact Section */}
-          <section id="contact" style={{ scrollMarginTop: '100px', paddingTop: '20px', borderTop: '1px solid var(--border)' }}>
+          {/* Contact Section (Consistent 48px spacing, line under heading, no top border line) */}
+          <section id="contact" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
               fontSize: '0.82rem',
               fontWeight: '500',
               textTransform: 'uppercase',
               letterSpacing: '0.06em',
               color: 'var(--muted)',
-              marginBottom: '12px'
+              marginBottom: '16px',
+              paddingBottom: '8px',
+              borderBottom: '1px solid var(--border)'
             }}>
               Contact
             </div>
@@ -229,7 +272,9 @@ export default function MainContent() {
           </section>
 
           <footer style={{ marginTop: '60px', paddingTop: '20px', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', fontSize: '0.84rem', fontWeight: '500', color: 'var(--muted)' }}>
-            <span>{profileData.location}</span>
+            <span>
+              Vancouver, BC {timeString && `• ${timeString}`} {temp && `• ${temp}`}
+            </span>
             <span>{new Date().getFullYear()}</span>
           </footer>
         </div>

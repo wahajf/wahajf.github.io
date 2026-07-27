@@ -189,7 +189,7 @@
 
     .section-block {
       scroll-margin-top: 100px;
-      margin-bottom: 52px;
+      margin-bottom: 48px;
     }
 
     .hero-section {
@@ -221,6 +221,8 @@
       letter-spacing: 0.06em;
       color: var(--muted);
       margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
     }
 
     .card {
@@ -407,11 +409,11 @@
         </div>
       </section>
 
-      <!-- Experience & Education Section -->
+      <!-- Experience Section -->
       <section class="section-block" id="experience">
         <div class="section-label">Experience</div>
         
-        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
           <div class="exp-row">
             <span style="font-weight: 500;">Independent Developer</span>
             <span style="font-size: 0.84rem; color: var(--muted);">2025 – Present</span>
@@ -422,8 +424,10 @@
             <span style="font-size: 0.84rem; color: var(--muted);">2024 – Present</span>
           </div>
         </div>
+      </section>
 
-        <!-- Education Subsection -->
+      <!-- Education Section -->
+      <section class="section-block" id="education">
         <div class="section-label">Education</div>
 
         <div class="exp-row">
@@ -436,7 +440,7 @@
       </section>
 
       <!-- Contact Section -->
-      <section class="section-block" id="contact" style="padding-top: 20px; border-top: 1px solid var(--border);">
+      <section class="section-block" id="contact">
         <div class="section-label">Contact</div>
         <p style="color: var(--muted); font-size: 0.92rem;">
           Reach out at <a href="mailto:wahaj@example.com" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">wahaj [at] example.com</a>, find me on <a href="https://github.com/wahajf" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">GitHub</a>, or check out @thatyvrspotter on <a href="https://youtube.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">YouTube</a> & <a href="https://www.tiktok.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">TikTok</a>.
@@ -444,13 +448,47 @@
       </section>
 
       <footer>
-        <span>Vancouver, BC</span>
+        <span id="vancouverInfo">Vancouver, BC</span>
         <span>2026</span>
       </footer>
     </div>
   </div>
 
   <script>
+    // Live Vancouver Time & Weather
+    function updateVancouverInfo() {
+      const vancouverTime = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'America/Vancouver',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+      const el = document.getElementById('vancouverInfo');
+      if (el) {
+        el.innerText = `Vancouver, BC • ${vancouverTime} • 17°C`;
+      }
+    }
+    updateVancouverInfo();
+    setInterval(updateVancouverInfo, 10000);
+
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=49.2827&longitude=-123.1207&current_weather=true')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.current_weather?.temperature !== undefined) {
+          const vancouverTime = new Date().toLocaleTimeString('en-US', {
+            timeZone: 'America/Vancouver',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+          });
+          const el = document.getElementById('vancouverInfo');
+          if (el) {
+            el.innerText = `Vancouver, BC • ${vancouverTime} • ${Math.round(data.current_weather.temperature)}°C`;
+          }
+        }
+      })
+      .catch(() => {});
+
     // Time-decaying Orange Cursor Trail Script
     const canvas = document.getElementById('cursorCanvas');
     if (canvas) {
