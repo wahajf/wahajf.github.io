@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Cloud, CloudRain, CloudSun, Sun, CloudFog, CloudLightning, CloudSnow } from 'lucide-react';
 import { profileData } from '../data/profileData';
 
 export default function MainContent() {
   const [timeString, setTimeString] = useState('');
   const [temp, setTemp] = useState('17°C');
+  const [weatherCode, setWeatherCode] = useState(3);
 
   useEffect(() => {
     const updateTime = () => {
@@ -21,20 +23,34 @@ export default function MainContent() {
     updateTime();
     const interval = setInterval(updateTime, 10000);
 
-    // Fetch live Vancouver temperature
+    // Fetch live Vancouver temperature & weathercode
     fetch('https://api.open-meteo.com/v1/forecast?latitude=49.2827&longitude=-123.1207&current_weather=true')
-      ? fetch('https://api.open-meteo.com/v1/forecast?latitude=49.2827&longitude=-123.1207&current_weather=true')
-          .then((res) => res.json())
-          .then((data) => {
-            if (data?.current_weather?.temperature !== undefined) {
-              setTemp(`${Math.round(data.current_weather.temperature)}°C`);
-            }
-          })
-          .catch(() => {})
-      : null;
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.current_weather?.temperature !== undefined) {
+          setTemp(`${Math.round(data.current_weather.temperature)}°C`);
+        }
+        if (data?.current_weather?.weathercode !== undefined) {
+          setWeatherCode(data.current_weather.weathercode);
+        }
+      })
+      .catch(() => {});
 
     return () => clearInterval(interval);
   }, []);
+
+  const renderWeatherIcon = () => {
+    const code = weatherCode;
+    const style = { color: 'var(--muted)', width: '13px', height: '13px', flexShrink: 0 };
+    
+    if (code === 0 || code === 1) return <Sun size={13} style={style} />;
+    if (code === 2 || code === 3) return <CloudSun size={13} style={style} />;
+    if (code >= 45 && code <= 48) return <CloudFog size={13} style={style} />;
+    if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) return <CloudRain size={13} style={style} />;
+    if ((code >= 71 && code <= 77) || (code >= 85 && code <= 86)) return <CloudSnow size={13} style={style} />;
+    if (code >= 95 && code <= 99) return <CloudLightning size={13} style={style} />;
+    return <Cloud size={13} style={style} />;
+  };
 
   return (
     <main className="container-main" style={{ width: '100%', maxWidth: '620px' }}>
@@ -85,7 +101,7 @@ export default function MainContent() {
         transition: 'background-color 0.25s ease'
       }}>
         <div style={{ width: '100%', maxWidth: '620px', boxSizing: 'border-box' }}>
-          {/* Work / Projects Section */}
+          {/* Work / Projects Section (No line below Work heading) */}
           <section id="work" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
               fontSize: '0.82rem',
@@ -93,9 +109,7 @@ export default function MainContent() {
               textTransform: 'uppercase',
               letterSpacing: '0.06em',
               color: 'var(--muted)',
-              marginBottom: '16px',
-              paddingBottom: '8px',
-              borderBottom: '1px solid var(--border)'
+              marginBottom: '16px'
             }}>
               Work
             </div>
@@ -235,7 +249,7 @@ export default function MainContent() {
             </div>
           </section>
 
-          {/* Contact Section (Consistent 48px spacing, line under heading, no top border line) */}
+          {/* Contact Section */}
           <section id="contact" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
               fontSize: '0.82rem',
@@ -271,9 +285,12 @@ export default function MainContent() {
             </p>
           </section>
 
-          <footer style={{ marginTop: '60px', paddingTop: '20px', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', fontSize: '0.84rem', fontWeight: '500', color: 'var(--muted)' }}>
-            <span>
+          <footer style={{ marginTop: '60px', paddingTop: '20px', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.84rem', fontWeight: '500', color: 'var(--muted)' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
               Vancouver, BC {timeString && `• ${timeString}`} {temp && `• ${temp}`}
+              <span style={{ display: 'inline-flex', alignItems: 'center', marginLeft: '1px' }}>
+                {renderWeatherIcon()}
+              </span>
             </span>
             <span>{new Date().getFullYear()}</span>
           </footer>

@@ -16,15 +16,18 @@
   --card-border: #eaeaea;
   --pill-bg: #eeeeef;
   
-  /* Active Navbar Pill Tokens (Light Mode): Darker Grey Fill than navbar grey with Dark Charcoal Grey Text */
-  --pill-active-bg: #e4e4e7;
-  --pill-active-text: #18181b;
+  /* Active Navbar Pill Tokens (Light Mode): Very Light Soft Orange Fill with Strong Blood Orange Text */
+  --pill-active-bg: #fff0e6;
+  --pill-active-text: #d93800;
   
   /* Restored Navbar Tokens (Light Mode) */
   --nav-bg: #fafafa;
   --nav-border: 0.5px solid #eeeeee;
   --nav-text: #666666;
   --nav-icon-color: #222222;
+
+  /* 50% Opacity White Blurred Overlay for Mobile Menu */
+  --menu-bg: rgba(255, 255, 255, 0.5);
 
   /* 100% Native Apple System Font everywhere */
   --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -42,15 +45,18 @@
   --card-border: #1e1e24;
   --pill-bg: #1e1e24;
   
-  /* Active Navbar Pill Tokens (Dark Mode) */
-  --pill-active-bg: #27272a;
-  --pill-active-text: #f4f4f5;
+  /* Active Navbar Pill Tokens (Dark Mode): Soft Glowing Dark Orange Fill with Strong Blood Orange Text */
+  --pill-active-bg: rgba(255, 120, 0, 0.18);
+  --pill-active-text: #ff6b35;
   
   /* Restored Navbar Tokens (Dark Mode) */
   --nav-bg: #121215;
   --nav-border: 0.5px solid rgba(255, 255, 255, 0.12);
   --nav-text: #8e8e96;
   --nav-icon-color: #fafafa;
+
+  /* 50% Opacity Dark Blurred Overlay for Mobile Menu */
+  --menu-bg: rgba(9, 9, 11, 0.5);
 }
 
 *, html, body, a, button, input, select, textarea {
@@ -87,4 +93,32 @@ body {
 .container-main {
   width: 100%;
   max-width: 620px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 80px 16px 0 !important;
+  }
+
+  .container-main {
+    padding: 0 !important;
+  }
+
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .mobile-header {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-nav {
+    display: flex !important;
+  }
+
+  .mobile-header {
+    display: none !important;
+  }
 }

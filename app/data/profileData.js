@@ -11,7 +11,7 @@ export const profileData = {
     linkedin: "https://linkedin.com",
     youtube: "https://youtube.com/@thatyvrspotter",
     tiktok: "https://www.tiktok.com/@thatyvrspotter",
-    email: "wahaj@example.com"
+    email: "wahajf05@gmail.com"
   },
   projects: [
     {
