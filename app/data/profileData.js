@@ -43,8 +43,8 @@ export const profileData = {
       period: "2026 – Present"
     },
     {
-      role: "Independent Developer",
-      organization: "Self-Employed",
+      role: "Newsletter Creator (Flight Citizen)",
+      organization: "Flight Citizen",
       period: "2025 – Present"
     },
     {
