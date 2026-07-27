@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Cloud, CloudRain, CloudSun, Sun, CloudFog, CloudLightning, CloudSnow } from 'lucide-react';
+import { Cloud, CloudRain, CloudSun, Sun, CloudFog, CloudLightning, CloudSnow, Palette } from 'lucide-react';
 import { profileData } from '../data/profileData';
 
 export default function MainContent() {
@@ -38,6 +38,14 @@ export default function MainContent() {
 
     return () => clearInterval(interval);
   }, []);
+
+  const cycleAccent = () => {
+    const current = document.documentElement.getAttribute('data-accent') || 'orange';
+    const accents = ['orange', 'lime', 'skyblue'];
+    const nextIndex = (accents.indexOf(current) + 1) % accents.length;
+    const nextAccent = accents[nextIndex];
+    document.documentElement.setAttribute('data-accent', nextAccent);
+  };
 
   const renderWeatherIcon = () => {
     const code = weatherCode;
@@ -290,7 +298,28 @@ export default function MainContent() {
                 {renderWeatherIcon()}
               </span>
             </span>
-            <span>{new Date().getFullYear()}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span>{new Date().getFullYear()}</span>
+              <button
+                onClick={cycleAccent}
+                aria-label="Cycle Accent Color"
+                title="Cycle Accent Color"
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'var(--muted)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '2px',
+                  opacity: 0.75,
+                  transition: 'opacity 0.15s ease, color 0.15s ease'
+                }}
+              >
+                <Palette size={14} />
+              </button>
+            </div>
           </footer>
         </div>
       </div>

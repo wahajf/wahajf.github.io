@@ -3,7 +3,7 @@
 export default function ProgressiveBlur() {
   return (
     <>
-      {/* Top Progressive Blur Overlay (Behind Navbar at z-index: 900) */}
+      {/* Top Progressive Blur Overlay (Solid var(--bg) behind navbar 0-60px, blur gradient 60-110px) */}
       <div
         aria-hidden="true"
         style={{
@@ -11,14 +11,14 @@ export default function ProgressiveBlur() {
           top: 0,
           left: 0,
           right: 0,
-          height: '90px',
+          height: '110px',
           pointerEvents: 'none',
           zIndex: 900,
-          background: 'linear-gradient(to top, transparent 0%, var(--bg) 100%)',
+          background: 'linear-gradient(to bottom, var(--bg) 0px, var(--bg) 60px, transparent 110px)',
           backdropFilter: 'blur(10px)',
           WebkitBackdropFilter: 'blur(10px)',
-          maskImage: 'linear-gradient(to top, transparent 0%, black 100%)',
-          WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 100%)'
+          maskImage: 'linear-gradient(to bottom, black 0px, black 60px, transparent 110px)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0px, black 60px, transparent 110px)'
         }}
       />
 

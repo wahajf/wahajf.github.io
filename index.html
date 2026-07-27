@@ -439,20 +439,20 @@
       transition: background-color 0.25s ease;
     }
 
-    /* Fixed Progressive Blur Overlay at Top of Screen (Behind Navbar) */
+    /* Fixed Progressive Blur Overlay at Top of Screen (Solid var(--bg) 0-60px, blur gradient 60-110px) */
     .progressive-blur-top {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: 90px;
+      height: 110px;
       pointer-events: none;
       z-index: 900;
-      background: linear-gradient(to top, transparent 0%, var(--bg) 100%);
+      background: linear-gradient(to bottom, var(--bg) 0px, var(--bg) 60px, transparent 110px);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      mask-image: linear-gradient(to top, transparent 0%, black 100%);
-      -webkit-mask-image: linear-gradient(to top, transparent 0%, black 100%);
+      mask-image: linear-gradient(to bottom, black 0px, black 60px, transparent 110px);
+      -webkit-mask-image: linear-gradient(to bottom, black 0px, black 60px, transparent 110px);
     }
 
     /* Fixed Progressive Blur Overlay at Bottom of Screen */
@@ -674,7 +674,14 @@
 
         <footer>
           <span id="vancouverInfo" style="display: inline-flex; align-items: center; gap: 5px;">Vancouver, BC</span>
-          <span>2026</span>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span>2026</span>
+            <button id="paletteBtn" aria-label="Cycle Accent Color" title="Cycle Accent Color" style="background: transparent; border: none; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 2px; opacity: 0.75; transition: opacity 0.15s ease;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.7-.71 1.7-1.63 0-.43-.17-.83-.46-1.13-.29-.3-.46-.7-.46-1.13 0-.92.78-1.63 1.7-1.63h2.52c2.76 0 5-2.24 5-5 0-5.52-4.48-10-10-10z"/>
+              </svg>
+            </button>
+          </div>
         </footer>
       </div>
     </div>
@@ -684,6 +691,18 @@
   <div class="progressive-blur-bottom" aria-hidden="true"></div>
 
   <script>
+    // Palette Switcher
+    const paletteBtn = document.getElementById('paletteBtn');
+    if (paletteBtn) {
+      paletteBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-accent') || 'orange';
+        const accents = ['orange', 'lime', 'skyblue'];
+        const nextIndex = (accents.indexOf(current) + 1) % accents.length;
+        const nextAccent = accents[nextIndex];
+        document.documentElement.setAttribute('data-accent', nextAccent);
+      });
+    }
+
     // Mobile Overlay Menu Controls
     const mobileOverlay = document.getElementById('mobileOverlay');
     const openBtn = document.getElementById('mobileMenuOpenBtn');
