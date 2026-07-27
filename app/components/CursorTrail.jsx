@@ -8,25 +8,23 @@ export default function CursorTrail() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
-
     let animationFrameId;
-    let points = [];
-    const MAX_POINTS = 90;
 
-    const resizeCanvas = () => {
+    let points = [];
+    const MAX_POINTS = 45; // Reduced point count for quicker fade out
+
+    const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
     const handleMouseMove = (e) => {
-      points.unshift({
-        x: e.clientX,
-        y: e.clientY
-      });
+      points.unshift({ x: e.clientX, y: e.clientY });
       if (points.length > MAX_POINTS) {
         points.pop();
       }
@@ -45,18 +43,18 @@ export default function CursorTrail() {
           const p1 = points[i];
           const p2 = points[i + 1];
 
-          // Longer, smooth fading tail over 90 points
           const ratio = 1 - i / (points.length - 1);
-          const alpha = 0.75 * Math.pow(ratio, 0.85);
-          const strokeWidth = Math.max(0.5, 7.0 * ratio);
+          // Faster exponential decay so the trail dissipates quickly
+          const alpha = 0.65 * Math.pow(ratio, 2.2);
+          const strokeWidth = Math.max(0.5, 6.0 * ratio);
 
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
           ctx.strokeStyle = `rgba(255, 102, 0, ${alpha})`;
           ctx.lineWidth = strokeWidth;
-          ctx.shadowColor = `rgba(255, 120, 0, ${alpha * 0.7})`;
-          ctx.shadowBlur = 8;
+          ctx.shadowColor = `rgba(255, 120, 0, ${alpha * 0.6})`;
+          ctx.shadowBlur = 6;
           ctx.stroke();
         }
       }
@@ -67,7 +65,7 @@ export default function CursorTrail() {
     render();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
@@ -83,7 +81,7 @@ export default function CursorTrail() {
         width: '100vw',
         height: '100vh',
         pointerEvents: 'none',
-        zIndex: 99999
+        zIndex: 99999,
       }}
     />
   );
