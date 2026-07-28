@@ -21,11 +21,7 @@ export const profileData = {
       description: "Aviation media channel documenting commercial planespotting & flight operations at YVR.",
       youtubeUrl: "https://youtube.com/@thatyvrspotter",
       tiktokUrl: "https://www.tiktok.com/@thatyvrspotter",
-      previewImage: "yvrspotter-preview.png",
-      stats: [
-        { label: "Views", value: "100K+" },
-        { label: "Followers", value: "2K+" }
-      ]
+      previewImage: "yvrspotter-preview.png"
     },
     {
       id: "flightcitizen",
@@ -50,7 +46,11 @@ export const profileData = {
     {
       role: "Content Creator",
       organization: "@thatyvrspotter",
-      period: "2024 – Present"
+      period: "2024 – Present",
+      stats: [
+        { label: "Views", value: "100K+" },
+        { label: "Followers", value: "2K+" }
+      ]
     }
   ],
   skills: [

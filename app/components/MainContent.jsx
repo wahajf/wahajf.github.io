@@ -313,11 +313,29 @@ export default function MainContent() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {profileData.experience.map((exp, index) => (
-                <div key={index} style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
-                  <span style={{ fontWeight: '500', color: 'var(--text)' }}>
-                    {exp.role}{exp.organization ? ` – ${exp.organization}` : ''}
-                  </span>
-                  <span style={{ fontSize: '0.84rem', fontWeight: '500', color: 'var(--muted)' }}>{exp.period}</span>
+                <div key={index} style={{ padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                    <div>
+                      <span style={{ fontWeight: '500', color: 'var(--text)' }}>{exp.role}</span>
+                      {exp.organization && (
+                        <span style={{ fontSize: '0.86rem', color: 'var(--muted)', fontWeight: '400', marginLeft: '8px' }}>
+                          {exp.organization}
+                        </span>
+                      )}
+                    </div>
+                    <span style={{ fontSize: '0.84rem', fontWeight: '500', color: 'var(--muted)' }}>{exp.period}</span>
+                  </div>
+
+                  {exp.stats && (
+                    <div style={{ display: 'flex', gap: '12px', marginTop: '6px' }}>
+                      {exp.stats.map((stat) => (
+                        <div key={stat.label} style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.78rem', fontWeight: '500' }}>
+                          <span style={{ color: 'var(--text)', fontWeight: '500' }}>{stat.value}</span>
+                          <span style={{ color: 'var(--muted)' }}>{stat.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
