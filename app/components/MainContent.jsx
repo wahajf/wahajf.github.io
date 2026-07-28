@@ -314,7 +314,9 @@ export default function MainContent() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {profileData.experience.map((exp, index) => (
                 <div key={index} style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
-                  <span style={{ fontWeight: '500', color: 'var(--text)' }}>{exp.role}</span>
+                  <span style={{ fontWeight: '500', color: 'var(--text)' }}>
+                    {exp.role}{exp.organization ? ` – ${exp.organization}` : ''}
+                  </span>
                   <span style={{ fontSize: '0.84rem', fontWeight: '500', color: 'var(--muted)' }}>{exp.period}</span>
                 </div>
               ))}

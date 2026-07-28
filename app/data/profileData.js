@@ -39,17 +39,17 @@ export const profileData = {
   experience: [
     {
       role: "Game Developer",
-      organization: "Independent",
+      organization: "Freelance",
       period: "2026 – Present"
     },
     {
-      role: "Newsletter Creator (Flight Citizen)",
+      role: "Web Design",
       organization: "Flight Citizen",
       period: "2025 – Present"
     },
     {
-      role: "Planespotting Creator (@thatyvrspotter)",
-      organization: "YouTube & TikTok",
+      role: "Content Creator",
+      organization: "@thatyvrspotter",
       period: "2024 – Present"
     }
   ],
