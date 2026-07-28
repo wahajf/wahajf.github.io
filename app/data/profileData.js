@@ -39,7 +39,7 @@ export const profileData = {
       period: "2026 – Present"
     },
     {
-      role: "Web Design",
+      role: "Web Designer",
       organization: "Flight Citizen",
       period: "2025 – Present"
     },
