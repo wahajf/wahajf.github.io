@@ -448,7 +448,20 @@ export default function MainContent() {
                 {renderWeatherIcon()}
               </span>
             </span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <a
+                href="/studio"
+                style={{
+                  color: 'var(--muted)',
+                  textDecoration: 'none',
+                  fontSize: '0.8rem',
+                  fontWeight: '500',
+                  transition: 'color 0.15s ease'
+                }}
+              >
+                CMS Studio ↗
+              </a>
+              <span>•</span>
               <span>{new Date().getFullYear()}</span>
               <button
                 onClick={cycleAccent}
