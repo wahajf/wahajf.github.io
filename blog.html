@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Wahaj Farooq</title>
+
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved ? saved : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+
+        var accents = ['orange', 'lime', 'skyblue'];
+        var randomAccent = accents[Math.floor(Math.random() * accents.length)];
+        document.documentElement.setAttribute('data-accent', randomAccent);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.setAttribute('data-accent', 'orange');
+      }
+    })();
+  </script>
+  
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #666666;
+      --subtle: #999999;
+      --border: #e6e6e8;
+      --sub-bg: #fafafa;
+      --card-bg: #ffffff;
+      --card-border: #eaeaea;
+      --pill-bg: #eeeeef;
+      --nav-bg: #fafafa;
+      --nav-border: 0.5px solid #eeeeee;
+      --nav-text: #666666;
+      --nav-icon-color: #222222;
+      --menu-bg: rgba(255, 255, 255, 0.5);
+      --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #09090b;
+      --sub-bg: #121215;
+      --text: #f0f0f2;
+      --muted: #8e8e96;
+      --subtle: #55555e;
+      --border: #1c1c22;
+      --card-bg: #18181c;
+      --card-border: #24242a;
+      --pill-bg: #222228;
+      --nav-bg: #121215;
+      --nav-border: 0.5px solid rgba(255, 255, 255, 0.12);
+      --nav-text: #8e8e96;
+      --nav-icon-color: #fafafa;
+      --menu-bg: rgba(9, 9, 11, 0.5);
+    }
+
+    html[data-accent="orange"], [data-accent="orange"] {
+      --pill-active-bg: #fff0e6;
+      --pill-active-text: #d93800;
+      --trail-rgb: 255, 102, 0;
+    }
+
+    html[data-accent="lime"], [data-accent="lime"] {
+      --pill-active-bg: #f0fdf4;
+      --pill-active-text: #15803d;
+      --trail-rgb: 34, 197, 94;
+    }
+
+    html[data-accent="skyblue"], [data-accent="skyblue"] {
+      --pill-active-bg: #f0f9ff;
+      --pill-active-text: #0284c7;
+      --trail-rgb: 14, 165, 233;
+    }
+
+    html[data-theme="dark"][data-accent="orange"], html[data-theme="dark"] [data-accent="orange"] {
+      --pill-active-bg: rgba(255, 120, 0, 0.18);
+      --pill-active-text: #ff6b35;
+      --trail-rgb: 255, 102, 0;
+    }
+
+    html[data-theme="dark"][data-accent="lime"], html[data-theme="dark"] [data-accent="lime"] {
+      --pill-active-bg: rgba(34, 197, 94, 0.18);
+      --pill-active-text: #4ade80;
+      --trail-rgb: 34, 197, 94;
+    }
+
+    html[data-theme="dark"][data-accent="skyblue"], html[data-theme="dark"] [data-accent="skyblue"] {
+      --pill-active-bg: rgba(14, 165, 233, 0.18);
+      --pill-active-text: #38bdf8;
+      --trail-rgb: 14, 165, 233;
+    }
+
+    *, html, body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-apple) !important;
+      font-weight: 500 !important;
+      box-shadow: none !important;
+    }
+
+    a, button, input, select, textarea, [role="button"], .nav-link, .circle-btn, .social-icon-btn, .category-tab, .post-card {
+      cursor: pointer !important;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      padding: 100px 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .inner-content-container {
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 0 24px;
+      box-sizing: border-box;
+    }
+
+    .pill-navbar-container {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 620px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .nav-left-group, .nav-right-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    .pill-navbar {
+      background-color: var(--nav-bg);
+      border: var(--nav-border);
+      border-radius: 9999px;
+      padding: 3px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .nav-link {
+      color: var(--nav-text);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      transition: all 0.18s ease;
+      line-height: 1.2;
+    }
+
+    .nav-link.active {
+      color: var(--pill-active-text);
+      background-color: var(--pill-active-bg);
+    }
+
+    .circle-btn, .social-icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: var(--nav-border);
+      background-color: var(--nav-bg);
+      color: var(--nav-icon-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 1000;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .progressive-blur-top {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 80px;
+      pointer-events: none;
+      z-index: 900;
+      background: linear-gradient(to bottom, transparent 0%, var(--sub-bg) 100%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .progressive-blur-top, .pill-navbar-container, .mobile-header {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease !important;
+    }
+
+    .nav-hidden.progressive-blur-top {
+      transform: translateY(-100%) !important;
+      opacity: 0 !important;
+    }
+
+    .nav-hidden.pill-navbar-container, .nav-hidden.mobile-header {
+      transform: translateY(-120%) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    .category-tab {
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: var(--nav-border);
+      background-color: var(--card-bg);
+      color: var(--muted);
+      transition: all 0.15s ease;
+    }
+
+    .category-tab.active {
+      color: var(--pill-active-text);
+      background-color: var(--pill-active-bg);
+      border-color: transparent;
+    }
+
+    .post-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 20px;
+      transition: all 0.2s ease;
+    }
+
+    .post-card:hover {
+      border-color: var(--muted);
+      transform: translateY(-2px);
+    }
+
+    /* Modal Reader Overlay */
+    .reader-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 99999;
+      background-color: var(--bg);
+      overflow-y: auto;
+      padding: 80px 20px 60px;
+    }
+
+    .reader-modal.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      body { padding-top: 80px !important; }
+      .inner-content-container { padding: 0 16px !important; }
+      .pill-navbar-container { display: none !important; }
+      .mobile-header { display: flex !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progressive Blur Top -->
+  <div class="progressive-blur-top" aria-hidden="true"></div>
+
+  <!-- DESKTOP NAV -->
+  <div class="pill-navbar-container">
+    <div class="nav-left-group">
+      <nav class="pill-navbar">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/blog" class="nav-link active">Blog</a>
+      </nav>
+      <button class="circle-btn" id="themeBtn" aria-label="Toggle Theme">
+        <svg id="sunIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg id="moonIcon" style="display: none;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="nav-right-group">
+      <a href="mailto:wahajf05@gmail.com" class="social-icon-btn" aria-label="Email">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+      <a href="https://github.com/wahajf" target="_blank" class="social-icon-btn" aria-label="GitHub">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- MOBILE HEADER -->
+  <div class="mobile-header">
+    <span style="font-size: 0.98rem; font-weight: 500; color: var(--text);">Wahaj Farooq</span>
+  </div>
+
+  <main class="inner-content-container" style="padding-bottom: 96px;">
+    <section style="margin-bottom: 32px;">
+      <div style="font-size: 0.82rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px;">
+        Writing & Insights
+      </div>
+      <h1 style="font-size: 1.8rem; font-weight: 600; color: var(--text); margin: 0 0 12px 0; letter-spacing: -0.02em;">
+        Blog
+      </h1>
+      <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.6;">
+        Thoughts on web development, content creation, aviation spotting, and digital interface design.
+      </p>
+    </section>
+
+    <!-- Category Tabs -->
+    <div id="categoryTabs" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;">
+      <button class="category-tab active" onclick="filterCategory('All', this)">All</button>
+      <button class="category-tab" onclick="filterCategory('Aviation', this)">Aviation</button>
+      <button class="category-tab" onclick="filterCategory('Content Creation', this)">Content Creation</button>
+      <button class="category-tab" onclick="filterCategory('Design', this)">Design</button>
+      <button class="category-tab" onclick="filterCategory('Tech', this)">Tech</button>
+    </div>
+
+    <!-- Posts Container -->
+    <div id="postsList">
+      <div style="color: var(--muted); font-size: 0.9rem;">Loading articles...</div>
+    </div>
+
+    <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; color: var(--muted);">
+      <span>Vancouver, BC</span>
+      <span>2026</span>
+    </footer>
+  </main>
+
+  <!-- Fullscreen Article Reader Overlay -->
+  <div id="readerModal" class="reader-modal">
+    <div class="inner-content-container" style="max-width: 620px;">
+      <button onclick="closeReader()" style="background: none; border: none; color: var(--muted); font-size: 0.9rem; font-weight: 500; margin-bottom: 24px; cursor: pointer; padding: 0;">
+        ← Back to Blog
+      </button>
+
+      <div id="modalCategories" style="display: flex; gap: 6px; margin-bottom: 12px;"></div>
+      <h1 id="modalTitle" style="font-size: 1.8rem; font-weight: 600; color: var(--text); margin-bottom: 12px; line-height: 1.3;"></h1>
+      <div id="modalMeta" style="font-size: 0.84rem; color: var(--subtle); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border);"></div>
+      
+      <div id="modalBody" style="font-size: 0.98rem; color: var(--text); line-height: 1.8;"></div>
+    </div>
+  </div>
+
+  <script>
+    const SANITY_PROJECT_ID = 'y5ygdyls';
+    const SANITY_DATASET = 'production';
+    const QUERY = encodeURIComponent('*[_type == "post"] | order(publishedAt desc) { _id, title, slug, publishedAt, readTime, excerpt, body, categories[]->{ _id, title, slug } }');
+    const SANITY_URL = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2024-02-01/data/query/${SANITY_DATASET}?query=${QUERY}`;
+
+    let allPosts = [
+      {
+        _id: 'mock-1',
+        title: 'Building Flight Citizen: Aviation Tracking & Interface Design',
+        slug: { current: 'building-flight-citizen' },
+        publishedAt: '2026-02-10T12:00:00Z',
+        readTime: '4 min read',
+        excerpt: 'Insights on designing a minimal, fast aviation tracking platform and digital media publication.',
+        categories: [{ title: 'Aviation' }, { title: 'Design' }],
+        bodyText: `Flight Citizen started as a passion project to combine real-time aviation telemetry with clean, distraction-free user interfaces.\n\nKey design pillars:\n- Minimalist layout focused on high-contrast aircraft telemetry data.\n- Instant search with zero latency.\n- Integrated photo streams from community spotters.`
+      },
+      {
+        _id: 'mock-2',
+        title: 'Growing @thatyvrspotter to 150K+ Views: Content Strategy',
+        slug: { current: 'growing-thatyvrspotter' },
+        publishedAt: '2026-01-28T12:00:00Z',
+        readTime: '3 min read',
+        excerpt: 'How I record, edit, and optimize short-form aviation videos at Vancouver International Airport (YVR).',
+        categories: [{ title: 'Content Creation' }, { title: 'Aviation' }],
+        bodyText: `Documenting aircraft operations at YVR requires consistency and clear audio-visual pacing.\n\nTakeaways from 150K+ views:\n- Audio timing is critical: Jet engine spool-up sounds hook viewers in the first 2 seconds.\n- Highlighting unique liveries (ANA Eevee Jet, Air Canada retro) drives higher engagement.\n- Direct community interaction builds long-term subscriber loyalty.`
+      },
+      {
+        _id: 'mock-3',
+        title: 'Modern Web Architecture: Next.js & Sanity CMS Integration',
+        slug: { current: 'modern-web-architecture-nextjs' },
+        publishedAt: '2026-01-15T12:00:00Z',
+        readTime: '5 min read',
+        excerpt: 'Setting up dynamic content pipelines with structured schemas and real-time CMS previews.',
+        categories: [{ title: 'Tech' }, { title: 'Design' }],
+        bodyText: `Combining Next.js with a headless CMS like Sanity gives full content editing flexibility without sacrificing page performance.\n\nWhy headless CMS?\n- Content creators can edit and publish posts visually in Sanity Studio.\n- Structured JSON schemas ensure clean API contracts.\n- Incremental static regeneration keeps response times under 50ms.`
+      }
+    ];
+
+    async function fetchPostsFromSanity() {
+      try {
+        const res = await fetch(SANITY_URL);
+        const data = await res.json();
+        if (data.result && data.result.length > 0) {
+          allPosts = data.result;
+        }
+      } catch (err) {
+        console.log('Sanity API offline or fallback used:', err);
+      }
+      renderPosts(allPosts);
+    }
+
+    function renderPosts(posts) {
+      const container = document.getElementById('postsList');
+      if (!posts || posts.length === 0) {
+        container.innerHTML = `<div style="color: var(--muted); font-size: 0.9rem;">No articles found.</div>`;
+        return;
+      }
+
+      container.innerHTML = posts.map(post => {
+        const categoriesHtml = (post.categories || []).map(cat => 
+          `<span style="font-size: 0.74rem; font-weight: 500; padding: 2px 8px; border-radius: 9999px; background-color: var(--pill-bg); color: var(--pill-active-text);">${cat.title}</span>`
+        ).join(' ');
+
+        const dateStr = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+        const readTime = post.readTime || '3 min read';
+        const slug = post.slug ? post.slug.current : post._id;
+
+        return `
+          <article class="post-card" onclick="openReader('${slug}')">
+            <div style="display: flex; gap: 6px; margin-bottom: 10px;">${categoriesHtml}</div>
+            <h2 style="font-size: 1.22rem; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.35;">${post.title}</h2>
+            <p style="font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px;">${post.excerpt || ''}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--subtle);">
+              <span>${dateStr} • ${readTime}</span>
+              <span style="color: var(--pill-active-text); font-weight: 500;">Read article →</span>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function openReader(slug) {
+      const post = allPosts.find(p => (p.slug && p.slug.current === slug) || p._id === slug);
+      if (!post) return;
+
+      document.getElementById('modalTitle').innerText = post.title;
+      document.getElementById('modalMeta').innerText = `${post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ''} • ${post.readTime || '3 min read'}`;
+      
+      const categoriesHtml = (post.categories || []).map(cat => 
+        `<span style="font-size: 0.76rem; font-weight: 500; padding: 2px 10px; border-radius: 9999px; background-color: var(--pill-bg); color: var(--pill-active-text);">${cat.title}</span>`
+      ).join(' ');
+      document.getElementById('modalCategories').innerHTML = categoriesHtml;
+
+      let bodyContent = post.bodyText || post.excerpt || 'Article content...';
+      if (Array.isArray(post.body)) {
+        bodyContent = post.body.map(block => {
+          if (block._type === 'block' && block.children) {
+            return block.children.map(c => c.text).join('');
+          }
+          return '';
+        }).filter(Boolean).join('\n\n');
+      }
+
+      document.getElementById('modalBody').innerHTML = bodyContent.split('\n\n').map(p => `<p style="margin-bottom: 16px;">${p.replace(/\n/g, '<br/>')}</p>`).join('');
+      
+      document.getElementById('readerModal').classList.add('active');
+      window.location.hash = `#${slug}`;
+    }
+
+    function closeReader() {
+      document.getElementById('readerModal').classList.remove('active');
+      window.location.hash = '';
+    }
+
+    function filterCategory(cat, el) {
+      document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+      if (el) el.classList.add('active');
+
+      if (cat === 'All') {
+        renderPosts(allPosts);
+      } else {
+        const filtered = allPosts.filter(p => (p.categories || []).some(c => c.title.toLowerCase() === cat.toLowerCase()));
+        renderPosts(filtered);
+      }
+    }
+
+    // Check hash on load
+    window.addEventListener('load', () => {
+      fetchPostsFromSanity().then(() => {
+        if (window.location.hash) {
+          const hashSlug = window.location.hash.replace('#', '');
+          openReader(hashSlug);
+        }
+      });
+    });
+
+    // Theme setup
+    const htmlEl = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+
+    function setTheme(theme) {
+      htmlEl.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      if (theme === 'dark') {
+        if (sunIcon) sunIcon.style.display = 'block';
+        if (moonIcon) moonIcon.style.display = 'none';
+      } else {
+        if (sunIcon) sunIcon.style.display = 'none';
+        if (moonIcon) moonIcon.style.display = 'block';
+      }
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const currentTheme = htmlEl.getAttribute('data-theme');
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+      });
+    }
+
+    // Scroll hide
+    (function() {
+      let lastY = 0;
+      window.addEventListener('scroll', function() {
+        const currY = window.scrollY;
+        const blurTop = document.querySelector('.progressive-blur-top');
+        const navDesk = document.querySelector('.pill-navbar-container');
+        const navMob = document.querySelector('.mobile-header');
+
+        if (currY <= 30) {
+          blurTop && blurTop.classList.remove('nav-hidden');
+          navDesk && navDesk.classList.remove('nav-hidden');
+          navMob && navMob.classList.remove('nav-hidden');
+        } else if (currY > lastY && currY > 50) {
+          blurTop && blurTop.classList.add('nav-hidden');
+          navDesk && navDesk.classList.add('nav-hidden');
+          navMob && navMob.classList.add('nav-hidden');
+        } else if (currY < lastY) {
+          blurTop && blurTop.classList.remove('nav-hidden');
+          navDesk && navDesk.classList.remove('nav-hidden');
+          navMob && navMob.classList.remove('nav-hidden');
+        }
+        lastY = currY;
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
