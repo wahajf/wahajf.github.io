@@ -25,6 +25,7 @@ export default function PillNavbar() {
     { label: 'About', href: '#about' },
     { label: 'Work', href: '#work' },
     { label: 'Experience', href: '#experience' },
+    { label: 'Blog', href: '#blog' },
     { label: 'Skills', href: '#skills' },
     { label: 'Contact', href: '#contact' }
   ];
