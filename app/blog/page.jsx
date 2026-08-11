@@ -43,26 +43,8 @@ export default function BlogIndexPage() {
       <main className="inner-content-container" style={{ width: '100%', maxWidth: '620px', paddingTop: '100px', paddingBottom: '96px' }}>
         {/* Header / Hero */}
         <section style={{ marginBottom: '40px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-            <div style={{ fontSize: '0.82rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted)' }}>
-              Writing & Insights
-            </div>
-            <a
-              href="/studio"
-              style={{
-                fontSize: '0.78rem',
-                fontWeight: '500',
-                color: 'var(--muted)',
-                textDecoration: 'none',
-                padding: '3px 10px',
-                borderRadius: '9999px',
-                border: 'var(--nav-border)',
-                backgroundColor: 'var(--nav-bg)',
-                transition: 'all 0.15s ease'
-              }}
-            >
-              CMS Studio ↗
-            </a>
+          <div style={{ fontSize: '0.82rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted)', marginBottom: '8px' }}>
+            Writing & Insights
           </div>
           <h1 style={{ fontSize: '1.8rem', fontWeight: '600', color: 'var(--text)', margin: '0 0 12px 0', letterSpacing: '-0.02em' }}>
             Blog
