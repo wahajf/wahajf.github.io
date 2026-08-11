@@ -259,7 +259,7 @@
     }
 
     .post-card:hover {
-      border-color: var(--muted);
+      border-color: var(--pill-active-text);
       transform: translateY(-2px);
     }
 
@@ -325,45 +325,59 @@
     <span style="font-size: 0.98rem; font-weight: 500; color: var(--text);">Wahaj Farooq</span>
   </div>
 
-  <main class="inner-content-container" style="padding-bottom: 96px;">
-    <section style="margin-bottom: 32px;">
-      <div style="font-size: 0.82rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px;">
-        Writing & Insights
+  <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <!-- Hero / Intro Header Section -->
+    <main class="inner-content-container">
+      <section class="hero-section" id="blog-hero" style="scroll-margin-top: 100px; margin-bottom: 64px; padding-top: 48px;">
+        <div class="hero-text">
+          <p style="font-size: 1.25rem; font-weight: 600; color: var(--text); margin-bottom: 8px;">
+            Blog & Articles
+          </p>
+          <p style="color: var(--muted); font-size: 0.98rem;">
+            Thoughts on software engineering, aviation media, UI/UX design, and digital content creation.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Full-Width Background Section Below Hero -->
+    <div class="full-width-below-hero">
+      <div class="inner-content-container">
+        <!-- Categories Filter Section -->
+        <section class="section-block" style="margin-bottom: 36px;">
+          <div class="section-label">Categories</div>
+          <div id="categoryTabs" style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="category-tab active" onclick="filterCategory('All', this)">All</button>
+            <button class="category-tab" onclick="filterCategory('Aviation', this)">Aviation</button>
+            <button class="category-tab" onclick="filterCategory('Content Creation', this)">Content Creation</button>
+            <button class="category-tab" onclick="filterCategory('Design', this)">Design</button>
+            <button class="category-tab" onclick="filterCategory('Tech', this)">Tech</button>
+          </div>
+        </section>
+
+        <!-- Articles Section with Border Divider -->
+        <section class="section-block" style="margin-bottom: 48px;">
+          <div class="section-label with-border" style="padding-bottom: 8px; border-bottom: 1px solid var(--border); margin-bottom: 24px;">Articles</div>
+          <div id="postsList" style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="color: var(--muted); font-size: 0.9rem;">Loading articles...</div>
+          </div>
+        </section>
+
+        <!-- Footer matching Homepage -->
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; font-weight: 500; color: var(--muted);">
+          <span style="display: inline-flex; align-items: center; gap: 5px;">
+            Vancouver, BC <span id="vancouverTime"></span> <span id="vancouverTemp"></span>
+          </span>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span>2026</span>
+            <button id="footerAccentBtn" aria-label="Cycle Accent Color" style="background: transparent; border: none; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 2px; opacity: 0.75;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.7-.75 1.7-1.67 0-.41-.16-.79-.44-1.07-.27-.27-.44-.66-.44-1.07 0-.92.75-1.67 1.67-1.67H17c2.76 0 5-2.24 5-5 0-4.42-4.03-8-10-8z"/></svg>
+            </button>
+          </div>
+        </footer>
       </div>
-      <h1 style="font-size: 1.8rem; font-weight: 600; color: var(--text); margin: 0 0 12px 0; letter-spacing: -0.02em;">
-        Blog
-      </h1>
-      <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.6;">
-        Thoughts on web development, content creation, aviation spotting, and digital interface design.
-      </p>
-    </section>
-
-    <!-- Category Tabs -->
-    <div id="categoryTabs" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;">
-      <button class="category-tab active" onclick="filterCategory('All', this)">All</button>
-      <button class="category-tab" onclick="filterCategory('Aviation', this)">Aviation</button>
-      <button class="category-tab" onclick="filterCategory('Content Creation', this)">Content Creation</button>
-      <button class="category-tab" onclick="filterCategory('Design', this)">Design</button>
-      <button class="category-tab" onclick="filterCategory('Tech', this)">Tech</button>
     </div>
-
-    <!-- Posts Container -->
-    <div id="postsList">
-      <div style="color: var(--muted); font-size: 0.9rem;">Loading articles...</div>
-    </div>
-
-    <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; font-weight: 500; color: var(--muted);">
-      <span style="display: inline-flex; align-items: center; gap: 5px;">
-        Vancouver, BC <span id="vancouverTime"></span> <span id="vancouverTemp"></span>
-      </span>
-      <div style="display: flex; align-items: center; gap: 6px;">
-        <span>2026</span>
-        <button id="footerAccentBtn" aria-label="Cycle Accent Color" style="background: transparent; border: none; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 2px; opacity: 0.75;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.7-.75 1.7-1.67 0-.41-.16-.79-.44-1.07-.27-.27-.44-.66-.44-1.07 0-.92.75-1.67 1.67-1.67H17c2.76 0 5-2.24 5-5 0-4.42-4.03-8-10-8z"/></svg>
-        </button>
-      </div>
-    </footer>
-  </main>
+  </div>
 
   <!-- Fullscreen Article Reader Overlay -->
   <div id="readerModal" class="reader-modal">
