@@ -328,14 +328,12 @@
   <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
     <!-- Hero / Intro Header Section -->
     <main class="inner-content-container">
-      <section class="hero-section" id="blog-hero" style="scroll-margin-top: 100px; margin-bottom: 64px; padding-top: 48px;">
+      <section class="hero-section" id="blog-hero" style="scroll-margin-top: 100px; margin-bottom: 96px; padding-top: 48px;">
         <div class="hero-text">
-          <p style="font-size: 1.25rem; font-weight: 600; color: var(--text); margin-bottom: 8px;">
-            Blog & Articles
+          <p>
+            Writing on software engineering, aviation media, UI/UX design, and digital content creation.
           </p>
-          <p style="color: var(--muted); font-size: 0.98rem;">
-            Thoughts on software engineering, aviation media, UI/UX design, and digital content creation.
-          </p>
+          <p>On the side I run <a href="https://youtube.com/@thatyvrspotter" target="_blank" style="color: var(--text); text-decoration: underline; text-underline-offset: 4px; font-weight: 500;">@thatyvrspotter</a>, documenting planespotting at YVR.</p>
         </div>
       </section>
     </main>
@@ -455,7 +453,7 @@
 
       container.innerHTML = posts.map(post => {
         const categoriesHtml = (post.categories || []).map(cat => 
-          `<span style="font-size: 0.74rem; font-weight: 500; padding: 2px 8px; border-radius: 9999px; background-color: var(--pill-bg); color: var(--pill-active-text);">${cat.title}</span>`
+          `<span class="website-pill" style="font-size: 0.76rem;">${cat.title}</span>`
         ).join(' ');
 
         const dateStr = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
@@ -463,15 +461,21 @@
         const slug = post.slug ? post.slug.current : post._id;
 
         return `
-          <article class="post-card" onclick="openReader('${slug}')">
-            <div style="display: flex; gap: 6px; margin-bottom: 10px;">${categoriesHtml}</div>
-            <h2 style="font-size: 1.22rem; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.35;">${post.title}</h2>
-            <p style="font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px;">${post.excerpt || ''}</p>
-            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--subtle);">
-              <span>${dateStr} • ${readTime}</span>
-              <span style="color: var(--pill-active-text); font-weight: 500;">Read article →</span>
+          <div class="card post-card" onclick="openReader('${slug}')" style="cursor: pointer;">
+            <div class="card-top">
+              <div>
+                <div class="card-title" style="font-size: 1.02rem; font-weight: 500;">${post.title}</div>
+                <div class="card-date">${dateStr} • ${readTime}</div>
+              </div>
+              <div style="display: flex; gap: 6px;">
+                ${categoriesHtml}
+              </div>
             </div>
-          </article>
+            <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 14px;">${post.excerpt || ''}</p>
+            <div style="display: flex; justify-content: flex-end;">
+              <span class="website-pill" style="background: var(--pill-active-bg); color: var(--pill-active-text); font-weight: 500;">Read article ↗</span>
+            </div>
+          </div>
         `;
       }).join('');
     }
