@@ -41,12 +41,21 @@ export default function BlogIndexPage() {
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <PillNavbar />
 
-      {/* Hero Header Section matching Homepage layout 100% */}
-      <main className="inner-content-container" style={{ width: '100%', maxWidth: '620px' }}>
-        <section className="hero-section" id="blog-hero" style={{ scrollMarginTop: '100px', marginBottom: '96px', paddingTop: '48px' }}>
+      {/* Main Page Hero Section Template */}
+      <main className="inner-content-container">
+        <section className="hero-section" id="about">
           <div className="hero-text">
             <p>
-              Writing on software engineering, aviation media, UI/UX design, and digital content creation.
+              Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at{' '}
+              <a
+                href="https://www.sfu.ca"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
+              >
+                Simon Fraser University
+              </a>
+              .
             </p>
             <p>
               On the side I run{' '}
@@ -64,30 +73,18 @@ export default function BlogIndexPage() {
         </section>
       </main>
 
-      {/* Full-Width Background Section matching Homepage */}
+      {/* Full-Width Background Section Below Hero */}
       <div className="full-width-below-hero">
-        <div className="inner-content-container" style={{ width: '100%', maxWidth: '620px' }}>
-          
-          {/* Category Filter Pills Section */}
-          <section className="section-block" style={{ marginBottom: '36px' }}>
-            <div className="section-label" style={{ fontSize: '0.82rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted)', marginBottom: '16px' }}>
-              Categories
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+        <div className="inner-content-container">
+          <section className="section-block" id="work">
+            <div className="section-label">Work</div>
+
+            {/* Category Filter Pills */}
+            <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '24px' }}>
               <button
                 onClick={() => setSelectedCategory('All')}
                 className={`website-pill ${selectedCategory === 'All' ? 'active' : ''}`}
-                style={{
-                  fontSize: '0.82rem',
-                  fontWeight: '500',
-                  padding: '6px 14px',
-                  borderRadius: '9999px',
-                  border: '1px solid var(--border)',
-                  backgroundColor: selectedCategory === 'All' ? 'var(--pill-active-bg)' : 'var(--card-bg)',
-                  color: selectedCategory === 'All' ? 'var(--pill-active-text)' : 'var(--text)',
-                  cursor: 'pointer',
-                  transition: 'all 0.18s ease'
-                }}
+                style={{ border: 'none', cursor: 'pointer', outline: 'none' }}
               >
                 All
               </button>
@@ -98,31 +95,15 @@ export default function BlogIndexPage() {
                     key={cat._id}
                     onClick={() => setSelectedCategory(cat.title)}
                     className={`website-pill ${isActive ? 'active' : ''}`}
-                    style={{
-                      fontSize: '0.82rem',
-                      fontWeight: '500',
-                      padding: '6px 14px',
-                      borderRadius: '9999px',
-                      border: '1px solid var(--border)',
-                      backgroundColor: isActive ? 'var(--pill-active-bg)' : 'var(--card-bg)',
-                      color: isActive ? 'var(--pill-active-text)' : 'var(--text)',
-                      cursor: 'pointer',
-                      transition: 'all 0.18s ease'
-                    }}
+                    style={{ border: 'none', cursor: 'pointer', outline: 'none' }}
                   >
                     {cat.title}
                   </button>
                 );
               })}
             </div>
-          </section>
 
-          {/* Articles Cards Section with Divider Border */}
-          <section className="section-block" style={{ marginBottom: '48px' }}>
-            <div className="section-label with-border" style={{ fontSize: '0.82rem', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--muted)', paddingBottom: '8px', borderBottom: '1px solid var(--border)', marginBottom: '24px' }}>
-              Articles ({filteredPosts.length})
-            </div>
-
+            {/* Posts List */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {loading ? (
                 <div style={{ padding: '24px 0', color: 'var(--muted)', fontSize: '0.9rem' }}>Loading articles...</div>
@@ -141,14 +122,10 @@ export default function BlogIndexPage() {
                     <Link
                       key={post._id || post.id}
                       href={`/blog/${postSlug}`}
-                      className="card post-card"
+                      className="card"
                       style={{
                         display: 'block',
                         textDecoration: 'none',
-                        backgroundColor: 'var(--card-bg)',
-                        border: '1px solid var(--card-border)',
-                        borderRadius: '16px',
-                        padding: '20px',
                         transition: 'border-color 0.2s ease, transform 0.15s ease'
                       }}
                     >
@@ -162,23 +139,15 @@ export default function BlogIndexPage() {
                         </div>
                       )}
 
-                      <div className="card-top" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+                      <div className="card-top">
                         <div>
-                          <div className="card-title" style={{ fontSize: '1.02rem', fontWeight: '500', color: 'var(--text)' }}>
-                            {post.title}
-                          </div>
-                          <div className="card-date" style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: '2px' }}>
-                            {dateStr} • {readTime}
-                          </div>
+                          <div className="card-title">{post.title}</div>
+                          <div className="card-date">{dateStr} • {readTime}</div>
                         </div>
 
                         <div style={{ display: 'flex', gap: '6px' }}>
                           {post.categories?.map((cat) => (
-                            <span
-                              key={cat._id || cat.title}
-                              className="website-pill"
-                              style={{ fontSize: '0.76rem' }}
-                            >
+                            <span key={cat._id || cat.title} className="website-pill">
                               {cat.title}
                             </span>
                           ))}
@@ -191,8 +160,8 @@ export default function BlogIndexPage() {
                         </p>
                       )}
 
-                      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <span className="website-pill" style={{ backgroundColor: 'var(--pill-active-bg)', color: 'var(--pill-active-text)', fontWeight: '500' }}>
+                      <div style={{ display: 'flex', justifySelf: 'flex-end', justifyContent: 'flex-end' }}>
+                        <span className="website-pill active">
                           Read article ↗
                         </span>
                       </div>
@@ -203,7 +172,6 @@ export default function BlogIndexPage() {
             </div>
           </section>
 
-          {/* Unified Homepage-style Footer */}
           <Footer />
         </div>
       </div>
