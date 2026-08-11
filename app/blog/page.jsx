@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PillNavbar from '../components/PillNavbar';
+import Footer from '../components/Footer';
 import { getPosts, getCategories } from '../../sanity/lib/client';
 import { urlForImage } from '../../sanity/lib/image';
 
@@ -171,6 +172,8 @@ export default function BlogIndexPage() {
             })
           )}
         </section>
+
+        <Footer />
       </main>
     </div>
   );

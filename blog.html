@@ -294,8 +294,8 @@
   <div class="pill-navbar-container">
     <div class="nav-left-group">
       <nav class="pill-navbar">
-        <a href="./" class="nav-link">Home</a>
-        <a href="blog/" class="nav-link active">Blog</a>
+        <a href="../" class="nav-link">Home</a>
+        <a href="./" class="nav-link active">Blog</a>
       </nav>
       <button class="circle-btn" id="themeBtn" aria-label="Toggle Theme">
         <svg id="sunIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -348,9 +348,16 @@
       <div style="color: var(--muted); font-size: 0.9rem;">Loading articles...</div>
     </div>
 
-    <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; color: var(--muted);">
-      <span>Vancouver, BC</span>
-      <span>2026</span>
+    <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; font-weight: 500; color: var(--muted);">
+      <span style="display: inline-flex; align-items: center; gap: 5px;">
+        Vancouver, BC <span id="vancouverTime"></span> <span id="vancouverTemp"></span>
+      </span>
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <span>2026</span>
+        <button id="footerAccentBtn" aria-label="Cycle Accent Color" style="background: transparent; border: none; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 2px; opacity: 0.75;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.7-.75 1.7-1.67 0-.41-.16-.79-.44-1.07-.27-.27-.44-.66-.44-1.07 0-.92.75-1.67 1.67-1.67H17c2.76 0 5-2.24 5-5 0-4.42-4.03-8-10-8z"/></svg>
+        </button>
+      </div>
     </footer>
   </main>
 
@@ -531,6 +538,39 @@
       themeBtn.addEventListener('click', () => {
         const currentTheme = htmlEl.getAttribute('data-theme');
         setTheme(currentTheme === 'light' ? 'dark' : 'light');
+      });
+    }
+
+    // Live Vancouver Clock, Weather & Accent Switcher
+    function updateClock() {
+      const vancouverTime = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'America/Vancouver',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+      const clockEl = document.getElementById('vancouverTime');
+      if (clockEl) clockEl.innerText = `• ${vancouverTime}`;
+    }
+    updateClock();
+    setInterval(updateClock, 10000);
+
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=49.2827&longitude=-123.1207&current_weather=true')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.current_weather?.temperature !== undefined) {
+          const tempEl = document.getElementById('vancouverTemp');
+          if (tempEl) tempEl.innerText = `• ${Math.round(data.current_weather.temperature)}°C ⛅`;
+        }
+      }).catch(() => {});
+
+    const footerAccentBtn = document.getElementById('footerAccentBtn');
+    if (footerAccentBtn) {
+      footerAccentBtn.addEventListener('click', () => {
+        const current = htmlEl.getAttribute('data-accent') || 'orange';
+        const accents = ['orange', 'lime', 'skyblue'];
+        const nextAccent = accents[(accents.indexOf(current) + 1) % accents.length];
+        htmlEl.setAttribute('data-accent', nextAccent);
       });
     }
 
