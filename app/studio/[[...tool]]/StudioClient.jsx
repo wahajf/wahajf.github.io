@@ -63,5 +63,18 @@ export default function StudioClient() {
     );
   }
 
-  return <NextStudio config={config} />;
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100vw',
+      height: '100vh',
+      zIndex: 99999,
+      backgroundColor: '#0e0e10',
+      overflow: 'hidden'
+    }}>
+      <NextStudio config={config} />
+    </div>
+  );
 }
