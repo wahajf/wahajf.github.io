@@ -52,7 +52,10 @@ export default function PillNavbar() {
     e.preventDefault();
     setIsMenuOpen(false);
     if (typeof window !== 'undefined') {
-      window.location.href = item.href;
+      const isGitHubPages = window.location.pathname.includes('/wahajfarooq');
+      const basePath = isGitHubPages ? '/wahajfarooq' : '';
+      const targetPath = item.href === '/' ? `${basePath}/` : `${basePath}${item.href}`;
+      window.location.href = targetPath;
     }
   };
 
