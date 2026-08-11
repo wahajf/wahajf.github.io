@@ -10,18 +10,19 @@ export default function CursorTrail() {
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
-    let animationFrameId;
-
     let points = [];
     const TRAIL_LIFETIME = 350; // ms
+    let animationFrameId;
 
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+    function resize() {
+      if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+    }
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
+    resize();
+    window.addEventListener('resize', resize);
 
     const handleMouseMove = (e) => {
       points.unshift({ x: e.clientX, y: e.clientY, time: Date.now() });
@@ -29,14 +30,16 @@ export default function CursorTrail() {
 
     window.addEventListener('mousemove', handleMouseMove);
 
-    const render = () => {
+    function render() {
+      if (!canvas || !ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const now = Date.now();
 
-      // Read dynamic accent RGB color for trail
-      const trailRgb = getComputedStyle(document.documentElement).getPropertyValue('--trail-rgb').trim() || '255, 102, 0';
+      const trailRgb = getComputedStyle(document.documentElement)
+        .getPropertyValue('--trail-rgb')
+        .trim() || '255, 102, 0';
 
-      points = points.filter(p => now - p.time < TRAIL_LIFETIME);
+      points = points.filter((p) => now - p.time < TRAIL_LIFETIME);
 
       if (points.length > 1) {
         ctx.lineCap = 'round';
@@ -65,12 +68,12 @@ export default function CursorTrail() {
       }
 
       animationFrameId = requestAnimationFrame(render);
-    };
+    }
 
     render();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
@@ -86,7 +89,7 @@ export default function CursorTrail() {
         width: '100vw',
         height: '100vh',
         pointerEvents: 'none',
-        zIndex: 99999,
+        zIndex: 99999
       }}
     />
   );
