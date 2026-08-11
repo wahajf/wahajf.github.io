@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { profileData } from '../data/profileData';
 
 export default function PillNavbar() {
   const [theme, setTheme] = useState('dark');
-  const [activeTab, setActiveTab] = useState('About');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('theme') || 'dark';
@@ -22,29 +23,15 @@ export default function PillNavbar() {
   };
 
   const navItems = [
-    { label: 'About', href: '#about' },
-    { label: 'Work', href: '#work' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Contact', href: '#contact' }
+    { label: 'Home', href: '/' },
+    { label: 'Blog', href: '/blog' }
   ];
 
   const handleNavClick = (e, item) => {
     e.preventDefault();
-    setActiveTab(item.label);
     setIsMenuOpen(false);
-
-    if (item.href.startsWith('/')) {
+    if (typeof window !== 'undefined') {
       window.location.href = item.href;
-      return;
-    }
-
-    const targetEl = document.querySelector(item.href);
-    if (targetEl) {
-      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      window.location.href = `/${item.href}`;
     }
   };
 
@@ -92,7 +79,9 @@ export default function PillNavbar() {
             boxShadow: 'none'
           }}>
             {navItems.map((item) => {
-              const isActive = activeTab === item.label;
+              const isActive = item.href === '/'
+                ? (pathname === '/' || pathname === '')
+                : pathname?.startsWith(item.href);
               return (
                 <a
                   key={item.label}
@@ -274,7 +263,9 @@ export default function PillNavbar() {
         {/* Vertically Arranged Menu Links */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', margin: 'auto 0' }}>
           {navItems.map((item) => {
-            const isActive = activeTab === item.label;
+            const isActive = item.href === '/'
+              ? (pathname === '/' || pathname === '')
+              : pathname?.startsWith(item.href);
             return (
               <a
                 key={item.label}
