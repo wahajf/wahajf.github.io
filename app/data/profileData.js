@@ -48,7 +48,7 @@ export const profileData = {
       organization: "@thatyvrspotter",
       period: "2024 – Present",
       stats: [
-        { label: "Views", value: "100K+" },
+        { label: "Views", value: "150K+" },
         { label: "Followers", value: "2K+" }
       ]
     }
