@@ -61,7 +61,7 @@ export default function SectionSidebar() {
         display: 'flex',
         flexDirection: 'column',
         gap: '4px',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
+        boxShadow: 'none',
         transition: 'all 0.25s ease'
       }}
     >
