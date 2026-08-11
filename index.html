@@ -470,6 +470,24 @@
       mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
     }
+
+    .progressive-blur-top,
+    .pill-navbar-container,
+    .mobile-header {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease !important;
+    }
+
+    .nav-hidden.progressive-blur-top {
+      transform: translateY(-100%) !important;
+      opacity: 0 !important;
+    }
+
+    .nav-hidden.pill-navbar-container,
+    .nav-hidden.mobile-header {
+      transform: translateY(-120%) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
   </style>
 </head>
 <body>
@@ -578,18 +596,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Floating Bottom-Left Section Navigation Sidebar -->
-  <aside aria-label="Section Navigation" id="sectionSidebar" style="position: fixed; bottom: 24px; left: 24px; z-index: 900; background-color: var(--nav-bg); border: var(--nav-border); border-radius: 16px; padding: 6px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; flex-direction: column; gap: 4px; box-shadow: none;">
-    <div style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding: 4px 10px 2px 10px;">
-      Sections
-    </div>
-    <a href="#about" class="sidebar-section-link active" onclick="scrollToSection('#about', this)" style="font-size: 0.8rem; font-weight: 500; padding: 5px 12px; border-radius: 10px; color: var(--pill-active-text); background-color: var(--pill-active-bg); text-decoration: none;">About</a>
-    <a href="#work" class="sidebar-section-link" onclick="scrollToSection('#work', this)" style="font-size: 0.8rem; font-weight: 500; padding: 5px 12px; border-radius: 10px; color: var(--muted); text-decoration: none;">Work</a>
-    <a href="#experience" class="sidebar-section-link" onclick="scrollToSection('#experience', this)" style="font-size: 0.8rem; font-weight: 500; padding: 5px 12px; border-radius: 10px; color: var(--muted); text-decoration: none;">Experience</a>
-    <a href="#skills" class="sidebar-section-link" onclick="scrollToSection('#skills', this)" style="font-size: 0.8rem; font-weight: 500; padding: 5px 12px; border-radius: 10px; color: var(--muted); text-decoration: none;">Skills</a>
-    <a href="#contact" class="sidebar-section-link" onclick="scrollToSection('#contact', this)" style="font-size: 0.8rem; font-weight: 500; padding: 5px 12px; border-radius: 10px; color: var(--muted); text-decoration: none;">Contact</a>
-  </aside>
 
   <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
     <main class="inner-content-container">
@@ -928,11 +934,31 @@
       });
     }
 
-    // Smooth Scroll Navigation
-    function switchSection(secId, el) {
-      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-      if (el) el.classList.add('active');
-    }
+    // Scroll Direction Detection for Header & Top Blur
+    (function() {
+      let lastY = 0;
+      window.addEventListener('scroll', function() {
+        const currY = window.scrollY;
+        const blurTop = document.querySelector('.progressive-blur-top');
+        const navDesk = document.querySelector('.pill-navbar-container');
+        const navMob = document.querySelector('.mobile-header');
+
+        if (currY <= 30) {
+          blurTop && blurTop.classList.remove('nav-hidden');
+          navDesk && navDesk.classList.remove('nav-hidden');
+          navMob && navMob.classList.remove('nav-hidden');
+        } else if (currY > lastY && currY > 50) {
+          blurTop && blurTop.classList.add('nav-hidden');
+          navDesk && navDesk.classList.add('nav-hidden');
+          navMob && navMob.classList.add('nav-hidden');
+        } else if (currY < lastY) {
+          blurTop && blurTop.classList.remove('nav-hidden');
+          navDesk && navDesk.classList.remove('nav-hidden');
+          navMob && navMob.classList.remove('nav-hidden');
+        }
+        lastY = currY;
+      }, { passive: true });
+    })();
   </script>
 
 </body>

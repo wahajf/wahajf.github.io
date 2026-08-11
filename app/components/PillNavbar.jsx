@@ -8,12 +8,33 @@ import { profileData } from '../data/profileData';
 export default function PillNavbar() {
   const [theme, setTheme] = useState('dark');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
 
   useEffect(() => {
     const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('theme') || 'dark';
     setTheme(currentTheme);
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 30) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
@@ -50,6 +71,18 @@ export default function PillNavbar() {
 
   return (
     <>
+      {/* Top Progressive Blur Overlay (Hides on scroll down, shows on scroll up) */}
+      <div
+        className="progressive-blur-top"
+        aria-hidden="true"
+        style={{
+          transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+          opacity: isVisible ? 1 : 0,
+          transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease',
+          pointerEvents: 'none'
+        }}
+      />
+
       {/* DESKTOP NAV (> 768px) */}
       <div
         className="desktop-nav"
@@ -57,7 +90,9 @@ export default function PillNavbar() {
           position: 'fixed',
           top: '20px',
           left: '50%',
-          transform: 'translateX(-50%)',
+          transform: isVisible ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(-120%)',
+          opacity: isVisible ? 1 : 0,
+          transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease',
           width: 'calc(100% - 48px)',
           maxWidth: '620px',
           zIndex: 1000,
@@ -183,6 +218,9 @@ export default function PillNavbar() {
           zIndex: 1000,
           alignItems: 'center',
           justifyContent: 'space-between',
+          transform: isVisible ? 'translateY(0)' : 'translateY(-120%)',
+          opacity: isVisible ? 1 : 0,
+          transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease',
           pointerEvents: 'none'
         }}
       >
