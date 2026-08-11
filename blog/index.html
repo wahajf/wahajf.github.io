@@ -373,7 +373,7 @@
     const SANITY_PROJECT_ID = 'y5ygdyls';
     const SANITY_DATASET = 'production';
     const QUERY = encodeURIComponent('*[_type == "post"] | order(publishedAt desc) { _id, title, slug, publishedAt, readTime, excerpt, body, categories[]->{ _id, title, slug } }');
-    const SANITY_URL = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2024-02-01/data/query/${SANITY_DATASET}?query=${QUERY}`;
+    const SANITY_URL = `https://${SANITY_PROJECT_ID}.apicdn.sanity.io/v2024-02-01/data/query/${SANITY_DATASET}?query=${QUERY}`;
 
     let allPosts = [
       {
