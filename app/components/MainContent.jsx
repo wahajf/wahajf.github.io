@@ -341,56 +341,6 @@ export default function MainContent() {
             </div>
           </section>
 
-          {/* Blog Section */}
-          {profileData.posts && profileData.posts.length > 0 && (
-            <section id="blog" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
-              <div style={{
-                fontSize: '0.82rem',
-                fontWeight: '500',
-                textTransform: 'uppercase',
-                letterSpacing: '0.06em',
-                color: 'var(--muted)',
-                marginBottom: '16px',
-                paddingBottom: '8px',
-                borderBottom: '1px solid var(--border)'
-              }}>
-                Blog
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {profileData.posts.map((post) => (
-                  <a
-                    key={post.id}
-                    href={post.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{
-                      display: 'block',
-                      textDecoration: 'none',
-                      padding: '12px 0',
-                      borderBottom: '1px solid var(--border)',
-                      transition: 'opacity 0.15s ease'
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '4px', flexWrap: 'wrap', gap: '4px' }}>
-                      <span style={{ fontWeight: '500', color: 'var(--text)', fontSize: '0.96rem' }}>
-                        {post.title} <span style={{ fontSize: '0.82rem', color: 'var(--muted)', fontWeight: '400' }}>↗</span>
-                      </span>
-                      <span style={{ fontSize: '0.82rem', fontWeight: '500', color: 'var(--muted)' }}>
-                        {post.date} · {post.readTime}
-                      </span>
-                    </div>
-                    {post.description && (
-                      <div style={{ fontSize: '0.86rem', color: 'var(--muted)', lineHeight: '1.4' }}>
-                        {post.description}
-                      </div>
-                    )}
-                  </a>
-                ))}
-              </div>
-            </section>
-          )}
-
           {/* Skills Section */}
           <section id="skills" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{

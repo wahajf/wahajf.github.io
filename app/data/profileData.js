@@ -63,24 +63,6 @@ export const profileData = {
     "Git",
     "Game Development"
   ],
-  posts: [
-    {
-      id: "flight-citizen-design",
-      title: "Building Flight Citizen: Aviation Tracking & Interface Design",
-      date: "Feb 2026",
-      readTime: "4 min read",
-      description: "Insights on designing a minimal, fast aviation tracking platform and digital media publication.",
-      url: "https://flightcitizen.com"
-    },
-    {
-      id: "thatyvrspotter-growth",
-      title: "Lessons from Growing @thatyvrspotter to 100K+ Views",
-      date: "Jan 2026",
-      readTime: "5 min read",
-      description: "How documenting planespotting at YVR taught me visual storytelling, media creation, and analytics.",
-      url: "https://youtube.com/@thatyvrspotter"
-    }
-  ],
   education: [
     {
       institution: "Simon Fraser University",
