@@ -25,6 +25,7 @@ export default function PillNavbar() {
     { label: 'About', href: '#about' },
     { label: 'Work', href: '#work' },
     { label: 'Experience', href: '#experience' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Skills', href: '#skills' },
     { label: 'Contact', href: '#contact' }
   ];
@@ -33,9 +34,17 @@ export default function PillNavbar() {
     e.preventDefault();
     setActiveTab(item.label);
     setIsMenuOpen(false);
+
+    if (item.href.startsWith('/')) {
+      window.location.href = item.href;
+      return;
+    }
+
     const targetEl = document.querySelector(item.href);
     if (targetEl) {
       targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.location.href = `/${item.href}`;
     }
   };
 
