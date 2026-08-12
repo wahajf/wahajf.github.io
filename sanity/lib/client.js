@@ -155,10 +155,10 @@ export async function getPosts() {
       categories[]->{ _id, title, slug }
     }`;
     const res = await client.fetch(query);
-    return res && res.length > 0 ? res : mockPosts;
+    return res || [];
   } catch (e) {
     console.warn('Sanity fetch error, using fallback posts:', e);
-    return mockPosts;
+    return [];
   }
 }
 
@@ -172,10 +172,10 @@ export async function getCategories() {
       description
     }`;
     const res = await client.fetch(query);
-    return res && res.length > 0 ? res : mockCategories;
+    return res || [];
   } catch (e) {
     console.warn('Sanity fetch error, using fallback categories:', e);
-    return mockCategories;
+    return [];
   }
 }
 
