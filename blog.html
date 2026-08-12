@@ -664,38 +664,7 @@
     const QUERY = encodeURIComponent('*[_type == "post"] | order(publishedAt desc) { _id, title, slug, publishedAt, readTime, excerpt, body, categories[]->{ _id, title, slug } }');
     const SANITY_URL = `https://${SANITY_PROJECT_ID}.apicdn.sanity.io/v2024-02-01/data/query/${SANITY_DATASET}?query=${QUERY}`;
 
-    let allPosts = [
-      {
-        _id: 'mock-1',
-        title: 'flight citizen - the man behind the wing',
-        slug: { current: 'building-flight-citizen' },
-        publishedAt: '2026-08-10T12:00:00Z',
-        readTime: '3 min read',
-        excerpt: 'Insights on designing a minimal, fast aviation tracking platform and digital media publication.',
-        categories: [{ title: 'Aviation' }, { title: 'Design' }],
-        bodyText: `Flight Citizen started as a passion project to combine real-time aviation telemetry with clean, distraction-free user interfaces.\n\nKey design pillars:\n- Minimalist layout focused on high-contrast aircraft telemetry data.\n- Instant search with zero latency.\n- Integrated photo streams from community spotters.`
-      },
-      {
-        _id: 'mock-2',
-        title: 'growing @thatyvrspotter to 150K+ views',
-        slug: { current: 'growing-thatyvrspotter' },
-        publishedAt: '2026-08-10T12:00:00Z',
-        readTime: '3 min read',
-        excerpt: 'How I record, edit, and optimize short-form aviation videos at Vancouver International Airport (YVR).',
-        categories: [{ title: 'Content Creation' }, { title: 'Aviation' }],
-        bodyText: `Documenting aircraft operations at YVR requires consistency and clear audio-visual pacing.\n\nTakeaways from 150K+ views:\n- Audio timing is critical: Jet engine spool-up sounds hook viewers in the first 2 seconds.\n- Highlighting unique liveries (ANA Eevee Jet, Air Canada retro) drives higher engagement.\n- Direct community interaction builds long-term subscriber loyalty.`
-      },
-      {
-        _id: 'mock-3',
-        title: 'modern web architecture: next.js & sanity cms',
-        slug: { current: 'modern-web-architecture-nextjs' },
-        publishedAt: '2026-08-10T12:00:00Z',
-        readTime: '3 min read',
-        excerpt: 'Setting up dynamic content pipelines with structured schemas and real-time CMS previews.',
-        categories: [{ title: 'Tech' }, { title: 'Design' }],
-        bodyText: `Combining Next.js with a headless CMS like Sanity gives full content editing flexibility without sacrificing page performance.\n\nWhy headless CMS?\n- Content creators can edit and publish posts visually in Sanity Studio.\n- Structured JSON schemas ensure clean API contracts.\n- Incremental static regeneration keeps response times under 50ms.`
-      }
-    ];
+    let allPosts = [];
 
     async function fetchPostsFromSanity() {
       try {
