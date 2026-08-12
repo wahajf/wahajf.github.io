@@ -108,14 +108,38 @@ html[data-theme="dark"] [data-accent="skyblue"] {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: var(--font-apple) !important;
-  font-weight: 500 !important;
-  box-shadow: none !important;
+  font-family: var(--font-apple);
+  font-weight: 500;
   cursor: crosshair;
 }
 
+/* Skill Pill Hover Light Up Animation */
+.skill-pill {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--text);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  line-height: 1.2;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  cursor: pointer !important;
+  user-select: none;
+  display: inline-block;
+}
+
+.skill-pill:hover {
+  transform: translateY(-3px) scale(1.06);
+  color: var(--pill-active-text) !important;
+  background-color: var(--pill-active-bg) !important;
+  border-color: var(--pill-active-text) !important;
+  box-shadow: 0 0 16px rgba(var(--trail-rgb), 0.45), 0 0 28px rgba(var(--trail-rgb), 0.25) !important;
+}
+
 /* Clickable elements get the pointer / clicking cursor */
-a, button, input, select, textarea, [role="button"], .nav-link, .circle-btn, .social-icon-btn, .website-pill {
+a, button, input, select, textarea, [role="button"], .nav-link, .circle-btn, .social-icon-btn, .website-pill, .skill-pill {
   cursor: pointer !important;
 }
 

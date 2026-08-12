@@ -361,16 +361,7 @@ export default function MainContent() {
               {profileData.skills.map((skill, index) => (
                 <span
                   key={index}
-                  style={{
-                    fontSize: '0.84rem',
-                    fontWeight: '500',
-                    color: 'var(--text)',
-                    backgroundColor: 'var(--card-bg)',
-                    border: '1px solid var(--border)',
-                    padding: '6px 14px',
-                    borderRadius: '9999px',
-                    lineHeight: '1.2'
-                  }}
+                  className="skill-pill"
                 >
                   {skill}
                 </span>
