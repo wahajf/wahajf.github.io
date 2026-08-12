@@ -49,12 +49,10 @@ export default function PillNavbar() {
   ];
 
   const handleNavClick = (e, item) => {
-    e.preventDefault();
     setIsMenuOpen(false);
-    if (typeof window !== 'undefined') {
-      const isGitHubPages = window.location.pathname.includes('/wahajfarooq');
-      const basePath = isGitHubPages ? '/wahajfarooq' : '';
-      const targetPath = item.href === '/' ? `${basePath}/` : `${basePath}${item.href}`;
+    if (typeof window !== 'undefined' && window.location.pathname.includes('/wahajfarooq')) {
+      e.preventDefault();
+      const targetPath = item.href === '/' ? '/wahajfarooq/' : `/wahajfarooq${item.href}`;
       window.location.href = targetPath;
     }
   };
