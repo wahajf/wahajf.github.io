@@ -46,19 +46,10 @@ export default function BlogIndexPage() {
         <section className="hero-section" id="about">
           <div className="hero-text">
             <p>
-              Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at{' '}
-              <a
-                href="https://www.sfu.ca"
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
-              >
-                Simon Fraser University
-              </a>
-              .
+              Long-form thoughts on software engineering, web architecture, and building digital products.
             </p>
             <p>
-              On the side I run{' '}
+              Here I break down technical projects, UI design decisions, and lessons learned from growing{' '}
               <a
                 href="https://youtube.com/@thatyvrspotter"
                 target="_blank"
@@ -67,7 +58,16 @@ export default function BlogIndexPage() {
               >
                 @thatyvrspotter
               </a>
-              , documenting planespotting at YVR.
+              {' '}and{' '}
+              <a
+                href="https://flightcitizen.com"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
+              >
+                Flight Citizen
+              </a>
+              .
             </p>
           </div>
         </section>
