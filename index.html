@@ -938,31 +938,7 @@
       });
     }
 
-    // Scroll Direction Detection for Header & Top Blur
-    (function() {
-      let lastY = 0;
-      window.addEventListener('scroll', function() {
-        const currY = window.scrollY;
-        const blurTop = document.querySelector('.progressive-blur-top');
-        const navDesk = document.querySelector('.pill-navbar-container');
-        const navMob = document.querySelector('.mobile-header');
 
-        if (currY <= 30) {
-          blurTop && blurTop.classList.remove('nav-hidden');
-          navDesk && navDesk.classList.remove('nav-hidden');
-          navMob && navMob.classList.remove('nav-hidden');
-        } else if (currY > lastY && currY > 50) {
-          blurTop && blurTop.classList.add('nav-hidden');
-          navDesk && navDesk.classList.add('nav-hidden');
-          navMob && navMob.classList.add('nav-hidden');
-        } else if (currY < lastY) {
-          blurTop && blurTop.classList.remove('nav-hidden');
-          navDesk && navDesk.classList.remove('nav-hidden');
-          navMob && navMob.classList.remove('nav-hidden');
-        }
-        lastY = currY;
-      }, { passive: true });
-    })();
   </script>
 
 </body>
