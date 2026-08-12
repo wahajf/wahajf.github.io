@@ -362,6 +362,17 @@ export default function MainContent() {
                 <span
                   key={index}
                   className="skill-pill"
+                  style={{
+                    fontSize: '0.84rem',
+                    fontWeight: '500',
+                    color: 'var(--text)',
+                    backgroundColor: 'var(--pill-bg)',
+                    border: '1px solid var(--border)',
+                    padding: '6px 14px',
+                    borderRadius: '9999px',
+                    lineHeight: '1.2',
+                    display: 'inline-block'
+                  }}
                 >
                   {skill}
                 </span>
