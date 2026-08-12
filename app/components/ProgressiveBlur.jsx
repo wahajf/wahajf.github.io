@@ -1,6 +1,11 @@
-'use client';
+import { usePathname } from 'next/navigation';
 
 export default function ProgressiveBlur() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/studio')) {
+    return null;
+  }
   return (
     <>
       {/* Top Progressive Blur Overlay (Solid var(--bg) behind navbar 0-60px, blur gradient 60-110px) */}
