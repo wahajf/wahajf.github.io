@@ -201,3 +201,16 @@ body {
     display: none !important;
   }
 }
+
+.full-width-below-hero {
+  width: 100vw;
+  background-color: var(--sub-bg);
+  border-top: none;
+  padding-top: 16px;
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  min-height: calc(100vh - 250px);
+  transition: background-color 0.25s ease;
+}
