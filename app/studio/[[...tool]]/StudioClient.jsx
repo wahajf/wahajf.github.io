@@ -72,7 +72,7 @@ export default function StudioClient() {
       height: '100vh',
       zIndex: 99999,
       backgroundColor: '#0e0e10',
-      overflow: 'hidden'
+      overflow: 'auto'
     }}>
       <NextStudio config={config} />
     </div>
