@@ -13,11 +13,29 @@ export default function PillNavbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('theme') || 'dark';
-    setTheme(currentTheme);
+    const syncTheme = () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('theme') || 'dark';
+      setTheme(currentTheme);
+    };
+
+    syncTheme();
+
+    const observer = new MutationObserver(() => {
+      syncTheme();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme', 'data-accent']
+    });
+
+    window.addEventListener('storage', syncTheme);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('storage', syncTheme);
+    };
   }, []);
-
-
 
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';

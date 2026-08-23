@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
 
                   var savedAccent = localStorage.getItem('accent');
                   var accents = ['orange', 'lime', 'skyblue'];
-                  var accent = savedAccent && accents.includes(savedAccent) ? savedAccent : accents[Math.floor(Math.random() * accents.length)];
+                  var accent = savedAccent && accents.includes(savedAccent) ? savedAccent : 'orange';
                   document.documentElement.setAttribute('data-accent', accent);
                   localStorage.setItem('accent', accent);
                 } catch (e) {
