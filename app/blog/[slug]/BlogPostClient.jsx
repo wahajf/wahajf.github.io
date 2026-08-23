@@ -44,7 +44,7 @@ export default function BlogPostClient({ initialPost }) {
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <PillNavbar />
 
-      <main className="inner-content-container" style={{ width: '100%', maxWidth: '620px', paddingTop: '76px', paddingBottom: '48px' }}>
+      <main className="inner-content-container" style={{ width: '100%', maxWidth: '620px', paddingTop: '0px', paddingBottom: '48px' }}>
         {/* Back Link */}
         <div style={{ marginBottom: '16px' }}>
           <Link
@@ -106,13 +106,13 @@ export default function BlogPostClient({ initialPost }) {
 
         {/* Article Body */}
         <article style={{ paddingBottom: '16px' }}>
-          {Array.isArray(post.body) ? (
+          {Array.isArray(post.body) && post.body.length > 0 ? (
             <PortableText value={post.body} components={portableTextComponents} />
-          ) : (
+          ) : post.excerpt ? (
             <p style={{ fontSize: '0.96rem', lineHeight: '1.65', color: 'var(--text)' }}>
-              {post.excerpt || 'Article content.'}
+              {post.excerpt}
             </p>
-          )}
+          ) : null}
         </article>
       </main>
     </div>

@@ -158,6 +158,39 @@ a, button, input, select, textarea, [role="button"], .nav-link, .circle-btn, .so
   cursor: pointer !important;
 }
 
+/* Prevent browser purple/blue visited link color overrides */
+a:visited, a:link {
+  color: inherit;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  color: var(--text) !important;
+  text-decoration: none !important;
+}
+
+.card-title, .card-title:visited {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text) !important;
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.card-date, .card-date:visited {
+  font-size: 0.82rem;
+  color: var(--muted) !important;
+}
+
+.website-pill.active, .website-pill.active:visited {
+  background-color: var(--pill-active-bg) !important;
+  color: var(--pill-active-text) !important;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
