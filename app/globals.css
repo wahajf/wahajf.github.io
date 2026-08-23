@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 :root {
+  /* Default Accent Fallbacks (Orange) */
+  --pill-active-bg: #fff0e6;
+  --pill-active-text: #d93800;
+  --trail-rgb: 255, 102, 0;
+
   /* Top Area Background: Clean White */
   --bg: #ffffff;
   --text: #111111;
@@ -45,6 +50,11 @@
 }
 
 [data-theme="dark"] {
+  /* Default Dark Mode Accent Fallbacks (Orange) */
+  --pill-active-bg: rgba(255, 120, 0, 0.18);
+  --pill-active-text: #ff6b35;
+  --trail-rgb: 255, 102, 0;
+
   /* Deeper Very Dark Grey Background (#09090b) */
   --bg: #09090b;
   /* Slightly Lighter Grey Fill Below Hero (#121215) */
