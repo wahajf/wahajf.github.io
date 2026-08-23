@@ -42,20 +42,9 @@ export default function BlogIndexPage() {
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <PillNavbar />
 
-      {/* Main Page Hero Section Template */}
-      <main className="inner-content-container">
-        <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '48px', paddingTop: '48px' }}>
-          <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
-            <p>
-              Long-form thoughts on software engineering, web architecture, and building digital products.
-            </p>
-          </div>
-        </section>
-      </main>
-
-      {/* Articles Section with Uniform Background */}
+      {/* Articles Section */}
       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div className="inner-content-container">
+        <div className="inner-content-container" style={{ paddingTop: '16px' }}>
           <section id="articles" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
               fontSize: '0.82rem',
