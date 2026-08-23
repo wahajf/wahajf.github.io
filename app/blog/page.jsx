@@ -77,7 +77,7 @@ export default function BlogIndexPage() {
       <div className="full-width-below-hero">
         <div className="inner-content-container">
           <section className="section-block" id="work">
-            <div className="section-label">Work</div>
+            <div className="section-label">Articles</div>
 
             {/* Category Filter Pills */}
             <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '24px' }}>
