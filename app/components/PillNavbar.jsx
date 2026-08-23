@@ -6,7 +6,12 @@ import { Sun, Moon, Menu, X } from 'lucide-react';
 import { profileData } from '../data/profileData';
 
 export default function PillNavbar() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.getAttribute('data-theme') || localStorage.getItem('theme') || 'dark';
+    }
+    return 'dark';
+  });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -30,10 +35,12 @@ export default function PillNavbar() {
     });
 
     window.addEventListener('storage', syncTheme);
+    window.addEventListener('themechange', syncTheme);
 
     return () => {
       observer.disconnect();
       window.removeEventListener('storage', syncTheme);
+      window.removeEventListener('themechange', syncTheme);
     };
   }, []);
 
@@ -42,6 +49,7 @@ export default function PillNavbar() {
     setTheme(nextTheme);
     document.documentElement.setAttribute('data-theme', nextTheme);
     localStorage.setItem('theme', nextTheme);
+    window.dispatchEvent(new Event('themechange'));
   };
 
   const navItems = [

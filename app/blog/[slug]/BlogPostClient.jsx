@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 import PillNavbar from '../../components/PillNavbar';
+import Footer from '../../components/Footer';
 import { urlForImage } from '../../../sanity/lib/image';
 
 const portableTextComponents = {
@@ -49,54 +50,42 @@ export default function BlogPostClient({ initialPost }) {
       <PillNavbar />
 
       <main className="inner-content-container" style={{ width: '100%', maxWidth: '620px', paddingTop: '0px', paddingBottom: '48px' }}>
-        {/* Back Link */}
-        <div style={{ marginBottom: '16px' }}>
+        {/* Navigation / Back Button */}
+        <div style={{ marginBottom: '24px' }}>
           <Link
             href="/blog"
             style={{
-              fontSize: '0.84rem',
+              fontSize: '0.86rem',
               fontWeight: '500',
               color: 'var(--muted)',
               textDecoration: 'none',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '4px',
-              cursor: 'pointer'
+              gap: '4px'
             }}
           >
             ← Back to Blog
           </Link>
         </div>
 
-        {/* Categories & Meta */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
-          {post.categories?.map((cat) => (
-            <span
-              key={cat._id || cat.title}
-              style={{
-                fontSize: '0.76rem',
-                fontWeight: '500',
-                padding: '4px 12px',
-                borderRadius: '9999px',
-                backgroundColor: 'var(--pill-bg)',
-                color: 'var(--text)'
-              }}
-            >
-              {cat.title}
-            </span>
-          ))}
-          <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-            {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ''}
-            {post.readTime ? ` · ${post.readTime}` : ''}
-          </span>
-        </div>
+        {/* Article Header */}
+        <header style={{ marginBottom: '28px' }}>
+          <h1 style={{ fontSize: '1.85rem', fontWeight: '700', color: 'var(--text)', lineHeight: 1.25, marginBottom: '12px', letterSpacing: '-0.02em' }}>
+            {post.title}
+          </h1>
 
-        {/* Post Title */}
-        <h1 style={{ fontSize: '1.8rem', fontWeight: '600', color: 'var(--text)', lineHeight: '1.25', margin: '0 0 20px 0', letterSpacing: '-0.02em' }}>
-          {post.title}
-        </h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '0.84rem', color: 'var(--muted)', fontWeight: '500' }}>
+            {post.publishedAt && (
+              <time dateTime={post.publishedAt}>
+                {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+              </time>
+            )}
+            {post.publishedAt && post.readTime && <span>•</span>}
+            {post.readTime && <span>{post.readTime} min read</span>}
+          </div>
+        </header>
 
-        {/* Main Image */}
+        {/* Featured Image */}
         {imageUrl && (
           <div style={{ borderRadius: '14px', overflow: 'hidden', marginBottom: '24px', position: 'relative', paddingBottom: '52%', height: 0 }}>
             <img
@@ -118,6 +107,8 @@ export default function BlogPostClient({ initialPost }) {
             </p>
           ) : null}
         </article>
+
+        <Footer />
       </main>
     </div>
   );

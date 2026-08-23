@@ -44,6 +44,7 @@ export default function Footer() {
     const nextAccent = accents[nextIndex];
     document.documentElement.setAttribute('data-accent', nextAccent);
     localStorage.setItem('accent', nextAccent);
+    window.dispatchEvent(new Event('accentchange'));
   };
 
   const renderWeatherIcon = () => {
