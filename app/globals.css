@@ -193,6 +193,11 @@ a:visited, a:link {
   box-shadow: 0 0 20px rgba(var(--trail-rgb), 0.35), 0 0 36px rgba(var(--trail-rgb), 0.18) !important;
 }
 
+.card:hover .card-title,
+.card:active .card-title {
+  color: var(--pill-active-text) !important;
+}
+
 .card-title, .card-title:visited {
   font-size: 1.05rem;
   font-weight: 600;
