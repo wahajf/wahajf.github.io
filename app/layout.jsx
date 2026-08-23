@@ -1,6 +1,7 @@
 import './globals.css';
 import CursorTrail from './components/CursorTrail';
 import ProgressiveBlur from './components/ProgressiveBlur';
+import ThemeSync from './components/ThemeSync';
 
 export const metadata = {
   title: 'Wahaj Farooq — Developer & Media Creator',
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <ThemeSync />
         <CursorTrail />
         {children}
         <ProgressiveBlur />
