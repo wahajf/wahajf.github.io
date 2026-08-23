@@ -1,6 +1,6 @@
 import imageUrlBuilder from '@sanity/image-url';
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'dummy';
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'y5ygdyls';
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
 
 const imageBuilder = imageUrlBuilder({
