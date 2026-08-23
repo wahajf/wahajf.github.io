@@ -20,7 +20,7 @@ function DeletePostAction(props) {
   };
 }
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id';
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'y5ygdyls';
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
 
 export default defineConfig({
