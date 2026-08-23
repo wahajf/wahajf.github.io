@@ -43,9 +43,9 @@ export default function BlogIndexPage() {
 
       {/* Main Page Hero Section Template */}
       <main className="inner-content-container">
-        <section className="hero-section" id="about">
-          <div className="hero-text">
-            <p>
+        <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '96px', paddingTop: '48px' }}>
+          <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
+            <p style={{ marginBottom: '7px' }}>
               Long-form thoughts on software engineering, web architecture, and building digital products.
             </p>
             <p>
@@ -76,8 +76,17 @@ export default function BlogIndexPage() {
       {/* Full-Width Background Section Below Hero */}
       <div className="full-width-below-hero">
         <div className="inner-content-container">
-          <section className="section-block" id="work">
-            <div className="section-label">Articles</div>
+          <section id="articles" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
+            <div style={{
+              fontSize: '0.82rem',
+              fontWeight: '500',
+              textTransform: 'uppercase',
+              letterSpacing: '0.06em',
+              color: 'var(--muted)',
+              marginBottom: '16px'
+            }}>
+              Articles
+            </div>
 
             {/* Category Filter Pills */}
             <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '24px' }}>
