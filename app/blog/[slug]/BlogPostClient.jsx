@@ -81,7 +81,9 @@ export default function BlogPostClient({ initialPost }) {
               </time>
             )}
             {post.publishedAt && post.readTime && <span>•</span>}
-            {post.readTime && <span>{post.readTime} min read</span>}
+            {post.readTime && (
+              <span>{String(post.readTime).includes('min read') ? post.readTime : `${post.readTime} min read`}</span>
+            )}
           </div>
         </header>
 

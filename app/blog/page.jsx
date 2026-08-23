@@ -92,7 +92,9 @@ export default function BlogIndexPage() {
                   const imageUrl = post.mainImage ? urlForImage(post.mainImage)?.url() : post.previewImage;
                   const postSlug = post.slug?.current || post.id;
                   const dateStr = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
-                  const readTime = post.readTime || '3 min read';
+                  const readTime = post.readTime 
+                    ? (String(post.readTime).includes('min read') ? post.readTime : `${post.readTime} min read`)
+                    : '3 min read';
 
                   return (
                     <Link
