@@ -45,29 +45,8 @@ export default function BlogIndexPage() {
       <main className="inner-content-container">
         <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '96px', paddingTop: '48px' }}>
           <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
-            <p style={{ marginBottom: '7px' }}>
-              Long-form thoughts on software engineering, web architecture, and building digital products.
-            </p>
             <p>
-              Here I break down technical projects, UI design decisions, and lessons learned from growing{' '}
-              <a
-                href="https://youtube.com/@thatyvrspotter"
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
-              >
-                @thatyvrspotter
-              </a>
-              {' '}and{' '}
-              <a
-                href="https://flightcitizen.com"
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
-              >
-                Flight Citizen
-              </a>
-              .
+              Long-form thoughts on software engineering, web architecture, and building digital products.
             </p>
           </div>
         </section>
