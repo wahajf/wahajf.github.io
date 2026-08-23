@@ -145,7 +145,8 @@ html[data-theme="dark"] [data-accent="skyblue"] {
   display: inline-block;
 }
 
-.skill-pill:hover {
+.skill-pill:hover,
+.skill-pill:active {
   transform: translateY(-3px) scale(1.06);
   color: var(--pill-active-text) !important;
   background-color: var(--pill-active-bg) !important;
@@ -179,9 +180,17 @@ a:visited, a:link {
   border: 1px solid var(--card-border);
   border-radius: 16px;
   padding: 20px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
   color: var(--text) !important;
   text-decoration: none !important;
+  position: relative;
+}
+
+.card:hover,
+.card:active {
+  transform: translateY(-3px) scale(1.01);
+  border-color: var(--pill-active-text) !important;
+  box-shadow: 0 0 20px rgba(var(--trail-rgb), 0.35), 0 0 36px rgba(var(--trail-rgb), 0.18) !important;
 }
 
 .card-title, .card-title:visited {
