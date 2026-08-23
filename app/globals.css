@@ -154,7 +154,7 @@ html[data-theme="dark"] [data-accent="skyblue"] {
 }
 
 /* Clickable elements get the pointer / clicking cursor */
-a, button, input, select, textarea, [role="button"], .nav-link, .circle-btn, .social-icon-btn, .website-pill, .skill-pill {
+a, button, input, select, textarea, [role="button"], .nav-link, .circle-btn, .social-icon-btn, .website-pill, .skill-pill, .card, [href], summary {
   cursor: pointer !important;
 }
 
@@ -177,7 +177,6 @@ body {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
-  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* Inner Content Container matching Desktop (padding: 0 24px) & Mobile (padding: 0 16px) */

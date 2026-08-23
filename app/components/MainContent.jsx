@@ -117,8 +117,7 @@ export default function MainContent() {
         paddingTop: '16px',
         paddingBottom: '80px',
         display: 'flex',
-        justifyContent: 'center',
-        transition: 'background-color 0.25s ease'
+        justifyContent: 'center'
       }}>
         <div className="inner-content-container">
           {/* Work / Projects Section (No line below Work heading) */}

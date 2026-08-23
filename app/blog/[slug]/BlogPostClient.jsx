@@ -44,9 +44,9 @@ export default function BlogPostClient({ initialPost }) {
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <PillNavbar />
 
-      <main className="inner-content-container" style={{ width: '100%', maxWidth: '620px', paddingTop: '100px', paddingBottom: '96px' }}>
+      <main className="inner-content-container" style={{ width: '100%', maxWidth: '620px', paddingTop: '76px', paddingBottom: '48px' }}>
         {/* Back Link */}
-        <div style={{ marginBottom: '24px' }}>
+        <div style={{ marginBottom: '16px' }}>
           <Link
             href="/blog"
             style={{
@@ -56,7 +56,8 @@ export default function BlogPostClient({ initialPost }) {
               textDecoration: 'none',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '4px'
+              gap: '4px',
+              cursor: 'pointer'
             }}
           >
             ← Back to Blog
@@ -93,7 +94,7 @@ export default function BlogPostClient({ initialPost }) {
 
         {/* Main Image */}
         {imageUrl && (
-          <div style={{ borderRadius: '14px', overflow: 'hidden', marginBottom: '32px', position: 'relative', paddingBottom: '52%', height: 0 }}>
+          <div style={{ borderRadius: '14px', overflow: 'hidden', marginBottom: '24px', position: 'relative', paddingBottom: '52%', height: 0 }}>
             <img
               src={imageUrl}
               alt={post.title}
@@ -104,7 +105,7 @@ export default function BlogPostClient({ initialPost }) {
         )}
 
         {/* Article Body */}
-        <article style={{ borderBottom: '1px solid var(--border)', paddingBottom: '32px', marginBottom: '32px' }}>
+        <article style={{ paddingBottom: '16px' }}>
           {Array.isArray(post.body) ? (
             <PortableText value={post.body} components={portableTextComponents} />
           ) : (
@@ -113,28 +114,6 @@ export default function BlogPostClient({ initialPost }) {
             </p>
           )}
         </article>
-
-        {/* Author Footer */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <div style={{
-            width: '42px',
-            height: '42px',
-            borderRadius: '50%',
-            backgroundColor: 'var(--pill-bg)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: '600',
-            fontSize: '0.9rem',
-            color: 'var(--text)'
-          }}>
-            WF
-          </div>
-          <div>
-            <div style={{ fontSize: '0.9rem', fontWeight: '500', color: 'var(--text)' }}>Written by Wahaj Farooq</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>Software Engineer & Content Creator in Vancouver, BC</div>
-          </div>
-        </div>
       </main>
     </div>
   );
