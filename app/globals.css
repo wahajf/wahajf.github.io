@@ -186,9 +186,36 @@ a:visited, a:link {
   color: var(--muted) !important;
 }
 
-.website-pill.active, .website-pill.active:visited {
+.website-pill {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text);
+  background-color: var(--pill-bg);
+  border: 1px solid var(--border);
+  padding: 5px 14px;
+  border-radius: 9999px;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+  cursor: pointer !important;
+  user-select: none;
+  text-decoration: none !important;
+}
+
+.website-pill:hover {
+  transform: translateY(-1px);
+  color: var(--pill-active-text) !important;
+  background-color: var(--pill-active-bg) !important;
+  border-color: var(--pill-active-text) !important;
+}
+
+.website-pill.active,
+.website-pill.active:visited {
   background-color: var(--pill-active-bg) !important;
   color: var(--pill-active-text) !important;
+  border-color: var(--pill-active-text) !important;
 }
 
 html {

@@ -69,11 +69,10 @@ export default function BlogIndexPage() {
             </div>
 
             {/* Category Filter Pills */}
-            <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '20px' }}>
               <button
                 onClick={() => setSelectedCategory('All')}
                 className={`website-pill ${selectedCategory === 'All' ? 'active' : ''}`}
-                style={{ border: 'none', cursor: 'pointer', outline: 'none' }}
               >
                 All
               </button>
@@ -84,7 +83,6 @@ export default function BlogIndexPage() {
                     key={cat._id}
                     onClick={() => setSelectedCategory(cat.title)}
                     className={`website-pill ${isActive ? 'active' : ''}`}
-                    style={{ border: 'none', cursor: 'pointer', outline: 'none' }}
                   >
                     {cat.title}
                   </button>
