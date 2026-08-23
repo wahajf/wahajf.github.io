@@ -134,99 +134,76 @@ export default function MainContent() {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {profileData.projects.map((proj) => (
-                <div
-                  key={proj.id}
-                  style={{
-                    background: 'var(--card-bg)',
-                    border: '1px solid var(--card-border)',
-                    borderRadius: '16px',
-                    padding: '20px',
-                    transition: 'border-color 0.2s ease'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
-                    <div>
-                      <div style={{ fontSize: '1.02rem', fontWeight: '500', color: 'var(--text)' }}>{proj.title}</div>
-                      <div style={{ fontSize: '0.8rem', fontWeight: '500', color: 'var(--muted)', marginTop: '2px' }}>{proj.date}</div>
-                    </div>
+              {profileData.projects.map((proj) => {
+                const primaryUrl = proj.websiteUrl || proj.githubUrl || proj.youtubeUrl || proj.tiktokUrl;
+                const CardWrapper = primaryUrl ? 'a' : 'div';
+                const cardProps = primaryUrl ? { href: primaryUrl, target: '_blank', rel: 'noreferrer' } : {};
 
-                    {/* Dynamic Pill Links */}
-                    <div style={{ display: 'flex', gap: '6px' }}>
-                      {proj.websiteUrl && (
-                        <a
-                          href={proj.websiteUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{
-                            fontSize: '0.78rem',
-                            padding: '4px 12px',
-                            borderRadius: '9999px',
-                            background: 'var(--pill-bg)',
-                            color: 'var(--text)',
-                            textDecoration: 'none',
-                            fontWeight: '500'
-                          }}
-                        >
-                          Website ↗
-                        </a>
-                      )}
-                      {proj.youtubeUrl && (
-                        <a
-                          href={proj.youtubeUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{
-                            fontSize: '0.78rem',
-                            padding: '4px 12px',
-                            borderRadius: '9999px',
-                            background: 'var(--pill-bg)',
-                            color: 'var(--text)',
-                            textDecoration: 'none',
-                            fontWeight: '500'
-                          }}
-                        >
-                          YouTube ↗
-                        </a>
-                      )}
-                      {proj.tiktokUrl && (
-                        <a
-                          href={proj.tiktokUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{
-                            fontSize: '0.78rem',
-                            padding: '4px 12px',
-                            borderRadius: '9999px',
-                            background: 'var(--pill-bg)',
-                            color: 'var(--text)',
-                            textDecoration: 'none',
-                            fontWeight: '500'
-                          }}
-                        >
-                          TikTok ↗
-                        </a>
-                      )}
-                      {proj.githubUrl && (
-                        <a
-                          href={proj.githubUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{
-                            fontSize: '0.78rem',
-                            padding: '4px 12px',
-                            borderRadius: '9999px',
-                            background: 'var(--pill-bg)',
-                            color: 'var(--text)',
-                            textDecoration: 'none',
-                            fontWeight: '500'
-                          }}
-                        >
-                          GitHub ↗
-                        </a>
-                      )}
+                return (
+                  <CardWrapper
+                    key={proj.id}
+                    {...cardProps}
+                    className="card"
+                    style={{
+                      display: 'block',
+                      textDecoration: 'none',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+                      <div>
+                        <div className="card-title">{proj.title}</div>
+                        <div className="card-date" style={{ marginTop: '2px' }}>{proj.date}</div>
+                      </div>
+
+                      {/* Dynamic Pill Links */}
+                      <div style={{ display: 'flex', gap: '6px' }} onClick={(e) => e.stopPropagation()}>
+                        {proj.websiteUrl && (
+                          <a
+                            href={proj.websiteUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="website-pill"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            Website ↗
+                          </a>
+                        )}
+                        {proj.youtubeUrl && (
+                          <a
+                            href={proj.youtubeUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="website-pill"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            YouTube ↗
+                          </a>
+                        )}
+                        {proj.tiktokUrl && (
+                          <a
+                            href={proj.tiktokUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="website-pill"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            TikTok ↗
+                          </a>
+                        )}
+                        {proj.githubUrl && (
+                          <a
+                            href={proj.githubUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="website-pill"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            GitHub ↗
+                          </a>
+                        )}
+                      </div>
                     </div>
-                  </div>
 
                   <div style={{ fontSize: '0.88rem', fontWeight: '500', color: 'var(--muted)', lineHeight: '1.5', marginBottom: '12px' }}>
                     {proj.description}
@@ -291,8 +268,9 @@ export default function MainContent() {
                       </div>
                     </a>
                   )}
-                </div>
-              ))}
+                  </CardWrapper>
+                );
+              })}
             </div>
           </section>
 

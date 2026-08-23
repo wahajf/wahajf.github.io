@@ -153,8 +153,19 @@ html[data-theme="dark"] [data-accent="skyblue"] {
   box-shadow: 0 0 16px rgba(var(--trail-rgb), 0.45), 0 0 28px rgba(var(--trail-rgb), 0.25) !important;
 }
 
-/* Clickable elements get the pointer / clicking cursor */
-a, button, input, select, textarea, [role="button"], .nav-link, .circle-btn, .social-icon-btn, .website-pill, .skill-pill, .card, [href], summary {
+/* Clickable elements & all inner children get the pointer / clicking cursor everywhere */
+a, a *, 
+button, button *, 
+input, select, textarea, 
+[role="button"], [role="button"] *, 
+.nav-link, .nav-link *, 
+.circle-btn, .circle-btn *, 
+.social-icon-btn, .social-icon-btn *, 
+.website-pill, .website-pill *, 
+.skill-pill, .skill-pill *, 
+.card, .card *, 
+[href], [href] *, 
+summary, summary * {
   cursor: pointer !important;
 }
 
