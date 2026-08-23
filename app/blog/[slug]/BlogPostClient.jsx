@@ -26,6 +26,10 @@ const portableTextComponents = {
 export default function BlogPostClient({ initialPost }) {
   const [post] = useState(initialPost);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!post) {
     return (
       <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '120px' }}>

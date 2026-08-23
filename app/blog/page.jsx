@@ -14,6 +14,7 @@ export default function BlogIndexPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     async function loadData() {
       try {
         const [postsData, categoriesData] = await Promise.all([
@@ -43,7 +44,7 @@ export default function BlogIndexPage() {
 
       {/* Main Page Hero Section Template */}
       <main className="inner-content-container">
-        <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '96px', paddingTop: '48px' }}>
+        <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '48px', paddingTop: '48px' }}>
           <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
             <p>
               Long-form thoughts on software engineering, web architecture, and building digital products.
@@ -52,8 +53,8 @@ export default function BlogIndexPage() {
         </section>
       </main>
 
-      {/* Full-Width Background Section Below Hero */}
-      <div className="full-width-below-hero">
+      {/* Articles Section with Uniform Background */}
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div className="inner-content-container">
           <section id="articles" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
