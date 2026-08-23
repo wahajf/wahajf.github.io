@@ -22,6 +22,21 @@
   --nav-text: #666666;
   --nav-icon-color: #222222;
 
+  /* Sanity Studio Full-Screen & Theme Fix */
+  html:has(#sanity), body:has(#sanity) {
+    background-color: #0e0e10 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+  }
+
+  #sanity {
+    height: 100vh !important;
+    width: 100vw !important;
+  }
+
   /* 50% Opacity White Blurred Overlay for Mobile Menu */
   --menu-bg: rgba(255, 255, 255, 0.5);
 
