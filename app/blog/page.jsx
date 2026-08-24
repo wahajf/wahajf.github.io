@@ -43,7 +43,7 @@ export default function BlogIndexPage() {
       <PillNavbar />
 
       {/* Articles Section */}
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div className="page-content-sheet" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div className="inner-content-container" style={{ paddingTop: '16px' }}>
           <section id="articles" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
             <div style={{
@@ -82,10 +82,13 @@ export default function BlogIndexPage() {
             {/* Posts List */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {loading ? (
-                <div style={{ padding: '24px 0', color: 'var(--muted)', fontSize: '0.9rem' }}>Loading articles...</div>
+                <>
+                  <div style={{ padding: '24px', borderRadius: '12px', backgroundColor: 'var(--card-bg)', border: '1px solid var(--border)', height: '100px', opacity: 0.5 }} />
+                  <div style={{ padding: '24px', borderRadius: '12px', backgroundColor: 'var(--card-bg)', border: '1px solid var(--border)', height: '100px', opacity: 0.3 }} />
+                </>
               ) : filteredPosts.length === 0 ? (
                 <div style={{ padding: '24px 0', color: 'var(--muted)', fontSize: '0.9rem' }}>
-                  No articles found for category "{selectedCategory}".
+                  No articles published yet.
                 </div>
               ) : (
                 filteredPosts.map((post) => {

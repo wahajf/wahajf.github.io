@@ -49,7 +49,7 @@ export default function Footer() {
 
   const renderWeatherIcon = () => {
     const code = weatherCode;
-    const style = { color: 'var(--muted)', width: '13px', height: '13px', flexShrink: 0 };
+    const style = { color: '#e0f2fe', width: '13px', height: '13px', flexShrink: 0 };
     
     if (code === 0 || code === 1) return <Sun size={13} style={style} />;
     if (code === 2 || code === 3) return <CloudSun size={13} style={style} />;
@@ -61,45 +61,30 @@ export default function Footer() {
   };
 
   return (
-    <footer style={{
-      marginTop: '60px',
-      paddingTop: '20px',
-      borderTop: '1px solid var(--border)',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      fontSize: '0.84rem',
-      fontWeight: '500',
-      color: 'var(--muted)',
-      width: '100%'
-    }}>
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
-        Vancouver, BC {timeString && `• ${timeString}`} {temp && `• ${temp}`}
-        <span style={{ display: 'inline-flex', alignItems: 'center', marginLeft: '1px' }}>
-          {renderWeatherIcon()}
+    <footer className="site-footer">
+      <div
+        className="inner-content-container"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          fontSize: '0.78rem',
+          fontWeight: '500',
+          paddingTop: '18px',
+          paddingBottom: '18px',
+          maxWidth: '1020px',
+          width: '100%'
+        }}
+      >
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+          Vancouver, BC {timeString && `• ${timeString}`} {temp && `• ${temp}`}
+          <span style={{ display: 'inline-flex', alignItems: 'center', marginLeft: '1px' }}>
+            {renderWeatherIcon()}
+          </span>
         </span>
-      </span>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-        <span>{new Date().getFullYear()}</span>
-        <button
-          onClick={cycleAccent}
-          aria-label="Cycle Accent Color"
-          title="Cycle Accent Color"
-          style={{
-            background: 'transparent',
-            border: 'none',
-            color: 'var(--muted)',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '2px',
-            opacity: 0.75,
-            transition: 'opacity 0.15s ease, color 0.15s ease'
-          }}
-        >
-          <Palette size={14} />
-        </button>
+        <div>
+          <span>{new Date().getFullYear()} © Wahaj Farooq</span>
+        </div>
       </div>
     </footer>
   );

@@ -5,7 +5,7 @@ import { Cloud, CloudRain, CloudSun, Sun, CloudFog, CloudLightning, CloudSnow, P
 import { profileData } from '../data/profileData';
 import Footer from './Footer';
 
-export default function MainContent() {
+export default function MainContent({ renderHeroOnly, renderSheetOnly }) {
   const [timeString, setTimeString] = useState('');
   const [temp, setTemp] = useState('17°C');
   const [weatherCode, setWeatherCode] = useState(3);
@@ -74,345 +74,228 @@ export default function MainContent() {
     return <Cloud size={13} style={style} />;
   };
 
-  return (
-    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {/* Top Hero Container */}
-      <main className="inner-content-container">
-        {/* About / Hero Section */}
-        <section id="about" style={{ scrollMarginTop: '100px', marginBottom: '96px', paddingTop: '48px' }}>
-          <div style={{ fontSize: '1.05rem', lineHeight: 1.4, fontWeight: '500', color: 'var(--text)' }}>
-            <p style={{ marginBottom: '7px' }}>
-              Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at{' '}
-              <a
-                href={profileData.sfuUrl}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
-              >
-                Simon Fraser University
-              </a>
-              .
-            </p>
-            <p>
-              On the side I run{' '}
-              <a
-                href={profileData.socialLinks.youtube}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '4px', fontWeight: '500' }}
-              >
-                @thatyvrspotter
-              </a>
-              , documenting planespotting at YVR.
-            </p>
-          </div>
-        </section>
-      </main>
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
+  }, []);
 
-      {/* Full Width Background Section Below Hero (#FAFAFA in Light Mode) */}
-      <div style={{
-        width: '100vw',
-        backgroundColor: 'var(--sub-bg)',
-        borderTop: 'none',
-        paddingTop: '16px',
-        paddingBottom: '80px',
-        display: 'flex',
-        justifyContent: 'center'
-      }}>
+  const heroSection = (
+    <div className="hero-stage">
+      <div className="hero-stage-inner">
+        <section id="about" className="hero-content">
+          <p className="hero-text">
+            Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at <a href={profileData.sfuUrl} target="_blank" rel="noreferrer" className="hero-link">Simon Fraser University</a>. On the side I run <a href={profileData.socialLinks.youtube} target="_blank" rel="noreferrer" className="hero-link">@thatyvrspotter</a>, documenting planespotting at YVR.
+          </p>
+        </section>
+      </div>
+    </div>
+  );
+
+  if (renderHeroOnly) {
+    return heroSection;
+  }
+
+  const sheetSection = (
+    <div className="sliding-sheet-container">
         <div className="inner-content-container">
           {/* Work / Projects Section (No line below Work heading) */}
-          <section id="work" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
-            <div style={{
-              fontSize: '0.82rem',
-              fontWeight: '500',
-              textTransform: 'uppercase',
-              letterSpacing: '0.06em',
-              color: 'var(--muted)',
-              marginBottom: '16px'
-            }}>
-              Work
+          <section id="work" style={{ scrollMarginTop: '100px', marginBottom: '80px' }}>
+            <div style={{ marginBottom: '24px' }}>
+              <span style={{
+                fontSize: '0.76rem',
+                fontWeight: '500',
+                letterSpacing: '-0.02em',
+                color: 'var(--text)',
+                backgroundColor: 'var(--pill-bg)',
+                border: '1px solid var(--border)',
+                padding: '4px 10px',
+                borderRadius: '6px',
+                display: 'inline-block'
+              }}>
+                Selected Projects
+              </span>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div className="projects-grid">
               {profileData.projects.map((proj) => {
                 const primaryUrl = proj.websiteUrl || proj.githubUrl || proj.youtubeUrl || proj.tiktokUrl;
                 const CardWrapper = primaryUrl ? 'a' : 'div';
                 const cardProps = primaryUrl ? { href: primaryUrl, target: '_blank', rel: 'noreferrer' } : {};
 
                 return (
-                  <CardWrapper
+                  <div
                     key={proj.id}
-                    {...cardProps}
-                    className="card"
-                    style={{
-                      display: 'block',
-                      textDecoration: 'none',
-                      cursor: 'pointer'
-                    }}
+                    className="project-item"
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
-                      <div>
-                        <div className="card-title">{proj.title}</div>
-                        <div className="card-date" style={{ marginTop: '2px' }}>{proj.date}</div>
-                      </div>
-
-                      {/* Dynamic Pill Links */}
-                      <div style={{ display: 'flex', gap: '6px' }} onClick={(e) => e.stopPropagation()}>
-                        {proj.websiteUrl && (
-                          <a
-                            href={proj.websiteUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="website-pill"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            Website ↗
-                          </a>
-                        )}
-                        {proj.youtubeUrl && (
-                          <a
-                            href={proj.youtubeUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="website-pill"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            YouTube ↗
-                          </a>
-                        )}
-                        {proj.tiktokUrl && (
-                          <a
-                            href={proj.tiktokUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="website-pill"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            TikTok ↗
-                          </a>
-                        )}
-                        {proj.githubUrl && (
-                          <a
-                            href={proj.githubUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="website-pill"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            GitHub ↗
-                          </a>
-                        )}
-                      </div>
-                    </div>
-
-                  <div style={{ fontSize: '0.88rem', fontWeight: '500', color: 'var(--muted)', lineHeight: '1.5', marginBottom: '12px' }}>
-                    {proj.description}
-                  </div>
-
-                  {proj.stats && (
-                    <div style={{ display: 'flex', gap: '8px', marginBottom: (proj.youtubeId || proj.previewImage) ? '16px' : '0px' }}>
-                      {proj.stats.map((stat) => (
-                        <div key={stat.label} style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          fontSize: '0.8rem',
-                          fontWeight: '500',
-                          color: 'var(--muted)'
-                        }}>
-                          <span style={{ color: 'var(--text)', fontWeight: '500' }}>{stat.value}</span>
-                          <span>{stat.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {proj.youtubeId && (
-                    <div style={{
-                      borderRadius: '10px',
-                      overflow: 'hidden',
-                      position: 'relative',
-                      paddingBottom: '56.25%',
-                      height: 0,
-                      background: 'transparent'
-                    }}>
-                      <iframe
-                        src={`https://www.youtube.com/embed/${proj.youtubeId}`}
-                        title={proj.title}
-                        allowFullScreen
-                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-                      ></iframe>
-                    </div>
-                  )}
-
-                  {proj.previewImage && !proj.youtubeId && (
-                    <a
-                      href={proj.websiteUrl || proj.youtubeUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ display: 'block', textDecoration: 'none' }}
-                    >
-                      <div style={{
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        paddingBottom: '56.25%',
-                        height: 0,
-                        background: 'transparent'
-                      }}>
+                    {/* 1. Thumbnail Image ABOVE */}
+                    {proj.previewImage && (
+                      <a
+                        href={primaryUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="project-thumb"
+                        style={{ display: 'block' }}
+                      >
                         <img
                           src={proj.previewImage}
                           alt={`${proj.title} preview`}
-                          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', border: 'none' }}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            display: 'block'
+                          }}
                         />
+                      </a>
+                    )}
+
+                    {/* 2. Info Below Thumbnail */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0px', marginTop: '8px' }}>
+                      {/* Top Row: Title on Left, Light Grey Circle Icon Buttons on Right */}
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                        <a
+                          href={primaryUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="card-title"
+                          style={{ fontSize: '1.02rem', fontWeight: '600', textDecoration: 'none', lineHeight: '1.2' }}
+                        >
+                          {proj.title}
+                        </a>
+
+                        {/* Right Aligned Light Grey Circle Icon Buttons */}
+                        <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                          {(() => {
+                            const handleMouseMove = (e) => {
+                              const rect = e.currentTarget.getBoundingClientRect();
+                              const x = e.clientX - (rect.left + rect.width / 2);
+                              const y = e.clientY - (rect.top + rect.height / 2);
+                              e.currentTarget.style.setProperty('--tt-x', `${x}px`);
+                              e.currentTarget.style.setProperty('--tt-y', `${y}px`);
+                            };
+                            const handleMouseLeave = (e) => {
+                              e.currentTarget.style.setProperty('--tt-x', '0px');
+                              e.currentTarget.style.setProperty('--tt-y', '0px');
+                            };
+
+                            return (
+                              <>
+                                {proj.websiteUrl && (
+                                  <a
+                                    href={proj.websiteUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="Website"
+                                    data-tooltip="Website ↗"
+                                    className="project-social-btn"
+                                    onMouseMove={handleMouseMove}
+                                    onMouseLeave={handleMouseLeave}
+                                  >
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                      <circle cx="12" cy="12" r="10" />
+                                      <line x1="2" y1="12" x2="22" y2="12" />
+                                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                    </svg>
+                                  </a>
+                                )}
+                                {proj.youtubeUrl && (
+                                  <a
+                                    href={proj.youtubeUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="YouTube"
+                                    data-tooltip="YouTube ↗"
+                                    className="project-social-btn"
+                                    onMouseMove={handleMouseMove}
+                                    onMouseLeave={handleMouseLeave}
+                                  >
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                  </a>
+                                )}
+                                {proj.tiktokUrl && (
+                                  <a
+                                    href={proj.tiktokUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="TikTok"
+                                    data-tooltip="TikTok ↗"
+                                    className="project-social-btn"
+                                    onMouseMove={handleMouseMove}
+                                    onMouseLeave={handleMouseLeave}
+                                  >
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.89-2.89c.39 0 .76.08 1.1.22v-3.6a6.34 6.34 0 1 0 5.24 6.27V9.75a8.27 8.27 0 0 0 5.17 1.83V8.14a4.83 4.83 0 0 1-1.4-.45z"/>
+                                    </svg>
+                                  </a>
+                                )}
+                                {proj.githubUrl && (
+                                  <a
+                                    href={proj.githubUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="GitHub"
+                                    data-tooltip="GitHub ↗"
+                                    className="project-social-btn"
+                                    onMouseMove={handleMouseMove}
+                                    onMouseLeave={handleMouseLeave}
+                                  >
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                    </svg>
+                                  </a>
+                                )}
+                              </>
+                            );
+                          })()}
+                        </div>
                       </div>
-                    </a>
-                  )}
-                  </CardWrapper>
+
+                      {/* Bottom Row: Date Directly Under Title */}
+                      <div className="card-date" style={{ fontSize: '0.82rem', color: 'var(--muted)', marginTop: '-2px', lineHeight: '1.2' }}>
+                        {proj.date}
+                      </div>
+                    </div>
+
+                    {proj.stats && (
+                      <div style={{ display: 'flex', gap: '8px', marginTop: '6px' }}>
+                        {proj.stats.map((stat) => (
+                          <div key={stat.label} style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            fontSize: '0.8rem',
+                            fontWeight: '500',
+                            color: 'var(--muted)'
+                          }}>
+                            <span style={{ color: 'var(--text)', fontWeight: '500' }}>{stat.value}</span>
+                            <span>{stat.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>
           </section>
-
-          {/* Experience Section */}
-          <section id="experience" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
-            <div style={{
-              fontSize: '0.82rem',
-              fontWeight: '500',
-              textTransform: 'uppercase',
-              letterSpacing: '0.06em',
-              color: 'var(--muted)',
-              marginBottom: '16px',
-              paddingBottom: '8px',
-              borderBottom: '1px solid var(--border)'
-            }}>
-              Experience
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {profileData.experience.map((exp, index) => (
-                <div key={index} style={{ padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
-                  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-                    <div>
-                      <span style={{ fontWeight: '500', color: 'var(--text)' }}>{exp.role}</span>
-                      {exp.organization && (
-                        <span style={{ fontSize: '0.86rem', color: 'var(--muted)', fontWeight: '400', marginLeft: '8px' }}>
-                          {exp.organization}
-                        </span>
-                      )}
-                    </div>
-                    <span style={{ fontSize: '0.84rem', fontWeight: '500', color: 'var(--muted)' }}>{exp.period}</span>
-                  </div>
-
-                  {exp.stats && (
-                    <div style={{ display: 'flex', gap: '12px', marginTop: '6px' }}>
-                      {exp.stats.map((stat) => (
-                        <div key={stat.label} style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.78rem', fontWeight: '500' }}>
-                          <span style={{ color: 'var(--text)', fontWeight: '500' }}>{stat.value}</span>
-                          <span style={{ color: 'var(--muted)' }}>{stat.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Skills Section */}
-          <section id="skills" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
-            <div style={{
-              fontSize: '0.82rem',
-              fontWeight: '500',
-              textTransform: 'uppercase',
-              letterSpacing: '0.06em',
-              color: 'var(--muted)',
-              marginBottom: '16px',
-              paddingBottom: '8px',
-              borderBottom: '1px solid var(--border)'
-            }}>
-              Skills
-            </div>
-
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-              {profileData.skills.map((skill, index) => (
-                <span
-                  key={index}
-                  className="skill-pill"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </section>
-
-          {/* Education Section */}
-          <section id="education" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
-            <div style={{
-              fontSize: '0.82rem',
-              fontWeight: '500',
-              textTransform: 'uppercase',
-              letterSpacing: '0.06em',
-              color: 'var(--muted)',
-              marginBottom: '16px',
-              paddingBottom: '8px',
-              borderBottom: '1px solid var(--border)'
-            }}>
-              Education
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {profileData.education.map((edu, index) => (
-                <div key={index} style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
-                  <div>
-                    <div style={{ fontWeight: '500', color: 'var(--text)' }}>{edu.institution}</div>
-                    <div style={{ fontSize: '0.84rem', fontWeight: '500', color: 'var(--muted)', marginTop: '2px' }}>{edu.degree}</div>
-                  </div>
-                  <span style={{ fontSize: '0.84rem', fontWeight: '500', color: 'var(--muted)' }}>{edu.period}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Contact Section */}
-          <section id="contact" style={{ scrollMarginTop: '100px', marginBottom: '48px' }}>
-            <div style={{
-              fontSize: '0.82rem',
-              fontWeight: '500',
-              textTransform: 'uppercase',
-              letterSpacing: '0.06em',
-              color: 'var(--muted)',
-              marginBottom: '16px',
-              paddingBottom: '8px',
-              borderBottom: '1px solid var(--border)'
-            }}>
-              Contact
-            </div>
-
-            <p style={{ color: 'var(--muted)', fontSize: '0.92rem', fontWeight: '500' }}>
-              Reach out at{' '}
-              <a href={`mailto:${profileData.socialLinks.email}`} style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '3px', fontWeight: '500' }}>
-                {profileData.socialLinks.email}
-              </a>
-              , find me on{' '}
-              <a href={profileData.socialLinks.github} target="_blank" rel="noreferrer" style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '3px', fontWeight: '500' }}>
-                GitHub
-              </a>
-              , or check out @thatyvrspotter on{' '}
-              <a href={profileData.socialLinks.youtube} target="_blank" rel="noreferrer" style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '3px', fontWeight: '500' }}>
-                YouTube
-              </a>{' '}
-              &{' '}
-              <a href={profileData.socialLinks.tiktok} target="_blank" rel="noreferrer" style={{ color: 'var(--text)', textDecoration: 'underline', textUnderlineOffset: '3px', fontWeight: '500' }}>
-                TikTok
-              </a>
-              .
-            </p>
-          </section>
-
+        </div>
+        <div style={{ width: '100%' }}>
           <Footer />
         </div>
       </div>
+  );
+
+  if (renderSheetOnly) {
+    return sheetSection;
+  }
+
+  return (
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {heroSection}
+      {sheetSection}
     </div>
   );
 }

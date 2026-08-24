@@ -11,7 +11,7 @@ export default function CursorTrail() {
 
     const ctx = canvas.getContext('2d');
     let points = [];
-    const TRAIL_LIFETIME = 350; // ms
+    const TRAIL_LIFETIME = 90; // ms
     let animationFrameId;
 
     function resize() {
@@ -53,16 +53,17 @@ export default function CursorTrail() {
           const ratio = Math.max(0, 1 - age / TRAIL_LIFETIME);
           if (ratio <= 0) continue;
 
-          const alpha = 0.65 * Math.pow(ratio, 1.8);
-          const strokeWidth = Math.max(0.5, 6.5 * ratio);
+          // Smooth quadratic falloff fading to complete 0% opacity at trailing tail
+          const alpha = Math.max(0, 0.75 * Math.pow(ratio, 2.4));
+          const strokeWidth = Math.max(0.1, 5.5 * ratio);
 
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
           ctx.strokeStyle = `rgba(${trailRgb}, ${alpha})`;
           ctx.lineWidth = strokeWidth;
-          ctx.shadowColor = `rgba(${trailRgb}, ${alpha * 0.6})`;
-          ctx.shadowBlur = 6;
+          ctx.shadowColor = `rgba(${trailRgb}, ${alpha * 0.5})`;
+          ctx.shadowBlur = 4 * ratio;
           ctx.stroke();
         }
       }

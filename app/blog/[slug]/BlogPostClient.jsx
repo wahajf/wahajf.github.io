@@ -49,7 +49,7 @@ export default function BlogPostClient({ initialPost }) {
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <PillNavbar />
 
-      <main className="inner-content-container" style={{ width: '100%', maxWidth: '620px', paddingTop: '0px', paddingBottom: '48px' }}>
+      <main className="inner-content-container" style={{ width: '100%', paddingTop: '0px', paddingBottom: '48px' }}>
         {/* Navigation / Back Button */}
         <div style={{ marginBottom: '24px' }}>
           <Link
