@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { profileData } from '../data/profileData';
@@ -113,7 +114,9 @@ export default function PillNavbar() {
       >
         {/* Left Aligned: Main Navbar + Circle Theme Toggle */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', pointerEvents: 'auto' }}>
+          {/* Desktop Navigation Links Container */}
           <nav style={{
+            position: 'relative',
             backgroundColor: 'var(--nav-bg)',
             border: 'var(--nav-border)',
             borderRadius: '9999px',
@@ -123,30 +126,51 @@ export default function PillNavbar() {
             gap: '3px',
             boxShadow: 'none'
           }}>
+            {/* Sliding Active Pill Background */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '3px',
+                bottom: '3px',
+                left: (pathname?.startsWith('/blog')) ? 'calc(50% + 1.5px)' : '3px',
+                width: 'calc(50% - 4.5px)',
+                backgroundColor: 'var(--pill-active-bg)',
+                borderRadius: '9999px',
+                transition: 'left 0.28s cubic-bezier(0.16, 1, 0.3, 1), width 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
+                pointerEvents: 'none',
+                zIndex: 1
+              }}
+            />
+
             {navItems.map((item) => {
               const isActive = item.href === '/'
-                ? (pathname === '/' || pathname === '')
+                ? (!pathname || pathname === '/' || pathname === '')
                 : pathname?.startsWith(item.href);
               return (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item)}
                   style={{
+                    position: 'relative',
+                    zIndex: 2,
                     color: isActive ? 'var(--pill-active-text)' : 'var(--nav-text)',
-                    backgroundColor: isActive ? 'var(--pill-active-bg)' : 'transparent',
+                    backgroundColor: 'transparent',
                     textDecoration: 'none',
                     fontSize: '0.82rem',
                     fontWeight: '500',
-                    padding: '4px 12px',
+                    padding: '4px 14px',
                     borderRadius: '9999px',
-                    transition: 'all 0.18s ease',
+                    transition: 'color 0.22s ease',
                     cursor: 'pointer',
-                    lineHeight: '1.2'
+                    lineHeight: '1.2',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}
                 >
                   {item.label}
-                </a>
+                </Link>
               );
             })}
           </nav>
