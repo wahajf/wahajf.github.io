@@ -383,6 +383,76 @@ summary, summary * {
   opacity: 1 !important;
 }
 
+/* Theme Toggle Button Hover Icon & Color Fill Slide Animation */
+.theme-toggle-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--pill-bg);
+  border: 1px solid var(--border);
+  color: var(--nav-icon-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.28s ease;
+}
+
+/* Sliding Inverted Color Background Fill */
+.theme-toggle-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: var(--text);
+  transform: translateY(100%);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.theme-toggle-btn:hover::before {
+  transform: translateY(0);
+}
+
+.theme-toggle-btn .theme-icon-curr,
+.theme-toggle-btn .theme-icon-next {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease, color 0.28s ease;
+  z-index: 2;
+}
+
+/* Base Position: Current icon centered, Next icon hidden below */
+.theme-toggle-btn .theme-icon-curr {
+  transform: translateY(0);
+  opacity: 1;
+  color: var(--nav-icon-color);
+}
+
+.theme-toggle-btn .theme-icon-next {
+  transform: translateY(24px);
+  opacity: 0;
+  color: var(--bg);
+}
+
+/* Hover State: Current icon slides UP out of view, Next icon slides UP into view with inverted color */
+.theme-toggle-btn:hover .theme-icon-curr {
+  transform: translateY(-24px);
+  opacity: 0;
+}
+
+.theme-toggle-btn:hover .theme-icon-next {
+  transform: translateY(0);
+  opacity: 1;
+  color: var(--bg);
+}
+
 .project-social-btn {
   position: relative;
   width: 28px;
@@ -597,20 +667,18 @@ body {
 /* Page Entry: Hero slides DOWN into place, Work/Content Sheet slides UP into place */
 .hero-stage,
 .page-hero-stage {
-  opacity: 0;
   will-change: transform, opacity;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  animation: slideDown 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slideDown 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .sliding-sheet-container,
 .page-content-sheet {
-  opacity: 0;
   will-change: transform, opacity;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  animation: slideUp 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slideUp 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Sliding Sheet Container over Sticky Hero */

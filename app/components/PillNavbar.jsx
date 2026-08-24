@@ -97,6 +97,13 @@ export default function PillNavbar() {
     document.body.classList.remove('page-exit');
   }, [pathname]);
 
+  // Prefetch routes on mount so route chunk bundles are cached instantly
+  useEffect(() => {
+    router.prefetch('/');
+    router.prefetch('/blog');
+    router.prefetch('/about');
+  }, [router]);
+
   const handleNavClick = (e, item) => {
     e.preventDefault();
     setIsMenuOpen(false);
@@ -229,22 +236,23 @@ export default function PillNavbar() {
               onClick={toggleTheme}
               aria-label="Toggle Theme"
               title="Toggle Theme"
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '50%',
-                backgroundColor: 'var(--pill-bg)',
-                border: '1px solid var(--border)',
-                color: 'var(--nav-icon-color)',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                outline: 'none',
-                boxShadow: 'none'
-              }}
+              className="theme-toggle-btn"
             >
-              {mounted ? (theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />) : <Moon size={14} />}
+              {mounted ? (
+                theme === 'dark' ? (
+                  <>
+                    <span className="theme-icon-curr"><Moon size={14} /></span>
+                    <span className="theme-icon-next"><Sun size={14} /></span>
+                  </>
+                ) : (
+                  <>
+                    <span className="theme-icon-curr"><Sun size={14} /></span>
+                    <span className="theme-icon-next"><Moon size={14} /></span>
+                  </>
+                )
+              ) : (
+                <span className="theme-icon-curr"><Moon size={14} /></span>
+              )}
             </button>
           </div>
 
