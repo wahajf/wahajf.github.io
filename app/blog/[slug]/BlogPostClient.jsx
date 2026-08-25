@@ -49,7 +49,7 @@ export default function BlogPostClient({ initialPost }) {
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <PillNavbar />
 
-      <main className="inner-content-container" style={{ width: '100%', paddingTop: '0px', paddingBottom: '48px' }}>
+      <main className="inner-content-container" style={{ width: '100%', flex: '1 0 auto', paddingTop: '0px', paddingBottom: '48px' }}>
         {/* Navigation / Back Button */}
         <div style={{ marginBottom: '24px' }}>
           <Link
@@ -68,13 +68,23 @@ export default function BlogPostClient({ initialPost }) {
           </Link>
         </div>
 
-        {/* Article Header */}
-        <header style={{ marginBottom: '28px' }}>
-          <h1 style={{ fontSize: '1.85rem', fontWeight: '700', color: 'var(--text)', lineHeight: 1.25, marginBottom: '12px', letterSpacing: '-0.02em' }}>
+        {/* Header */}
+        <header style={{ marginBottom: '24px' }}>
+          {post.categories && post.categories.length > 0 && (
+            <div style={{ display: 'flex', gap: '6px', marginBottom: '12px' }}>
+              {post.categories.map((cat) => (
+                <span key={cat._id || cat.title} className="website-pill active">
+                  {cat.title}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: 'var(--text)', lineHeight: '1.25', margin: '0 0 12px 0' }}>
             {post.title}
           </h1>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '0.84rem', color: 'var(--muted)', fontWeight: '500' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem', color: 'var(--muted)' }}>
             {post.publishedAt && (
               <time dateTime={post.publishedAt}>
                 {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -110,7 +120,9 @@ export default function BlogPostClient({ initialPost }) {
           ) : null}
         </article>
       </main>
-      <div style={{ width: '100%' }}>
+
+      {/* Full Width Footer Pinned to Bottom */}
+      <div style={{ width: '100%', marginTop: 'auto' }}>
         <Footer />
       </div>
     </div>

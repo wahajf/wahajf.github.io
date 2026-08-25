@@ -54,7 +54,7 @@ export async function getCategories() {
 export async function getPostBySlug(slug) {
   if (!client) return null;
   try {
-    const query = `*[_type == "post" && slug.current == $slug][0] {
+    const query = `*[_type == "post" && (slug.current == $slug || _id == $slug)][0] {
       _id,
       title,
       slug,
@@ -65,7 +65,8 @@ export async function getPostBySlug(slug) {
       body,
       categories[]->{ _id, title, slug }
     }`;
-    const res = await client.fetch(query, { slug });
+    const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), 2500));
+    const res = await Promise.race([client.fetch(query, { slug }), timeoutPromise]);
     return res || null;
   } catch (e) {
     console.warn('Sanity fetch error:', e);
