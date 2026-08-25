@@ -151,11 +151,13 @@ export default function BlogIndexPage() {
                   );
                 })
               )}
-            </div>
           </section>
-
-          <Footer />
         </div>
+      </div>
+
+      {/* Full Width Footer */}
+      <div style={{ width: '100%' }}>
+        <Footer />
       </div>
     </div>
   );

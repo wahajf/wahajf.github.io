@@ -109,9 +109,10 @@ export default function BlogPostClient({ initialPost }) {
             </p>
           ) : null}
         </article>
-
-        <Footer />
       </main>
+      <div style={{ width: '100%' }}>
+        <Footer />
+      </div>
     </div>
   );
 }
