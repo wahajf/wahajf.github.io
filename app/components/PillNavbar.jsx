@@ -157,7 +157,7 @@ export default function PillNavbar() {
             alignItems: 'center',
             justifyContent: 'space-between',
             width: '100%',
-            maxWidth: '1020px'
+            maxWidth: '1280px'
           }}
         >
           {/* Left Aligned: Main Navbar + Circle Theme Toggle */}

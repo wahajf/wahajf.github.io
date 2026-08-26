@@ -173,7 +173,7 @@ summary, summary * {
   border-radius: 14px;
   overflow: hidden;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   background-color: var(--card-bg);
   border: 1px solid var(--border);
   box-shadow: none !important;
@@ -181,6 +181,10 @@ summary, summary * {
 }
 
 .project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -224,7 +228,7 @@ summary, summary * {
 }
 
 .projects-grid .project-item:hover .project-thumb img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .projects-grid .project-item:hover .project-thumb::after {
@@ -558,7 +562,7 @@ body {
 /* Inner Content Container matching Desktop (padding: 0 24px) & Mobile (padding: 0 16px) */
 .inner-content-container {
   width: 100%;
-  max-width: 1020px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
   box-sizing: border-box;

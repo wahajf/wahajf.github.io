@@ -72,7 +72,7 @@ export default function Footer() {
           fontWeight: '500',
           paddingTop: '18px',
           paddingBottom: '18px',
-          maxWidth: '1020px',
+          maxWidth: '1280px',
           width: '100%'
         }}
       >

@@ -135,7 +135,7 @@ export default function MainContent({ renderHeroOnly, renderSheetOnly }) {
                         target="_blank"
                         rel="noreferrer"
                         className="project-thumb"
-                        style={{ display: 'block', aspectRatio: '4 / 3' }}
+                        style={{ display: 'block', aspectRatio: '16 / 9', padding: '0px' }}
                       >
                         <img
                           src={proj.previewImage}
