@@ -74,8 +74,8 @@
   /* Restored Navbar Tokens (Dark Mode) */
   --nav-bg: #091428;
   --nav-border: 0.5px solid rgba(255, 255, 255, 0.12);
-  --nav-text: #8e8e96;
-  --nav-icon-color: #fafafa;
+  --nav-text: #ffffff;
+  --nav-icon-color: #ffffff;
 
   /* 50% Opacity Black Blurred Overlay for Mobile Menu in Dark Mode */
   --menu-bg: rgba(0, 0, 0, 0.5);
