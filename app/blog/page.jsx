@@ -92,27 +92,7 @@ export default function BlogIndexPage() {
               Articles
             </div>
 
-            {/* Category Filter Pills */}
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '24px' }}>
-              <button
-                onClick={() => setSelectedCategory('All')}
-                className={`website-pill ${selectedCategory === 'All' ? 'active' : ''}`}
-              >
-                All
-              </button>
-              {categories.map((cat) => {
-                const isActive = selectedCategory.toLowerCase() === cat.title.toLowerCase();
-                return (
-                  <button
-                    key={cat._id}
-                    onClick={() => setSelectedCategory(cat.title)}
-                    className={`website-pill ${isActive ? 'active' : ''}`}
-                  >
-                    {cat.title}
-                  </button>
-                );
-              })}
-            </div>
+
 
             {/* Posts Gallery Grid (2-Column Gallery Layout) */}
             <div className="projects-grid">
