@@ -135,7 +135,7 @@ export default function MainContent({ renderHeroOnly, renderSheetOnly }) {
                         target="_blank"
                         rel="noreferrer"
                         className="project-thumb"
-                        style={{ display: 'block' }}
+                        style={{ display: 'block', aspectRatio: '4 / 3' }}
                       >
                         <img
                           src={proj.previewImage}
@@ -143,7 +143,7 @@ export default function MainContent({ renderHeroOnly, renderSheetOnly }) {
                           style={{
                             width: '100%',
                             height: '100%',
-                            objectFit: 'cover',
+                            objectFit: 'contain',
                             display: 'block'
                           }}
                         />

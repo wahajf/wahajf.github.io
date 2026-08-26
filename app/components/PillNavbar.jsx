@@ -186,8 +186,6 @@ export default function PillNavbar() {
                   left: displayedNav === '/about' ? 'calc(66.66% + 1px)' : displayedNav === '/blog' ? 'calc(33.33% + 1px)' : '3px',
                   width: 'calc(33.33% - 3px)',
                   backgroundColor: 'var(--pill-active-bg)',
-                  border: '1px solid rgba(var(--trail-rgb), 0.4)',
-                  boxShadow: '0 0 8px rgba(var(--trail-rgb), 0.2)',
                   boxSizing: 'border-box',
                   borderRadius: '9999px',
                   transition: 'left 0.25s cubic-bezier(0.16, 1, 0.3, 1)',

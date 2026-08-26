@@ -53,7 +53,7 @@
 
 [data-theme="dark"] {
   /* Default Dark Mode Accent (Skyblue / Blue) */
-  --pill-active-bg: rgba(56, 189, 248, 0.2);
+  --pill-active-bg: #050b14 !important;
   --pill-active-text: #38bdf8;
   --trail-rgb: 56, 189, 248;
   --gradient-start: #1e40af;
@@ -69,12 +69,12 @@
   --border: #0c213d;
   --card-bg: #0b1a30;
   --card-border: #16325c;
-  --pill-bg: #0e2445;
+  --pill-bg: #091428;
   
   /* Restored Navbar Tokens (Dark Mode) */
   --nav-bg: #091428;
   --nav-border: 0.5px solid rgba(255, 255, 255, 0.12);
-  --nav-text: #ffffff;
+  --nav-text: #94a3b8;
   --nav-icon-color: #ffffff;
 
   /* 50% Opacity Black Blurred Overlay for Mobile Menu in Dark Mode */
@@ -173,7 +173,7 @@ summary, summary * {
   border-radius: 14px;
   overflow: hidden;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   background-color: var(--card-bg);
   border: 1px solid var(--border);
   box-shadow: none !important;
@@ -665,7 +665,7 @@ body {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 24px;
 }
 
 @media (max-width: 640px) {
