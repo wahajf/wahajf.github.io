@@ -4,30 +4,30 @@
 
 :root {
   /* Default Accent (Skyblue / Blue) */
-  --pill-active-bg: #f0f9ff;
+  --pill-active-bg: #e0f2fe;
   --pill-active-text: #0284c7;
   --trail-rgb: 14, 165, 233;
   --gradient-start: #1e40af;
   --gradient-end: #00a8e8;
 
-  /* Top Area Background: Clean White */
-  --bg: #ffffff;
-  --text: #111111;
-  --muted: #666666;
-  --subtle: #999999;
-  --border: #e6e6e8;
+  /* Top Area Background: Soft Ice Blue (#f0f9ff) */
+  --bg: #f0f9ff;
+  --text: #0f172a;
+  --muted: #475569;
+  --subtle: #94a3b8;
+  --border: #bae6fd;
 
-  /* Full-width Section Below Hero in Light Mode: #FAFAFA */
-  --sub-bg: #fafafa;
+  /* Full-width Section Below Hero in Light Mode: Soft Azure (#e0f2fe) */
+  --sub-bg: #e0f2fe;
   --card-bg: #ffffff;
-  --card-border: #eaeaea;
-  --pill-bg: #eeeeef;
+  --card-border: #bae6fd;
+  --pill-bg: #e0f2fe;
 
   /* Restored Navbar Tokens (Light Mode) */
   --nav-bg: #ffffff;
-  --nav-border: 1px solid #e5e5e7;
-  --nav-text: #666666;
-  --nav-icon-color: #222222;
+  --nav-border: 1px solid #bae6fd;
+  --nav-text: #475569;
+  --nav-icon-color: #0f172a;
 
   /* Sanity Studio Full-Screen & Theme Fix */
   html:has(#sanity), body:has(#sanity) {
@@ -45,7 +45,7 @@
   }
 
   /* 50% Opacity White Blurred Overlay for Mobile Menu */
-  --menu-bg: rgba(255, 255, 255, 0.5);
+  --menu-bg: rgba(240, 249, 255, 0.7);
 
   /* Inter */
   --font-apple: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -53,26 +53,26 @@
 
 [data-theme="dark"] {
   /* Default Dark Mode Accent (Skyblue / Blue) */
-  --pill-active-bg: rgba(14, 165, 233, 0.18);
+  --pill-active-bg: rgba(56, 189, 248, 0.2);
   --pill-active-text: #38bdf8;
-  --trail-rgb: 14, 165, 233;
+  --trail-rgb: 56, 189, 248;
   --gradient-start: #1e40af;
   --gradient-end: #00a8e8;
 
-  /* Deeper Very Dark Grey Background (#09090b) */
-  --bg: #09090b;
-  /* Slightly Lighter Grey Fill Below Hero (#121215) */
-  --sub-bg: #121215;
-  --text: #f0f0f2;
-  --muted: #8e8e96;
-  --subtle: #55555e;
-  --border: #1c1c22;
-  --card-bg: #18181c;
-  --card-border: #24242a;
-  --pill-bg: #222228;
+  /* Midnight Ocean Blue Background (#050b14) */
+  --bg: #050b14;
+  /* Deep Navy Fill Below Hero (#091428) */
+  --sub-bg: #091428;
+  --text: #f0f9ff;
+  --muted: #94a3b8;
+  --subtle: #475569;
+  --border: #0c213d;
+  --card-bg: #0b1a30;
+  --card-border: #16325c;
+  --pill-bg: #0e2445;
   
   /* Restored Navbar Tokens (Dark Mode) */
-  --nav-bg: #121215;
+  --nav-bg: #091428;
   --nav-border: 0.5px solid rgba(255, 255, 255, 0.12);
   --nav-text: #8e8e96;
   --nav-icon-color: #fafafa;
@@ -709,14 +709,15 @@ body {
 .site-footer {
   width: 100%;
   background-color: #050b14;
-  color: #e0f2fe;
+  color: #94a3b8;
   display: flex;
   justify-content: center;
   margin-top: 60px;
-  border-top: 1.5px solid #38bdf8;
+  border-top: 1px solid #0c213d;
 }
 
 [data-theme="dark"] .site-footer {
   background-color: #000000 !important;
-  border-top: 1.5px solid #0f172a !important;
+  color: #8e8e96 !important;
+  border-top: 1px solid #1c1c22 !important;
 }
