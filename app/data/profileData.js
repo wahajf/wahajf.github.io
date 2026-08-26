@@ -30,6 +30,14 @@ export const profileData = {
       description: "Aviation platform and flight tracking interface.",
       websiteUrl: "https://flightcitizen.com",
       previewImage: "/flightcitizen-preview.png"
+    },
+    {
+      id: "pingpong3d",
+      title: "3D Ping Pong Game",
+      date: "2026 – Present",
+      description: "Interactive 3D web table tennis game built with Three.js.",
+      githubUrl: "https://github.com/wahajf",
+      previewImage: "/pingpong-preview.png"
     }
   ],
   experience: [

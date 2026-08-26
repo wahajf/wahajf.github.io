@@ -85,8 +85,29 @@
   display: none;
 }
 .projects-slider {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.project-slide-card {
+  flex: 0 0 calc(45% - 12px);
+  min-width: 320px;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 640px) {
+  .project-slide-card {
+    flex: 0 0 85%;
+    min-width: 280px;
+  }
 }
 
 @property --angle {
@@ -217,24 +238,29 @@ summary, summary * {
   animation: rotateGradient 4s linear infinite;
 }
 
-.projects-grid:has(.project-item:hover) .project-thumb {
+.projects-grid:has(.project-item:hover) .project-thumb,
+.projects-slider:has(.project-item:hover) .project-thumb {
   opacity: 0.5;
 }
 
-.projects-grid .project-item:hover .project-thumb {
+.projects-grid .project-item:hover .project-thumb,
+.projects-slider .project-item:hover .project-thumb {
   opacity: 1 !important;
   transform: none !important;
 }
 
-.projects-grid .project-item:hover .project-thumb img {
+.projects-grid .project-item:hover .project-thumb img,
+.projects-slider .project-item:hover .project-thumb img {
   transform: scale(1.04);
 }
 
-.projects-grid .project-item:hover .project-thumb::after {
+.projects-grid .project-item:hover .project-thumb::after,
+.projects-slider .project-item:hover .project-thumb::after {
   opacity: 1;
 }
 
-.projects-grid .project-item:hover .project-thumb::before {
+.projects-grid .project-item:hover .project-thumb::before,
+.projects-slider .project-item:hover .project-thumb::before {
   opacity: 1;
 }
 
@@ -442,8 +468,8 @@ summary, summary * {
   position: absolute;
   bottom: calc(100% + 8px);
   left: 50%;
-  transform: translate(calc(-50% + var(--tt-x, 0px)), calc(4px + var(--tt-y, 0px)));
-  background-color: rgba(0, 0, 0, 0.7);
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -455,8 +481,8 @@ summary, summary * {
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.15s ease, transform 0.08s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none !important;
+  transition: opacity 0.15s ease, transform 0.15s ease;
   z-index: 100;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   line-height: 1.2;
@@ -465,7 +491,7 @@ summary, summary * {
 .project-social-btn[data-tooltip]:hover::before {
   opacity: 1;
   visibility: visible;
-  transform: translate(calc(-50% + var(--tt-x, 0px)), var(--tt-y, 0px));
+  transform: translateX(-50%) translateY(-2px);
 }
 
 html {

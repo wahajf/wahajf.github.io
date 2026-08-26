@@ -117,7 +117,7 @@ export default function MainContent({ renderHeroOnly, renderSheetOnly }) {
               </span>
             </div>
 
-            <div className="projects-grid">
+            <div className="projects-slider">
               {profileData.projects.map((proj) => {
                 const primaryUrl = proj.websiteUrl || proj.githubUrl || proj.youtubeUrl || proj.tiktokUrl;
                 const CardWrapper = primaryUrl ? 'a' : 'div';
@@ -126,7 +126,7 @@ export default function MainContent({ renderHeroOnly, renderSheetOnly }) {
                 return (
                   <div
                     key={proj.id}
-                    className="project-item"
+                    className="project-item project-slide-card"
                   >
                     {/* 1. Thumbnail Image ABOVE */}
                     {proj.previewImage && (
