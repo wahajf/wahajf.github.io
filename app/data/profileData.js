@@ -17,7 +17,7 @@ export const profileData = {
     {
       id: "thatyvrspotter",
       title: "@thatyvrspotter",
-      date: "2024 - Present",
+      date: "2023 – Present",
       description: "Aviation media channel documenting commercial planespotting & flight operations at YVR.",
       youtubeUrl: "https://youtube.com/@thatyvrspotter",
       tiktokUrl: "https://www.tiktok.com/@thatyvrspotter",
@@ -26,7 +26,7 @@ export const profileData = {
     {
       id: "flightcitizen",
       title: "Flight Citizen",
-      date: "2025 - Present",
+      date: "2025 – Present",
       description: "Aviation platform and flight tracking interface.",
       websiteUrl: "https://flightcitizen.com",
       previewImage: "/flightcitizen-preview.png"
@@ -46,7 +46,7 @@ export const profileData = {
     {
       role: "Content Creator",
       organization: "@thatyvrspotter",
-      period: "2024 – Present",
+      period: "2023 – Present",
       stats: [
         { label: "Views", value: "150K+" },
         { label: "Followers", value: "2K+" }
