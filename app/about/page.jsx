@@ -23,7 +23,7 @@ export default function AboutPage() {
         }}>
           <div>
             <p style={{ fontSize: '1.05rem', lineHeight: '1.6', color: 'var(--text)', margin: 0 }}>
-              Hi, I'm Wahaj Farooq — a Software Engineer and incoming Computer Science freshman at <a href="https://www.sfu.ca" target="_blank" rel="noreferrer" className="hero-link">Simon Fraser University</a>. I specialize in building web applications, modern interfaces, and media projects. On the side, I run <a href="https://youtube.com/@thatyvrspotter" target="_blank" rel="noreferrer" className="hero-link">@thatyvrspotter</a>, documenting aviation &amp; planespotting at YVR.
+              Hi, I'm Wahaj Farooq — a Software Engineer and incoming Computer Science freshman at <a href="https://www.sfu.ca" target="_blank" rel="noreferrer" className="hero-link">Simon Fraser University</a>. I specialize in building web applications, modern interfaces, and media projects. On the side, I run <a href="https://youtube.com/@thatyvrspotter" target="_blank" rel="noreferrer" className="hero-link">@thatyvrspotter</a>, where I record planespotting videos at YVR.
             </p>
           </div>
 

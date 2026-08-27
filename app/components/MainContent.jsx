@@ -85,7 +85,7 @@ export default function MainContent({ renderHeroOnly, renderSheetOnly }) {
       <div className="hero-stage-inner">
         <section id="about" className="hero-content">
           <p className="hero-text">
-            Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at <a href={profileData.sfuUrl} target="_blank" rel="noreferrer" className="hero-link">Simon Fraser University</a>. On the side I run <a href={profileData.socialLinks.youtube} target="_blank" rel="noreferrer" className="hero-link">@thatyvrspotter</a>, documenting planespotting at YVR.
+            Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at <a href={profileData.sfuUrl} target="_blank" rel="noreferrer" className="hero-link">Simon Fraser University</a>. On the side I run <a href={profileData.socialLinks.youtube} target="_blank" rel="noreferrer" className="hero-link">@thatyvrspotter</a> and <a href="https://flightcitizen.com" target="_blank" rel="noreferrer" className="hero-link">Flight Citizen</a>.
           </p>
         </section>
       </div>

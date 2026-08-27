@@ -89,7 +89,7 @@ export default function BlogIndexPage() {
               color: 'var(--muted)',
               marginBottom: '16px'
             }}>
-              Articles
+              Gallery
             </div>
 
 

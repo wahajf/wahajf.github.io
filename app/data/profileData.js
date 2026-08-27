@@ -3,7 +3,7 @@ export const profileData = {
   location: "Vancouver, BC",
   bio: [
     "Hi, I'm Wahaj, a Software Engineer and incoming CS freshman at Simon Fraser University.",
-    "On the side I run @thatyvrspotter, documenting planespotting at YVR."
+    "On the side I run @thatyvrspotter and Flight Citizen."
   ],
   sfuUrl: "https://www.sfu.ca",
   socialLinks: {
@@ -33,7 +33,7 @@ export const profileData = {
     },
     {
       id: "pingpong3d",
-      title: "3D Ping Pong Game",
+      title: "PingPong 3D",
       date: "2026 – Present",
       description: "Interactive 3D web table tennis game built with Three.js.",
       githubUrl: "https://github.com/wahajf",
